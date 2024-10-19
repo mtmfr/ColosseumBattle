@@ -2,6 +2,7 @@ using System.Collections;
 using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class UI : MonoBehaviour
@@ -15,7 +16,7 @@ public class UI : MonoBehaviour
     #endregion
 
     #region GameStart Variables
-    private int index;
+    private int heroMenu;
     [Header("Start UI")]
     [SerializeField] private GameObject startUI;
     [SerializeField] private GameObject[] HeroSelect = new GameObject[6];
@@ -24,22 +25,24 @@ public class UI : MonoBehaviour
     [SerializeField] private GameObject descCancel;
     #endregion
 
+    [SerializeField] private GameObject shop; 
+
     #region Unity functions
-    private void Start()
-    {
-        
-    }
+
     private void OnEnable()
     {
         EventManager.Instance.MiscEvent.GoldValueChange += GoldNumber;
         EventManager.Instance.MiscEvent.TimerValueChange += Timer;
-        EventManager.Instance.MiscEvent.WaveStart += CurrentWave;
+        EventManager.Instance.WaveEvent.WaveStart += CurrentWave;
+        EventManager.Instance.WaveEvent.OpenShop += OpenShop;
     }
 
     private void OnDisable()
     {
         EventManager.Instance.MiscEvent.GoldValueChange -= GoldNumber;
         EventManager.Instance.MiscEvent.TimerValueChange -= Timer;
+        EventManager.Instance.WaveEvent.WaveStart -= CurrentWave;
+        EventManager.Instance.WaveEvent.OpenShop -= OpenShop;
     }
     #endregion
 
@@ -54,7 +57,7 @@ public class UI : MonoBehaviour
         if(GameManager.Instance.State == GameState.Fight)
         {
             timer.text = time.ToString();
-            GameManager.Instance.TimePerWave--;
+            WaveManager.Instance.TimePerWave--;
             StartCoroutine(TimerCoroutine());
         }
     }
@@ -67,33 +70,23 @@ public class UI : MonoBehaviour
     IEnumerator TimerCoroutine()
     {
         yield return new WaitForSeconds(1);
-        EventManager.Instance.MiscEvent.OnTimerChange(GameManager.Instance.TimePerWave);
+        EventManager.Instance.MiscEvent.OnTimerChange(WaveManager.Instance.TimePerWave);
     }
     #endregion
 
     #region Select first hero
-    public void SelectCharacter(int i)
+    public void SelectCharacter(int selectedHero)
     {
-        index = i;
-        heroDesc[i].SetActive(true);
+        heroMenu = selectedHero;
+        heroDesc[selectedHero].SetActive(true);
         descCancel.SetActive(true);
-        HeroSelect[i].transform.parent.gameObject.SetActive(false);
+        HeroSelect[selectedHero].transform.parent.gameObject.SetActive(false);
     }
 
-    private Vector2 SpawnZone(GameObject spawnZone)
-    {
-        var range = spawnZone.GetComponent<Collider2D>();
-
-        var spawnPoint = new Vector2(
-            Random.Range(range.bounds.min.x, range.bounds.max.x),
-            Random.Range(range.bounds.min.y, range.bounds.max.y));
-        return spawnPoint;
-    }
-
-    public void SpawnSelectedHero(int i)
+    public void SpawnSelectedHero(int heroIndex)
     {
         GameManager.Instance.UpdateGameState(GameState.Fight);
-        var heroObject = Instantiate(heroToSpawn[i],SpawnZone(GameManager.Instance.HeroSpawnZone), Quaternion.identity);
+        Hero heroObject = Instantiate(heroToSpawn[heroIndex], WaveManager.Instance.SpawnZone(WaveManager.Instance.HeroSpawnZone), Quaternion.identity);
         GameManager.Instance.HeroList.Add(heroObject.gameObject);
         startUI.SetActive(false);
         battleUI.SetActive(true);
@@ -101,9 +94,24 @@ public class UI : MonoBehaviour
 
     public void Cancel()
     {
-        heroDesc[index].SetActive(false);
+        heroDesc[heroMenu].SetActive(false);
         descCancel.SetActive(false);
-        HeroSelect[index].transform.parent.gameObject.SetActive(true);
+        HeroSelect[heroMenu].transform.parent.gameObject.SetActive(true);
     }
     #endregion
+
+    private void OpenShop()
+    {
+        shop.SetActive(true);
+    }
+
+    public void BuyNewHero(int heroIndex)
+    {
+
+    }
+
+    public void CloseShop()
+    {
+        shop.SetActive(false);
+    }
 }

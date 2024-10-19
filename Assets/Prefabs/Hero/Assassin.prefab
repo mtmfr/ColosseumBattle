@@ -650,6 +650,10 @@ MonoBehaviour:
   moveSound: {fileID: 560636181191166111}
   swingSound: {fileID: 5417800872312964108}
   opponent: {fileID: 0}
+  equip:
+    armor: {fileID: 0}
+    helm: {fileID: 0}
+    boots: {fileID: 0}
   blood: {fileID: 1656416264921615784, guid: 67119a784fb031d4ab655922283f8f16, type: 3}
   bloodSpawn: {fileID: 5012228716353965776}
 --- !u!1 &5012228716353965776

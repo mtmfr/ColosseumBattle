@@ -1,35 +1,36 @@
 using System;
 using UnityEngine;
 
+
+//The events related to the character the GameObject type is used as an Id check
 public class CharacterEvent
 {
-
-    public event Action<GameObject> FindClosestEnemy;
-    public void FindClosestEnemyEvent(GameObject gameObject)
+    public event Action<GameObject> FindClosestOpponent;
+    public void FindClosestOpponentEvent(GameObject gameObject)
     {
-        FindClosestEnemy?.Invoke(gameObject);
+        FindClosestOpponent?.Invoke(gameObject);
     }
 
-    public event Action<ushort, GameObject> Move;
-    public void MoveEvent(ushort speed, GameObject gameObject)
+    public event Action<int, GameObject> Move;
+    public void MoveEvent(int speed, GameObject gameObject)
     {
         Move?.Invoke(speed, gameObject);
     }
 
-    public event Action<ushort, GameObject> Flee;
-    public void FleeEvent(ushort speed, GameObject gameObject)
+    public event Action<int, GameObject> Flee;
+    public void FleeEvent(int speed, GameObject gameObject)
     {
         Flee?.Invoke(speed, gameObject);
     }
 
-    public event Action<ushort, GameObject> Attack;
-    public void AttackEvent(ushort damage, GameObject gameObject)
+    public event Action<int, GameObject> Attack;
+    public void AttackEvent(int damage, GameObject gameObject)
     {
         Attack?.Invoke(damage, gameObject);
     }
 
-    public event Action<ushort, GameObject, GameObject> TakeDamage;
-    public void TakeDamageEvent(ushort damage, GameObject gameObject, GameObject striker)
+    public event Action<int, GameObject, GameObject> TakeDamage;
+    public void TakeDamageEvent(int damage, GameObject gameObject, GameObject striker)
     {
         TakeDamage?.Invoke(damage, gameObject, striker);
     }
@@ -46,8 +47,8 @@ public class CharacterEvent
         Dying?.Invoke(gameObject, killer);
     }
 
-    public event Action<ushort, GameObject> Heal;
-    public void HealEvent(ushort heal, GameObject gameObject)
+    public event Action<int, GameObject> Heal;
+    public void HealEvent(int heal, GameObject gameObject)
     {
         Heal?.Invoke(heal, gameObject);
     }

@@ -1,41 +1,30 @@
 using System;
 using System.Collections;
+using System.Linq.Expressions;
+using Unity.Mathematics;
 using UnityEngine;
 
 
 public abstract class Hero : Unit
 {
-    //[SerializeField] private GameObject effect;
+    [SerializeField] private Equipement equip;
+
     #region Unity Function
     override protected void Start()
     {
         base.Start();
 
+        maxHealth += equip.HealthBonus;
+
         GameManager.Instance.HeroLeftInParty++;
-
-        EventManager.Instance.CharacterEvent.FindClosestEnemyEvent(gameObject);
-    }
-
-    override protected void OnEnable()
-    {
-        base.OnEnable();
-        EventManager.Instance.CharacterEvent.FindClosestEnemy += FindClosestEnemy;
-        EventManager.Instance.CharacterEvent.Dying += Death;
-    }
-
-    override protected void OnDisable()
-    {
-        base.OnDisable();
-        EventManager.Instance.CharacterEvent.FindClosestEnemy -= FindClosestEnemy;
-        EventManager.Instance.CharacterEvent.Dying -= Death;
     }
     #endregion
 
     /// <summary>
-    /// Used to find the enemy enemy from the characterS0
+    /// Used to find the closest enemy from the character
     /// </summary>
     /// <param name="gameObject">this gameObject used as an id check</param>
-    private void FindClosestEnemy(GameObject gameObject)
+    protected override void FindClosestOpponent(GameObject gameObject)
     {
         if (gameObject == this.gameObject)
         {
@@ -63,7 +52,8 @@ public abstract class Hero : Unit
             }
         }
     }
-    protected override void Attack(ushort attack, GameObject gameObject)
+
+    protected override void Attack(int attack, GameObject gameObject)
     {
         if (gameObject == this.gameObject)
         {
@@ -74,6 +64,7 @@ public abstract class Hero : Unit
             }
             else
             {
+                State = CharacterState.Idle;
                 isAttacking = false;
                 StopCoroutine(AttackCR(attack));
             }
@@ -85,7 +76,7 @@ public abstract class Hero : Unit
     /// </summary>
     /// <param name="damage">the number of damage to deal to the enemy</param>
     /// <returns>1 divided by the attackspeed</returns>
-    protected abstract IEnumerator AttackCR(ushort damage);
+    protected abstract IEnumerator AttackCR(int damage);
 
     protected override IEnumerator DeathCoroutine(GameObject killer)
     {
@@ -97,4 +88,31 @@ public abstract class Hero : Unit
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }
+}
+
+[Serializable]
+public class Equipement
+{
+    [SerializeField] private Armor armor;
+    [SerializeField] private Helmet helm;
+    [SerializeField] private Boots boots;
+
+    public int HealthBonus
+    {
+        get
+        {
+            int healtToreturn = 0;
+            if (armor)
+                healtToreturn += armor.HealthMod;
+            if (helm)
+                healtToreturn += helm.HealthMod;
+            if(boots)
+                healtToreturn += boots.HealthMod;
+
+            return healtToreturn;
+        }
+    }
+    int attBonus;
+    int defBonus;
+    int magBonus;    
 }

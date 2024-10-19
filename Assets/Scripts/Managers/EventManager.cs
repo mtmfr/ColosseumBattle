@@ -17,6 +17,7 @@ public class EventManager : MonoBehaviour
 
     public CharacterEvent CharacterEvent { get; private set; }
     public MiscEvent MiscEvent { get; private set; }
+    public WaveEvent WaveEvent { get; private set; }
     
     private void Awake()
     {
@@ -33,5 +34,6 @@ public class EventManager : MonoBehaviour
 
         CharacterEvent = new();
         MiscEvent = new();
+        WaveEvent = new();
     }
 }

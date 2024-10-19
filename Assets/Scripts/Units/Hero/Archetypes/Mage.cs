@@ -6,7 +6,7 @@ public class Mage : Hero
     [Header("Effect")]
     [SerializeField] private GameObject explosion;
 
-    protected override IEnumerator AttackCR(ushort damage)
+    protected override IEnumerator AttackCR(int damage)
     {
         rb.velocity = Vector2.zero;
         anim.Play("Attack");

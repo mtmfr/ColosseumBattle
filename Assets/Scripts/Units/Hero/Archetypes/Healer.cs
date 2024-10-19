@@ -6,7 +6,7 @@ public class Healer : Hero
     [Header("Effect")]
     [SerializeField] private GameObject lightPillar;
 
-    protected override IEnumerator AttackCR(ushort damage)
+    protected override IEnumerator AttackCR(int damage)
     {
         rb.velocity = Vector2.zero;
         anim.Play("Attack");
@@ -15,6 +15,6 @@ public class Healer : Hero
         EventManager.Instance.CharacterEvent.TakeDamageEvent(damage, opponent, gameObject);
         yield return new WaitForSeconds(1 / attSpeed);
         Destroy(copy);
-        EventManager.Instance.CharacterEvent.AttackEvent((ushort)Mathf.Max(attack, magic), gameObject);
+        EventManager.Instance.CharacterEvent.AttackEvent((int)Mathf.Max(attack, magic), gameObject);
     }
 }

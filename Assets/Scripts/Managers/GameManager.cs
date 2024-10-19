@@ -31,22 +31,12 @@ public class GameManager : MonoBehaviour
     [field: SerializeField] public List<GameObject> HeroList { get; private set; } = new List<GameObject>();
     [field: SerializeField] public int HeroLeftInParty { get; set; }
     public List<Enemy> EnemyList { get; private set; } = new List<Enemy>();
-    [field: SerializeField]
-    public int EnemyLeftInWave { get; set;}
-
-    public int CurrentWave { get; set; }
-    [field: SerializeField] public int TimePerWave { get; set; }
-
-    [field: SerializeField] public GameObject HeroSpawnZone { get; private set; }
-    [field: SerializeField] public GameObject EnemySpawnZone { get; private set; }
 
     #region UnityFunction
     private void Awake()
     {
         if(_instance)
-        {
             Destroy(gameObject);
-        }
         else
         {
             _instance = this;
@@ -70,26 +60,23 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Start:
                 Gold = 0;
-                CurrentWave = 0;
+                WaveManager.Instance.CurrentWave = 0;
                 break;
             case GameState.Fight:
-                CurrentWave++;
+                WaveManager.Instance.StartSpawn();
+                WaveManager.Instance.FightStart();
                 EventManager.Instance.MiscEvent.OnGoldValueChange(Instance.Gold);
-                EventManager.Instance.MiscEvent.OnStartWave(Instance.CurrentWave);
-                EventManager.Instance.MiscEvent.OnTimerChange(Instance.TimePerWave);
+
                 break;
             case GameState.Shop: 
+                WaveManager.Instance.EndWave();
+                EventManager.Instance.WaveEvent.OpenShopEvent();
                 break;
             case GameState.Lose:
 
                 break;
         }
         OnGameStateChanged?.Invoke(State);
-    }
-
-    public void SpawnEnemies()
-    {
-
     }
 }
 

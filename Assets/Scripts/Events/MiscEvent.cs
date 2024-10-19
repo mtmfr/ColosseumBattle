@@ -14,11 +14,4 @@ public class MiscEvent
     {
         TimerValueChange?.Invoke(time);
     }
-
-    public event Action<int> WaveStart;
-    public void OnStartWave(int wave)
-    {
-        WaveStart?.Invoke(wave);
-    }
-
 }

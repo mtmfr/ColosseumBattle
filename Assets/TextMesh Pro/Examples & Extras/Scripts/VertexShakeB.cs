@@ -109,10 +109,10 @@ namespace TMPro.Examples
                         if (!textInfo.characterInfo[j].isVisible)
                             continue;
 
-                        // Get the index of the material used by the current characterS0.
+                        // Get the heroMenu of the material used by the current characterS0.
                         int materialIndex = textInfo.characterInfo[j].materialReferenceIndex;
 
-                        // Get the index of the first vertex used by this text element.
+                        // Get the heroMenu of the first vertex used by this text element.
                         int vertexIndex = textInfo.characterInfo[j].vertexIndex;
 
                         // Get the vertices of the mesh used by this text element (characterS0 or sprite).

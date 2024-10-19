@@ -12,7 +12,7 @@ public class Arrow : MonoBehaviour
 
     private GameObject archer;
 
-    private ushort damageToDeal;
+    private int damageToDeal;
 
     private void Start()
     {
@@ -31,7 +31,7 @@ public class Arrow : MonoBehaviour
         }
     }
 
-    public void SetDamage(ushort damage)
+    public void SetDamage(int damage)
     {
         damageToDeal = damage;
     }

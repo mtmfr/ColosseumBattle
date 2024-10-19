@@ -5,30 +5,16 @@ using UnityEngine;
 public abstract class Enemy : Unit
 {
     [Header("GoldDropped")]
-    [SerializeField] private ushort goldDrop;
+    [SerializeField] private int goldDrop;
 
     override protected void Start()
     {
         base.Start();
 
-        GameManager.Instance.EnemyLeftInWave++;
+        WaveManager.Instance.EnemyLeftInWave++;
     }
 
-    override protected void OnEnable()
-    {
-        base.OnEnable();
-        EventManager.Instance.CharacterEvent.FindClosestEnemy += FindClosestEnemy;
-        EventManager.Instance.CharacterEvent.Dying += Death;
-    }
-
-    override protected void OnDisable()
-    {
-        base.OnDisable();
-        EventManager.Instance.CharacterEvent.FindClosestEnemy -= FindClosestEnemy;
-        EventManager.Instance.CharacterEvent.Dying -= Death;
-    }
-
-    private void FindClosestEnemy(GameObject gameObject)
+    protected override void FindClosestOpponent(GameObject gameObject)
     {
         if (gameObject == this.gameObject)
         {
@@ -57,7 +43,7 @@ public abstract class Enemy : Unit
         }
     }
 
-    protected override void Attack(ushort attack, GameObject gameObject)
+    protected override void Attack(int attack, GameObject gameObject)
     {
         if (gameObject == this.gameObject)
         {
@@ -76,10 +62,11 @@ public abstract class Enemy : Unit
     protected override IEnumerator DeathCoroutine(GameObject killer)
     {
         anim.Play("Death");
-        GameManager.Instance.EnemyLeftInWave--;
+        WaveManager.Instance.EnemyLeftInWave--;
         GameManager.Instance.Gold += goldDrop;
         EventManager.Instance.MiscEvent.OnGoldValueChange(GameManager.Instance.Gold);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
+        WaveManager.Instance.EnemyInWave(WaveManager.Instance.EnemyLeftInWave);
         Destroy(gameObject);
     }
 }
