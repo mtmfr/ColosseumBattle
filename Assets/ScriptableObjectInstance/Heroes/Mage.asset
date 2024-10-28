@@ -16,10 +16,10 @@ MonoBehaviour:
   <Health>k__BackingField: 10
   <Attack>k__BackingField: 10
   <Magic>k__BackingField: 20
-  <Speed>k__BackingField: 5
-  <Cost>k__BackingField: 0
+  <Speed>k__BackingField: 7
+  <Cost>k__BackingField: 10
   <MinRange>k__BackingField: 1
-  <MaxRange>k__BackingField: 3
+  <MaxRange>k__BackingField: 4
   <AttSpeed>k__BackingField: 1.5
   <LayerMask>k__BackingField:
     serializedVersion: 2

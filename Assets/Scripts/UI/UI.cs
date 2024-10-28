@@ -36,7 +36,7 @@ public class UI : MonoBehaviour
     [Header("Shop UI")]
     [SerializeField] private GameObject shop;
     [SerializeField] private TextMeshProUGUI shopGoldValue;
-    [SerializeField] private TextMeshProUGUI HeroPrice;
+    [SerializeField] private TextMeshProUGUI[] HeroPrice;
 
     #region Unity functions
 
@@ -107,8 +107,8 @@ public class UI : MonoBehaviour
     public void SpawnSelectedHero()
     {
         GameManager.Instance.UpdateGameState(GameState.Fight);
-        Hero heroObject = Instantiate(heroToSpawn[currentHero], WaveManager.Instance.SpawnZone(WaveManager.Instance.HeroSpawnZone), Quaternion.identity);
-        GameManager.Instance.HeroList.Add(heroToSpawn[currentHero].gameObject);
+        GameObject heroObject = Instantiate(heroToSpawn[currentHero].gameObject, WaveManager.Instance.SpawnZone(WaveManager.Instance.HeroSpawnZone), Quaternion.identity);
+        GameManager.Instance.HeroList.Add(heroToSpawn[currentHero]);
         startUI.SetActive(false);
         battleUI.SetActive(true);
     }
@@ -126,17 +126,23 @@ public class UI : MonoBehaviour
     {
         shop.SetActive(true);
         battleUI.SetActive(false);
+
+        for (int costToSet = 0; costToSet < HeroPrice.Length; costToSet++)
+        {
+            int cost = heroToSpawn[costToSet].cost * GameManager.Instance.HeroLeftInParty;
+            HeroPrice[costToSet].text = cost.ToString();
+        }
     }
 
     public void BuyNewHero(int heroIndex)
     {
-        HeroPrice.text = heroToSpawn[heroIndex].cost.ToString();
-        EventManager.Instance.MiscEvent.OnGoldValueChange(heroToSpawn[heroIndex].cost);
-    }
-
-    public void SellHero()
-    {
-        //TODO sell useless hero
+        if (GameManager.Instance.Gold - heroToSpawn[heroIndex].cost * GameManager.Instance.HeroLeftInParty >= 0)
+        {
+            GameManager.Instance.HeroList.Add(heroToSpawn[heroIndex]);
+            GameManager.Instance.Gold -= heroToSpawn[heroIndex].cost * GameManager.Instance.HeroLeftInParty;
+            EventManager.Instance.MiscEvent.OnGoldValueChange(GameManager.Instance.Gold);
+        }
+        else return;
     }
 
     public void CloseShop()

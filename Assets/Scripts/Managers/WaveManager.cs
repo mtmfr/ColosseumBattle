@@ -56,11 +56,12 @@ public class WaveManager : MonoBehaviour
 
     public void StartHeroSpawn()
     {
-        foreach(GameObject hero in GameManager.Instance.HeroList)
+        foreach(Hero hero in GameManager.Instance.HeroList)
         {
             if (hero)
             {
-                GameObject heroToSpawn = Instantiate(hero, Instance.SpawnZone(Instance.HeroSpawnZone),Quaternion.identity);
+                GameObject heroToSpawn = hero.gameObject;
+                GameObject spawnedHero = Instantiate(heroToSpawn, Instance.SpawnZone(Instance.HeroSpawnZone),Quaternion.identity);
             }
         }
     }

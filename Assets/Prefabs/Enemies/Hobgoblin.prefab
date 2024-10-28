@@ -478,7 +478,7 @@ MonoBehaviour:
   moveSound: {fileID: 0}
   swingSound: {fileID: 0}
   opponent: {fileID: 0}
-  goldDrop: 0
+  goldDrop: 10
 --- !u!1 &7067729290731404124
 GameObject:
   m_ObjectHideFlags: 0

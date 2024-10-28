@@ -17,7 +17,7 @@ MonoBehaviour:
   <Attack>k__BackingField: 45
   <Magic>k__BackingField: 65
   <Speed>k__BackingField: 4
-  <Cost>k__BackingField: 0
+  <Cost>k__BackingField: 10
   <MinRange>k__BackingField: 1.5
   <MaxRange>k__BackingField: 3
   <AttSpeed>k__BackingField: 1

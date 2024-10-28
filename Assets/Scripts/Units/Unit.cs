@@ -120,7 +120,6 @@ public abstract class Unit : MonoBehaviour
         if (fleeZone > 0)
         {
             State = CharacterState.Fleeing;
-            EventManager.Instance.CharacterEvent.FindClosestOpponentEvent(gameObject);
         }
         else if (attackZone == 0 && fleeZone == 0)
         {
@@ -150,6 +149,9 @@ public abstract class Unit : MonoBehaviour
                 {
                     EventManager.Instance.CharacterEvent.AttackEvent(Mathf.Max(attack, magic), gameObject);
                 }
+                break;
+            default:
+                DetectZone(minRange, maxRange);
                 break;
         }
     }
@@ -195,6 +197,7 @@ public abstract class Unit : MonoBehaviour
 
             rb.velocity = dir.normalized * speed;
             anim.SetTrigger("IsMoving");
+            EventManager.Instance.CharacterEvent.FindClosestOpponentEvent(gameObject);
         }
     }
     #endregion

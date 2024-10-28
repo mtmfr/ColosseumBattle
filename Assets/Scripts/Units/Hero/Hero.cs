@@ -79,7 +79,7 @@ public abstract class Hero : Unit
         hitSound.Play();
         State = CharacterState.Dying;
         GameManager.Instance.HeroLeftInParty--;
-        GameManager.Instance.HeroList.Remove(gameObject);
+        GameManager.Instance.HeroList.Remove(this);
         EventManager.Instance.CharacterEvent.FindClosestOpponentEvent(gameObject);
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);

@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     public int Gold { get; set; } = 0;
 
-    [field: SerializeField] public List<GameObject> HeroList { get; private set; } = new List<GameObject>();
+    [field: SerializeField] public List<Hero> HeroList { get; private set; } = new List<Hero>();
     [field: SerializeField] public int HeroLeftInParty { get; set; }
 
     #region UnityFunction
@@ -66,6 +66,10 @@ public class GameManager : MonoBehaviour
                 WaveManager.Instance.StartHeroSpawn();
                 WaveManager.Instance.GenerateWave();
                 EventManager.Instance.MiscEvent.OnGoldValueChange(Instance.Gold);
+                foreach (Hero hero in HeroList)
+                {
+                    Debug.Log(hero);
+                }
 
                 break;
             case GameState.Shop: 

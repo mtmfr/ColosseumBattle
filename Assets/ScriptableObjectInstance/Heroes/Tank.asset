@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <charIcon>k__BackingField: {fileID: -305662272, guid: 615bd727e6bc6fb4ba4fc29df2dcc3be, type: 3}
   <Health>k__BackingField: 150
-  <Attack>k__BackingField: 5
+  <Attack>k__BackingField: 10
   <Magic>k__BackingField: 0
   <Speed>k__BackingField: 3
-  <Cost>k__BackingField: 0
+  <Cost>k__BackingField: 10
   <MinRange>k__BackingField: 0
   <MaxRange>k__BackingField: 0.5
   <AttSpeed>k__BackingField: 0.75

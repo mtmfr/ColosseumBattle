@@ -720,7 +720,7 @@ MonoBehaviour:
   moveSound: {fileID: 0}
   swingSound: {fileID: 0}
   opponent: {fileID: 0}
-  goldDrop: 0
+  goldDrop: 15
 --- !u!1 &6784488441147892820
 GameObject:
   m_ObjectHideFlags: 0
