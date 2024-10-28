@@ -49,15 +49,18 @@ public abstract class Enemy : Unit
         {
             if (State == CharacterState.Attacking)
             {
+                StartCoroutine(AttackCR(attack));
                 isAttacking = true;
             }
             else
             {
+                StopCoroutine(AttackCR(attack));
                 isAttacking = false;
             }
-
         }
     }
+
+    protected abstract IEnumerator AttackCR(int damage);
 
     protected override IEnumerator DeathCoroutine(GameObject killer)
     {
@@ -65,6 +68,7 @@ public abstract class Enemy : Unit
         WaveManager.Instance.EnemyLeftInWave--;
         GameManager.Instance.Gold += goldDrop;
         EventManager.Instance.MiscEvent.OnGoldValueChange(GameManager.Instance.Gold);
+        EventManager.Instance.CharacterEvent.FindClosestOpponentEvent(killer);
         yield return new WaitForSeconds(0.2f);
         WaveManager.Instance.EnemyInWave(WaveManager.Instance.EnemyLeftInWave);
         Destroy(gameObject);

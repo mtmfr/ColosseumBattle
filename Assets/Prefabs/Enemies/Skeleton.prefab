@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3640481372223479068}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 8656024189331644157}
   - component: {fileID: 4279356508667873971}
   - component: {fileID: 1371696745955755114}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9117165525109074590}
   - component: {fileID: 6159042563154217636}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: weapons__1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2491786838833474680}
   - component: {fileID: 5930297891496506621}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Move
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +363,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6260136758532209995}
   - component: {fileID: 9017396337658740984}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Swing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -493,7 +493,7 @@ GameObject:
   - component: {fileID: 2879115412907284427}
   - component: {fileID: 8587815871932313808}
   - component: {fileID: 5924033922328575986}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Skeleton
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -601,7 +601,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbdf2f6e007c3f141a95ef31c4647714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySO: {fileID: 11400000, guid: ef8715285deffb04aa8e2731766989e5, type: 2}
+  characterS0: {fileID: 0}
+  hitSound: {fileID: 0}
+  moveSound: {fileID: 0}
+  swingSound: {fileID: 0}
+  opponent: {fileID: 0}
+  goldDrop: 0
 --- !u!1 &6058192640265577866
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,7 +617,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5892383198440960533}
   - component: {fileID: 8314304764849989106}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}

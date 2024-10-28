@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8656024189331644157}
   - component: {fileID: 4279356508667873971}
   - component: {fileID: 1371696745955755114}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3508352002743932063}
   - component: {fileID: 8559567692480434624}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: axe_ [iron]_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 2879115412907284427}
   - component: {fileID: 828430391711789052}
   - component: {fileID: 9053550833128835126}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Orc
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -311,7 +311,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 530cfe4bd34d50a44bc76e880e9f2c4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySO: {fileID: 11400000, guid: 5e5f448e6c2d7e04c9d5c361f0343038, type: 2}
+  characterS0: {fileID: 11400000, guid: 49c8a631f86962c4388fb4508c58f4fd, type: 2}
+  hitSound: {fileID: 0}
+  moveSound: {fileID: 0}
+  swingSound: {fileID: 0}
+  opponent: {fileID: 0}
+  goldDrop: 0
 --- !u!1 &7469360858676378100
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,7 +327,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2749537219855733693}
   - component: {fileID: 377579832942470289}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Move
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -450,7 +455,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2211390463823714050}
   - component: {fileID: 9166397314134755078}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Swing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -577,7 +582,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1046723358108479942}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -612,7 +617,7 @@ GameObject:
   m_Component:
   - component: {fileID: 674713746958870207}
   - component: {fileID: 7387345881673023993}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}

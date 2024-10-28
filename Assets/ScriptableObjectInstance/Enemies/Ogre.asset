@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7d60922270e83e489a624f9b6523e99, type: 3}
-  m_Name: Priest
+  m_Name: Ogre
   m_EditorClassIdentifier: 
-  <charIcon>k__BackingField: {fileID: -265724549, guid: 30ddebd1c853dd54ea1e5a9ba372a85e, type: 3}
-  <Health>k__BackingField: 75
-  <Attack>k__BackingField: 45
-  <Magic>k__BackingField: 65
-  <Speed>k__BackingField: 4
-  <Cost>k__BackingField: 0
-  <MinRange>k__BackingField: 1.5
-  <MaxRange>k__BackingField: 3
+  <charIcon>k__BackingField: {fileID: 0}
+  <Health>k__BackingField: 100
+  <Attack>k__BackingField: 0
+  <Magic>k__BackingField: 0
+  <Speed>k__BackingField: 2
+  <Cost>k__BackingField: 14
+  <MinRange>k__BackingField: 0
+  <MaxRange>k__BackingField: 2
   <AttSpeed>k__BackingField: 1
   <LayerMask>k__BackingField:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 64

@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7d60922270e83e489a624f9b6523e99, type: 3}
   m_Name: Archer
   m_EditorClassIdentifier: 
+  <charIcon>k__BackingField: {fileID: 2039066580, guid: e2c0be677b716494b97a2addc4d4b8d7, type: 3}
   <Health>k__BackingField: 80
   <Attack>k__BackingField: 15
-  <Defense>k__BackingField: 60
   <Magic>k__BackingField: 0
   <Speed>k__BackingField: 5
+  <Cost>k__BackingField: 0
   <MinRange>k__BackingField: 0.5
   <MaxRange>k__BackingField: 2
   <AttSpeed>k__BackingField: 3

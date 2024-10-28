@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8656024189331644157}
   - component: {fileID: 4279356508667873971}
   - component: {fileID: 1371696745955755114}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 794155610841572920}
   - component: {fileID: 3298484186832871008}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Move
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 2879115412907284427}
   - component: {fileID: 7357879863901696237}
   - component: {fileID: 615959421462462226}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Troll
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -354,7 +354,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d821a7e7167f4464f8dd543bb41f45d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySO: {fileID: 11400000, guid: 237d8c5ec40b06d4c921c52251b4989b, type: 2}
+  characterS0: {fileID: 0}
+  hitSound: {fileID: 0}
+  moveSound: {fileID: 0}
+  swingSound: {fileID: 0}
+  opponent: {fileID: 0}
+  goldDrop: 0
 --- !u!1 &5725400401317064891
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +369,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8534874947804629390}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -399,7 +404,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4593608673518929609}
   - component: {fileID: 2483062817324224389}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Swing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -527,7 +532,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1959326966374210927}
   - component: {fileID: 6307463023436122523}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}

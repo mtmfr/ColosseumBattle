@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8028120515077655733}
   - component: {fileID: 4518240760229355367}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Swing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 8656024189331644157}
   - component: {fileID: 4279356508667873971}
   - component: {fileID: 1371696745955755114}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7776252118585560685}
   - component: {fileID: 355214707355437339}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: weapons___0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,7 +329,7 @@ GameObject:
   m_Component:
   - component: {fileID: 702768364308970666}
   - component: {fileID: 364564757255217393}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -405,7 +405,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9176427428998698371}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -440,7 +440,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7399710627097050756}
   - component: {fileID: 2133230207129382457}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -569,9 +569,9 @@ GameObject:
   - component: {fileID: 8981427703229726879}
   - component: {fileID: 2879115412907284427}
   - component: {fileID: 3631566659202747271}
-  - component: {fileID: 5209278648427593953}
   - component: {fileID: 828430391711789052}
-  m_Layer: 0
+  - component: {fileID: 5209278648427593953}
+  m_Layer: 7
   m_Name: Ogre
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -658,18 +658,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.5}
   m_Size: {x: 0.5, y: 0.4}
   m_Direction: 0
---- !u!114 &5209278648427593953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4783976477577049688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94c85ed49eb14034db2ed9beacaa1910, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &828430391711789052
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -715,6 +703,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5209278648427593953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4783976477577049688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94c85ed49eb14034db2ed9beacaa1910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterS0: {fileID: 11400000, guid: 0575f2ca87df84344a43ecea0332fed0, type: 2}
+  hitSound: {fileID: 0}
+  moveSound: {fileID: 0}
+  swingSound: {fileID: 0}
+  opponent: {fileID: 0}
+  goldDrop: 0
 --- !u!1 &6784488441147892820
 GameObject:
   m_ObjectHideFlags: 0
@@ -725,7 +731,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6233246025934842227}
   - component: {fileID: 2411621112333738849}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Move
   m_TagString: Untagged
   m_Icon: {fileID: 0}

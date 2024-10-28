@@ -7,15 +7,10 @@ using UnityEngine;
 
 public abstract class Hero : Unit
 {
-    [SerializeField] private Equipement equip;
-
     #region Unity Function
     override protected void Start()
     {
         base.Start();
-
-        maxHealth += equip.HealthBonus;
-
         GameManager.Instance.HeroLeftInParty++;
     }
     #endregion
@@ -30,7 +25,7 @@ public abstract class Hero : Unit
         {
             opponent = null;
             State = CharacterState.Idle;
-            GameObject enemyObj = null;
+            GameObject enemyObj;
             foreach (Enemy enemy in FindObjectsOfType<Enemy>())
             {
                 if (enemy && enemy.State != CharacterState.Dying)
@@ -47,7 +42,7 @@ public abstract class Hero : Unit
                 }
                 else
                 {
-                    State = CharacterState.Idle;
+                    continue;
                 }
             }
         }
@@ -85,34 +80,8 @@ public abstract class Hero : Unit
         State = CharacterState.Dying;
         GameManager.Instance.HeroLeftInParty--;
         GameManager.Instance.HeroList.Remove(gameObject);
+        EventManager.Instance.CharacterEvent.FindClosestOpponentEvent(gameObject);
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }
-}
-
-[Serializable]
-public class Equipement
-{
-    [SerializeField] private Armor armor;
-    [SerializeField] private Helmet helm;
-    [SerializeField] private Boots boots;
-
-    public int HealthBonus
-    {
-        get
-        {
-            int healtToreturn = 0;
-            if (armor)
-                healtToreturn += armor.HealthMod;
-            if (helm)
-                healtToreturn += helm.HealthMod;
-            if(boots)
-                healtToreturn += boots.HealthMod;
-
-            return healtToreturn;
-        }
-    }
-    int attBonus;
-    int defBonus;
-    int magBonus;    
 }

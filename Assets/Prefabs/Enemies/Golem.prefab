@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8656024189331644157}
   - component: {fileID: 4279356508667873971}
   - component: {fileID: 1371696745955755114}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4410525134895680809}
   - component: {fileID: 2442118096782239186}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: golemHand__0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4319994703154387549}
   - component: {fileID: 8262713248546266722}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 2879115412907284427}
   - component: {fileID: 828430391711789052}
   - component: {fileID: 9089859870023588877}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Golem
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -414,7 +414,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.1}
+  m_Offset: {x: 0.1, y: -0.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -425,7 +425,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7, y: 1}
+  m_Size: {x: 1, y: 1.2}
   m_EdgeRadius: 0
 --- !u!114 &9089859870023588877
 MonoBehaviour:
@@ -439,7 +439,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7ffa91503c34334ca86bcbbffdd9ba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySO: {fileID: 11400000, guid: b4d18a1322e15ad418acad26dd5f3473, type: 2}
+  characterS0: {fileID: 11400000, guid: 7ffbd8af28128814090686d820abba97, type: 2}
+  hitSound: {fileID: 0}
+  moveSound: {fileID: 0}
+  swingSound: {fileID: 0}
+  opponent: {fileID: 0}
+  goldDrop: 0
 --- !u!1 &5497563474418653609
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,7 +454,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5805615197007202014}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -484,7 +489,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4852972020159040037}
   - component: {fileID: 7364486714218589047}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Swing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -612,7 +617,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1278889667482053563}
   - component: {fileID: 739407687165250434}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Move
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
 using TMPro;
@@ -10,7 +11,7 @@ public class UI : MonoBehaviour
     #region battle UI variables
     [Header("BattleUI")]
     [SerializeField] private GameObject battleUI;
-    [SerializeField] private TextMeshProUGUI goldValue;
+    [SerializeField] private TextMeshProUGUI battleGoldValue;
     [SerializeField] private TextMeshProUGUI timer;
     [SerializeField] private TextMeshProUGUI waveNumber;
     #endregion
@@ -18,14 +19,24 @@ public class UI : MonoBehaviour
     #region GameStart Variables
     private int heroMenu;
     [Header("Start UI")]
+    private int currentHero;
+
     [SerializeField] private GameObject startUI;
+    [Space]
+    [SerializeField] private GameObject heroDesc;
+    [SerializeField] private Image heroImage;
+    [SerializeField] private TextMeshProUGUI description;
+    [Space]
     [SerializeField] private GameObject[] HeroSelect = new GameObject[6];
-    [SerializeField] private GameObject[] heroDesc = new GameObject[6];
     [SerializeField] private Hero[] heroToSpawn = new Hero[6];
     [SerializeField] private GameObject descCancel;
+
     #endregion
 
-    [SerializeField] private GameObject shop; 
+    [Header("Shop UI")]
+    [SerializeField] private GameObject shop;
+    [SerializeField] private TextMeshProUGUI shopGoldValue;
+    [SerializeField] private TextMeshProUGUI HeroPrice;
 
     #region Unity functions
 
@@ -35,6 +46,7 @@ public class UI : MonoBehaviour
         EventManager.Instance.MiscEvent.TimerValueChange += Timer;
         EventManager.Instance.WaveEvent.WaveStart += CurrentWave;
         EventManager.Instance.WaveEvent.OpenShop += OpenShop;
+
     }
 
     private void OnDisable()
@@ -49,7 +61,8 @@ public class UI : MonoBehaviour
     #region battle UI
     private void GoldNumber(int gold)
     {
-        goldValue.text = gold.ToString();
+        battleGoldValue.text = gold.ToString();
+        shopGoldValue.text = gold.ToString();
     }
 
     private void Timer(int time)
@@ -64,7 +77,7 @@ public class UI : MonoBehaviour
 
     private void CurrentWave(int wave)
     {
-        waveNumber.text = "wave : " + wave.ToString();
+        waveNumber.text = $"wave : {wave}";
     }
 
     IEnumerator TimerCoroutine()
@@ -77,41 +90,60 @@ public class UI : MonoBehaviour
     #region Select first hero
     public void SelectCharacter(int selectedHero)
     {
-        heroMenu = selectedHero;
-        heroDesc[selectedHero].SetActive(true);
+        currentHero = selectedHero;
+        heroDesc.SetActive(true);
         descCancel.SetActive(true);
-        HeroSelect[selectedHero].transform.parent.gameObject.SetActive(false);
+        UpdateHeroDesc();
+        HeroSelect[currentHero].transform.parent.gameObject.SetActive(false);
     }
 
-    public void SpawnSelectedHero(int heroIndex)
+    private void UpdateHeroDesc()
+    {
+        Hero hero = heroToSpawn[currentHero];
+        heroDesc.GetComponentInChildren<Image>().sprite = hero.CharSprite;
+        heroDesc.GetComponentInChildren<TextMeshProUGUI>().text = $"att : {hero.attack}, mag : {hero.magic}, speed : {hero.speed}, attSpeed : {hero.attSpeed}";
+    }
+
+    public void SpawnSelectedHero()
     {
         GameManager.Instance.UpdateGameState(GameState.Fight);
-        Hero heroObject = Instantiate(heroToSpawn[heroIndex], WaveManager.Instance.SpawnZone(WaveManager.Instance.HeroSpawnZone), Quaternion.identity);
-        GameManager.Instance.HeroList.Add(heroObject.gameObject);
+        Hero heroObject = Instantiate(heroToSpawn[currentHero], WaveManager.Instance.SpawnZone(WaveManager.Instance.HeroSpawnZone), Quaternion.identity);
+        GameManager.Instance.HeroList.Add(heroToSpawn[currentHero].gameObject);
         startUI.SetActive(false);
         battleUI.SetActive(true);
     }
 
     public void Cancel()
     {
-        heroDesc[heroMenu].SetActive(false);
+        heroDesc.SetActive(false);
         descCancel.SetActive(false);
         HeroSelect[heroMenu].transform.parent.gameObject.SetActive(true);
     }
     #endregion
 
+    #region Shop
     private void OpenShop()
     {
         shop.SetActive(true);
+        battleUI.SetActive(false);
     }
 
     public void BuyNewHero(int heroIndex)
     {
+        HeroPrice.text = heroToSpawn[heroIndex].cost.ToString();
+        EventManager.Instance.MiscEvent.OnGoldValueChange(heroToSpawn[heroIndex].cost);
+    }
 
+    public void SellHero()
+    {
+        //TODO sell useless hero
     }
 
     public void CloseShop()
     {
         shop.SetActive(false);
+        battleUI.SetActive(true);
+        GameManager.Instance.UpdateGameState(GameState.Fight);
     }
+    #endregion
 }

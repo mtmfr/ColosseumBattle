@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
 
     [field: SerializeField] public List<GameObject> HeroList { get; private set; } = new List<GameObject>();
     [field: SerializeField] public int HeroLeftInParty { get; set; }
-    public List<Enemy> EnemyList { get; private set; } = new List<Enemy>();
 
     #region UnityFunction
     private void Awake()
@@ -63,8 +62,9 @@ public class GameManager : MonoBehaviour
                 WaveManager.Instance.CurrentWave = 0;
                 break;
             case GameState.Fight:
-                WaveManager.Instance.StartSpawn();
                 WaveManager.Instance.FightStart();
+                WaveManager.Instance.StartHeroSpawn();
+                WaveManager.Instance.GenerateWave();
                 EventManager.Instance.MiscEvent.OnGoldValueChange(Instance.Gold);
 
                 break;

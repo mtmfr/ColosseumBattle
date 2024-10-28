@@ -31,6 +31,11 @@ public class Arrow : MonoBehaviour
         }
     }
 
+    public void SetArcher(GameObject getArcher)
+    {
+        archer = getArcher;
+    }
+
     public void SetDamage(int damage)
     {
         damageToDeal = damage;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,23 +14,25 @@ public abstract class Unit : MonoBehaviour
     #endregion
 
     #region Stats
-    protected int maxHealth;
-    protected int health;
+    public int maxHealth { get { return characterS0.Health; } }
+    private int health;
 
-    protected int defense;
-    public int attack { get; protected set; }
-    public int magic { get; protected set; }
-    protected int speed;
-    protected float minRange;
-    protected float maxRange;
-    protected float attSpeed;
+    public int attack { get { return characterS0.Attack; } }
+    public int magic { get {return characterS0.Magic; } }
+    public int speed {  get { return characterS0.Speed; } }
+    public float minRange { get { return characterS0.MinRange; } }
+    public float maxRange { get { return characterS0.MaxRange; } }
+    public float attSpeed { get { return characterS0.AttSpeed; } }
 
-    protected LayerMask opponentLayer;
+    protected LayerMask opponentLayer { get { return characterS0.LayerMask; } }
+
+    public int cost {  get { return characterS0.Cost; } }
+
+    public Sprite CharSprite { get { return characterS0.charIcon; } }
     #endregion
 
     #region ObjectComponent
     protected Rigidbody2D rb;
-    private Collider2D col;
     protected Animator anim;
     #endregion
 
@@ -44,24 +47,14 @@ public abstract class Unit : MonoBehaviour
     [SerializeField] protected GameObject opponent;
     private Collider2D[] opponents = new Collider2D[10];
 
+
     #region Unity Function
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        maxHealth = characterS0.Health;
         health = maxHealth;
 
-        defense = characterS0.Defense;
-        attack = characterS0.Attack;
-        magic = characterS0.Magic;
-        speed = characterS0.Speed;
-        minRange = characterS0.MinRange;
-        maxRange = characterS0.MaxRange;
-        attSpeed = characterS0.AttSpeed;
-        opponentLayer = characterS0.LayerMask;
-
         rb = GetComponent<Rigidbody2D>();
-        col = GetComponent<Collider2D>();
         anim = GetComponentInChildren<Animator>();
 
         State = CharacterState.Idle;
@@ -127,6 +120,7 @@ public abstract class Unit : MonoBehaviour
         if (fleeZone > 0)
         {
             State = CharacterState.Fleeing;
+            EventManager.Instance.CharacterEvent.FindClosestOpponentEvent(gameObject);
         }
         else if (attackZone == 0 && fleeZone == 0)
         {
@@ -154,7 +148,7 @@ public abstract class Unit : MonoBehaviour
             case CharacterState.Attacking:
                 if (!isAttacking && opponent.GetComponent<Unit>().State != CharacterState.Dying)
                 {
-                    EventManager.Instance.CharacterEvent.AttackEvent((int)Mathf.Max(attack, magic), gameObject);
+                    EventManager.Instance.CharacterEvent.AttackEvent(Mathf.Max(attack, magic), gameObject);
                 }
                 break;
         }
@@ -257,7 +251,6 @@ public abstract class Unit : MonoBehaviour
         if (gameObject == this.gameObject && State == CharacterState.Dying)
         {
             State = CharacterState.Dying;
-            EventManager.Instance.CharacterEvent.FindClosestOpponentEvent(killer);
             StartCoroutine(DeathCoroutine(killer));
         }
     }

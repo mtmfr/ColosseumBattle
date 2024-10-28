@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7d60922270e83e489a624f9b6523e99, type: 3}
   m_Name: Hobgoblin
   m_EditorClassIdentifier: 
+  <charIcon>k__BackingField: {fileID: 0}
   <Health>k__BackingField: 250
   <Attack>k__BackingField: 0
-  <Defense>k__BackingField: 0
   <Magic>k__BackingField: 0
-  <Speed>k__BackingField: 0
+  <Speed>k__BackingField: 2
+  <Cost>k__BackingField: 12
   <MinRange>k__BackingField: 0
-  <MaxRange>k__BackingField: 0
-  <AttSpeed>k__BackingField: 0
+  <MaxRange>k__BackingField: 2
+  <AttSpeed>k__BackingField: 1
   <LayerMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 64
