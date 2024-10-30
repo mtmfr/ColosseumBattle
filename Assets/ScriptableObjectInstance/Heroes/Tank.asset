@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7d60922270e83e489a624f9b6523e99, type: 3}
   m_Name: Tank
   m_EditorClassIdentifier: 
-  <charIcon>k__BackingField: {fileID: -305662272, guid: 615bd727e6bc6fb4ba4fc29df2dcc3be, type: 3}
+  <CharIcon>k__BackingField: {fileID: -305662272, guid: 615bd727e6bc6fb4ba4fc29df2dcc3be, type: 3}
   <Health>k__BackingField: 150
   <Attack>k__BackingField: 10
   <Magic>k__BackingField: 0
@@ -21,6 +21,6 @@ MonoBehaviour:
   <MinRange>k__BackingField: 0
   <MaxRange>k__BackingField: 0.5
   <AttSpeed>k__BackingField: 0.75
-  <LayerMask>k__BackingField:
+  <OpponentMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 128

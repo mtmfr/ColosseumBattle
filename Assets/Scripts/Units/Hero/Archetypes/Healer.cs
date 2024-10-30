@@ -10,11 +10,10 @@ public class Healer : Hero
     {
         rb.velocity = Vector2.zero;
         anim.Play("Attack");
-        swingSound.Play();
         var copy = Instantiate(lightPillar, opponent.transform.position, Quaternion.identity);
         EventManager.Instance.CharacterEvent.TakeDamageEvent(damage, opponent, gameObject);
-        yield return new WaitForSeconds(1 / attSpeed);
+        yield return new WaitForSeconds(1 / AttSpeed);
         Destroy(copy);
-        EventManager.Instance.CharacterEvent.AttackEvent((int)Mathf.Max(attack, magic), gameObject);
+        EventManager.Instance.CharacterEvent.AttackEvent((int)Mathf.Max(Attack, Magic), gameObject);
     }
 }

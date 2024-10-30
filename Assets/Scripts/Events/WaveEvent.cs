@@ -9,8 +9,14 @@ public class WaveEvent
     }
 
     public event Action<int> WaveStart;
-    public void OnStartWave(int wave)
+    public void StartWaveEvent(int wave)
     {
         WaveStart?.Invoke(wave);
+    }
+
+    public event Action GameOver;
+    public void GameOverEvent()
+    {
+        GameOver?.Invoke();
     }
 }

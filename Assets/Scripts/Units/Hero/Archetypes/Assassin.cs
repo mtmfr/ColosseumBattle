@@ -14,9 +14,8 @@ public class Assassin : Hero
         rb.velocity = Vector2.zero;
         anim.Play("Attack");
         var copy = Instantiate(blood, new Vector2(bloodSpawn.transform.position.x, bloodSpawn.transform.position.y), Quaternion.identity);
-        swingSound.Play();
         EventManager.Instance.CharacterEvent.TakeDamageEvent(damage, opponent, gameObject);
-        yield return new WaitForSeconds(1 / attSpeed);
+        yield return new WaitForSeconds(1 / AttSpeed);
         Destroy(copy);
         EventManager.Instance.CharacterEvent.AttackEvent(damage, gameObject);
     }

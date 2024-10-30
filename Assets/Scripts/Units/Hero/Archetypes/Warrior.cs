@@ -7,9 +7,8 @@ public class Warrior : Hero
     {
         rb.velocity = Vector2.zero;
         anim.Play("Attack");
-        swingSound.Play();
         EventManager.Instance.CharacterEvent.TakeDamageEvent(damage, opponent, gameObject);
-        yield return new WaitForSeconds(1 / attSpeed);
-        EventManager.Instance.CharacterEvent.AttackEvent(attack, gameObject);
+        yield return new WaitForSeconds(1 / AttSpeed);
+        EventManager.Instance.CharacterEvent.AttackEvent(Attack, gameObject);
     }
 }

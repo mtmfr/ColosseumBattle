@@ -1,9 +1,7 @@
-using System;
 using System.Collections;
-using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UI : MonoBehaviour
@@ -17,7 +15,6 @@ public class UI : MonoBehaviour
     #endregion
 
     #region GameStart Variables
-    private int heroMenu;
     [Header("Start UI")]
     private int currentHero;
 
@@ -27,16 +24,28 @@ public class UI : MonoBehaviour
     [SerializeField] private Image heroImage;
     [SerializeField] private TextMeshProUGUI description;
     [Space]
-    [SerializeField] private GameObject[] HeroSelect = new GameObject[6];
+    [SerializeField] private GameObject HeroSelectScreen;
     [SerializeField] private Hero[] heroToSpawn = new Hero[6];
     [SerializeField] private GameObject descCancel;
 
     #endregion
 
+    #region Shop Variables
     [Header("Shop UI")]
     [SerializeField] private GameObject shop;
     [SerializeField] private TextMeshProUGUI shopGoldValue;
     [SerializeField] private TextMeshProUGUI[] HeroPrice;
+    #endregion
+
+    #region GameOver Variables
+    [Header("Game Over")]
+    [SerializeField] private GameObject GameOverScreen;
+    [SerializeField] private GameObject GameOverBG;
+    [SerializeField] private float fadeDuration;
+
+    [SerializeField] private GameObject GOButtons;
+
+    #endregion
 
     #region Unity functions
 
@@ -46,6 +55,7 @@ public class UI : MonoBehaviour
         EventManager.Instance.MiscEvent.TimerValueChange += Timer;
         EventManager.Instance.WaveEvent.WaveStart += CurrentWave;
         EventManager.Instance.WaveEvent.OpenShop += OpenShop;
+        EventManager.Instance.WaveEvent.GameOver += ShowGameOverScreen;
 
     }
 
@@ -55,6 +65,7 @@ public class UI : MonoBehaviour
         EventManager.Instance.MiscEvent.TimerValueChange -= Timer;
         EventManager.Instance.WaveEvent.WaveStart -= CurrentWave;
         EventManager.Instance.WaveEvent.OpenShop -= OpenShop;
+        EventManager.Instance.WaveEvent.GameOver -= ShowGameOverScreen;
     }
     #endregion
 
@@ -94,21 +105,21 @@ public class UI : MonoBehaviour
         heroDesc.SetActive(true);
         descCancel.SetActive(true);
         UpdateHeroDesc();
-        HeroSelect[currentHero].transform.parent.gameObject.SetActive(false);
+        HeroSelectScreen.SetActive(false);
     }
 
     private void UpdateHeroDesc()
     {
         Hero hero = heroToSpawn[currentHero];
         heroDesc.GetComponentInChildren<Image>().sprite = hero.CharSprite;
-        heroDesc.GetComponentInChildren<TextMeshProUGUI>().text = $"att : {hero.attack}, mag : {hero.magic}, speed : {hero.speed}, attSpeed : {hero.attSpeed}";
+        heroDesc.GetComponentInChildren<TextMeshProUGUI>().text = $"pv : {hero.MaxHealth}, att : {hero.Attack}, mag : {hero.Magic}, speed : {hero.Speed}, attSpeed : {hero.AttSpeed}";
     }
 
     public void SpawnSelectedHero()
     {
         GameManager.Instance.UpdateGameState(GameState.Fight);
-        GameObject heroObject = Instantiate(heroToSpawn[currentHero].gameObject, WaveManager.Instance.SpawnZone(WaveManager.Instance.HeroSpawnZone), Quaternion.identity);
-        GameManager.Instance.HeroList.Add(heroToSpawn[currentHero]);
+        GameObject hero = Instantiate(heroToSpawn[currentHero].gameObject, WaveManager.Instance.SpawnZone(WaveManager.Instance.HeroSpawnZone), Quaternion.identity);
+        WaveManager.Instance.HeroList.Add(hero);
         startUI.SetActive(false);
         battleUI.SetActive(true);
     }
@@ -117,7 +128,7 @@ public class UI : MonoBehaviour
     {
         heroDesc.SetActive(false);
         descCancel.SetActive(false);
-        HeroSelect[heroMenu].transform.parent.gameObject.SetActive(true);
+        HeroSelectScreen.SetActive(true);
     }
     #endregion
 
@@ -129,17 +140,18 @@ public class UI : MonoBehaviour
 
         for (int costToSet = 0; costToSet < HeroPrice.Length; costToSet++)
         {
-            int cost = heroToSpawn[costToSet].cost * GameManager.Instance.HeroLeftInParty;
+            int cost = heroToSpawn[costToSet].Cost * WaveManager.Instance.HeroList.Count;
             HeroPrice[costToSet].text = cost.ToString();
         }
     }
 
     public void BuyNewHero(int heroIndex)
     {
-        if (GameManager.Instance.Gold - heroToSpawn[heroIndex].cost * GameManager.Instance.HeroLeftInParty >= 0)
+        if (GameManager.Instance.Gold - heroToSpawn[heroIndex].Cost * WaveManager.Instance.HeroList.Count >= 0)
         {
-            GameManager.Instance.HeroList.Add(heroToSpawn[heroIndex]);
-            GameManager.Instance.Gold -= heroToSpawn[heroIndex].cost * GameManager.Instance.HeroLeftInParty;
+            GameObject hero = heroToSpawn[heroIndex].gameObject;
+            WaveManager.Instance.HeroList.Add(hero);
+            GameManager.Instance.Gold -= heroToSpawn[heroIndex].Cost * WaveManager.Instance.HeroList.Count;
             EventManager.Instance.MiscEvent.OnGoldValueChange(GameManager.Instance.Gold);
         }
         else return;
@@ -151,5 +163,37 @@ public class UI : MonoBehaviour
         battleUI.SetActive(true);
         GameManager.Instance.UpdateGameState(GameState.Fight);
     }
+    #endregion
+
+    #region GameOver
+    private void ShowGameOverScreen()
+    {
+        GameOverScreen.SetActive(true);
+        StartCoroutine(GameOverFade());
+    }
+
+    public void Restart()
+    {
+        GameManager.Instance.UpdateGameState(GameState.Start);
+        SceneManager.LoadScene(1);
+    }
+
+    public void GoBackToMenu()
+    {
+        GameManager.Instance.UpdateGameState(GameState.MainMenu);
+        SceneManager.LoadScene(0);
+    }
+
+    private IEnumerator GameOverFade()
+    {
+        GameOverBG.SetActive(true);
+        for (float alpha = 0; alpha < 1; alpha += Time.fixedDeltaTime)
+        {
+            GameOverBG.GetComponent<Image>().color = new Color(0, 0, 0, alpha);
+        }
+        yield return new WaitForSeconds(fadeDuration);
+        GOButtons.SetActive(true);
+    }
+
     #endregion
 }

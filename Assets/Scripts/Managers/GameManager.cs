@@ -28,8 +28,10 @@ public class GameManager : MonoBehaviour
 
     public int Gold { get; set; } = 0;
 
-    [field: SerializeField] public List<Hero> HeroList { get; private set; } = new List<Hero>();
-    [field: SerializeField] public int HeroLeftInParty { get; set; }
+    [SerializeField] private AudioSource mainMenuMusic;
+    [SerializeField] private AudioSource fightMusic;
+    [SerializeField] private AudioSource shopMusic;
+
 
     #region UnityFunction
     private void Awake()
@@ -47,7 +49,40 @@ public class GameManager : MonoBehaviour
     {
         UpdateGameState(GameState.MainMenu);
     }
+
+    private void OnEnable()
+    {
+        Instance.OnGameStateChanged += GameStateMusic;
+    }
+
+    private void OnDisable()
+    {
+        Instance.OnGameStateChanged += GameStateMusic;
+    }
+
     #endregion
+
+    private void GameStateMusic(GameState gameState)
+    {
+        switch (gameState)
+        {
+            case GameState.MainMenu:
+                Instance.mainMenuMusic.Play();
+                Instance.fightMusic.Stop();
+                Instance.shopMusic.Stop();
+                return;
+            case GameState.Fight:
+                Instance.mainMenuMusic.Stop();
+                Instance.fightMusic.Play();
+                Instance.shopMusic.Stop();
+                return;
+            case GameState.Shop:
+                Instance.mainMenuMusic.Stop();
+                Instance.fightMusic.Stop();
+                Instance.shopMusic.Play();
+                return;
+        }
+    }
 
     public void UpdateGameState(GameState newState)
     {
@@ -58,7 +93,7 @@ public class GameManager : MonoBehaviour
             case GameState.MainMenu:
                 break;
             case GameState.Start:
-                Gold = 0;
+                Instance.Gold = 0;
                 WaveManager.Instance.CurrentWave = 0;
                 break;
             case GameState.Fight:
@@ -66,18 +101,13 @@ public class GameManager : MonoBehaviour
                 WaveManager.Instance.StartHeroSpawn();
                 WaveManager.Instance.GenerateWave();
                 EventManager.Instance.MiscEvent.OnGoldValueChange(Instance.Gold);
-                foreach (Hero hero in HeroList)
-                {
-                    Debug.Log(hero);
-                }
-
                 break;
             case GameState.Shop: 
                 WaveManager.Instance.EndWave();
                 EventManager.Instance.WaveEvent.OpenShopEvent();
                 break;
             case GameState.Lose:
-
+                EventManager.Instance.WaveEvent.GameOverEvent();
                 break;
         }
         OnGameStateChanged?.Invoke(State);

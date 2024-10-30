@@ -21,11 +21,12 @@ public class WaveManager : MonoBehaviour
     [field: SerializeField] public GameObject HeroSpawnZone { get; private set; }
     [field: SerializeField] public GameObject EnemySpawnZone { get; private set; }
 
-    [field: SerializeField] public List<Enemy> EnemyList { get; private set; } = new List<Enemy>();
-    [field: SerializeField] public List<Enemy> enemiesToSpawn { get; private set; } = new List<Enemy>();
+    [field: SerializeField] public List<GameObject> HeroList { get; private set; } = new List<GameObject>();
 
-    public int HeroInParty { get; set; }
-    public int EnemyLeftInWave {  get; set; }
+
+    [field: SerializeField] public List<Enemy> EnemyList { get; private set; } = new List<Enemy>();
+    [field: SerializeField] public List<GameObject> EnemiesInWave { get; private set; } = new List<GameObject>();
+
 
     public int CurrentWave { get; set; }
     private int waveCredit;
@@ -56,12 +57,12 @@ public class WaveManager : MonoBehaviour
 
     public void StartHeroSpawn()
     {
-        foreach(Hero hero in GameManager.Instance.HeroList)
+        foreach(GameObject hero in Instance.HeroList)
         {
             if (hero)
             {
-                GameObject heroToSpawn = hero.gameObject;
-                GameObject spawnedHero = Instantiate(heroToSpawn, Instance.SpawnZone(Instance.HeroSpawnZone),Quaternion.identity);
+                GameObject heroToSpawn = hero;
+                Instantiate(heroToSpawn, Instance.SpawnZone(Instance.HeroSpawnZone),Quaternion.identity);
             }
         }
     }
@@ -78,12 +79,12 @@ public class WaveManager : MonoBehaviour
     public void SpawnEnemies()
     {
         //Get a random enemy from the enemy list (EnemyList) and check if the wave can afford it
-        //If the wave can afford it then add it to the list of enemies to spawn (enemiesToSpawn)
+        //If the wave can afford it then add it to the list of enemies to spawn (EnemiesInWave)
         //If the wave can't afford it then create a new List which will contain every enemy that the wave can still afford
-        //Once the credit of the wave are down to zero break out of the while loop and spawn all of the enemies in enemiesToSpawn
+        //Once the credit of the wave are down to zero break out of the while loop and spawn all of the enemies in EnemiesInWave
 
         List<Enemy> genEnemies = new();
-        Instance.enemiesToSpawn.Clear();
+        Instance.EnemiesInWave.Clear();
 
         int randEnemyCost;
         int randEnemyId;
@@ -92,7 +93,7 @@ public class WaveManager : MonoBehaviour
         {
             randEnemyId = Random.Range(0, Instance.EnemyList.Count);
 
-            randEnemyCost = Instance.EnemyList[randEnemyId].cost;
+            randEnemyCost = Instance.EnemyList[randEnemyId].Cost;
             if (Instance.waveCredit - randEnemyCost >= 0)
             {
                 genEnemies.Add(Instance.EnemyList[randEnemyId]);
@@ -104,7 +105,7 @@ public class WaveManager : MonoBehaviour
 
                 foreach (Enemy enemy in EnemyList)
                 {
-                    if (enemy.cost <= waveCredit)
+                    if (enemy.Cost <= waveCredit)
                     {
                         enemyUnderValue.Add(enemy);
                     }
@@ -114,7 +115,7 @@ public class WaveManager : MonoBehaviour
 
                 randEnemyId = Random.Range(0, enemyUnderValue.Count);
 
-                randEnemyCost = Instance.EnemyList[randEnemyId].cost;
+                randEnemyCost = Instance.EnemyList[randEnemyId].Cost;
 
                 genEnemies.Add(Instance.EnemyList[randEnemyId]);
                 Instance.waveCredit -= randEnemyCost;
@@ -122,26 +123,61 @@ public class WaveManager : MonoBehaviour
             else 
                 break;
         }
+        
 
-        Instance.enemiesToSpawn = genEnemies;
-
-        foreach (Enemy enemy in Instance.enemiesToSpawn)
+        foreach(Enemy enemy in genEnemies)
         {
-            GameObject enemyToSpawn = Instantiate(enemy.gameObject, Instance.SpawnZone(Instance.EnemySpawnZone), Quaternion.identity);
+            GameObject enemyCopy = Instantiate(enemy.gameObject, Instance.SpawnZone(Instance.EnemySpawnZone), Quaternion.identity);
+            Instance.EnemiesInWave.Add(enemyCopy);
         }
     }
 
     public void FightStart()
     {
         Instance.CurrentWave++;
-        EventManager.Instance.WaveEvent.OnStartWave(Instance.CurrentWave);
+        EventManager.Instance.WaveEvent.StartWaveEvent(Instance.CurrentWave);
         EventManager.Instance.MiscEvent.OnTimerChange(Instance.TimePerWave);
     }
 
-    public void EnemyInWave(int enemyLeft)
+    //Get the Id of the dead hero and remove the enemy with the corresponding id from the hero list
+    public void HeroInParty(int heroId)
     {
-        if (enemyLeft == 0)
-            StartCoroutine(ShopDelay());
+        for (int Index = 0; Index < Instance.HeroList.Count; Index++)
+        {
+            GameObject HeroInParty = Instance.HeroList[Index];
+            if (HeroInParty.GetInstanceID() == heroId)
+            {
+                Instance.HeroList.Remove(HeroInParty);
+
+                if (Instance.HeroList.Count == 0)
+                    GameOver();
+                else
+                    break;
+            }
+            else
+                continue;
+        }
+    }
+
+
+    //Get the Id of the dead enemy and remove the enemy with the corresponding id from the enemy list
+    public void EnemyInWave(int enemyId)
+    {
+        for (int Index = 0; Index < Instance.EnemiesInWave.Count; Index++)
+        {
+            GameObject enemyInWave = Instance.EnemiesInWave[Index];
+            if (enemyInWave.GetInstanceID() == enemyId)
+            {
+                Instance.EnemiesInWave.Remove(enemyInWave);
+
+                if(Instance.EnemiesInWave.Count == 0)
+                    StartCoroutine(ShopDelay());
+                else
+                    break;
+            }
+            else
+                continue;
+        }
     }
 
     public void EndWave()
@@ -150,6 +186,11 @@ public class WaveManager : MonoBehaviour
         {
             Destroy(hero.gameObject);
         }
+    }
+
+    private void GameOver()
+    {
+        GameManager.Instance.UpdateGameState(GameState.Lose);
     }
 
     private IEnumerator ShopDelay()

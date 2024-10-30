@@ -8,9 +8,8 @@ public class Tank : Hero
         rb.velocity = Vector2.zero;
         anim.Play("Attack");
         EventManager.Instance.CharacterEvent.TakeDamageEvent(damage, opponent, gameObject);
-        EventManager.Instance.CharacterEvent.FindClosestOpponentEvent(opponent);
-        swingSound.Play();
-        yield return new WaitForSeconds(1/attSpeed);
+        EventManager.Instance.CharacterEvent.FindClosestOpponentEvent(false);
+        yield return new WaitForSeconds(1/AttSpeed);
         EventManager.Instance.CharacterEvent.AttackEvent(damage, gameObject);
     }
 }

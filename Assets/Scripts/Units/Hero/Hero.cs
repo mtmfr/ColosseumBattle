@@ -1,17 +1,15 @@
-using System;
 using System.Collections;
-using System.Linq.Expressions;
-using Unity.Mathematics;
 using UnityEngine;
 
 
 public abstract class Hero : Unit
 {
+
     #region Unity Function
     override protected void Start()
     {
+        IsAhero = true;
         base.Start();
-        GameManager.Instance.HeroLeftInParty++;
     }
     #endregion
 
@@ -19,11 +17,10 @@ public abstract class Hero : Unit
     /// Used to find the closest enemy from the character
     /// </summary>
     /// <param name="gameObject">this gameObject used as an id check</param>
-    protected override void FindClosestOpponent(GameObject gameObject)
+    protected override void OnSearchClosestOpponen(bool IsAHero)
     {
-        if (gameObject == this.gameObject)
+        if (IsAhero)
         {
-            opponent = null;
             State = CharacterState.Idle;
             GameObject enemyObj;
             foreach (Enemy enemy in FindObjectsOfType<Enemy>())
@@ -48,7 +45,7 @@ public abstract class Hero : Unit
         }
     }
 
-    protected override void Attack(int attack, GameObject gameObject)
+    protected override void OnAttack(int attack, GameObject gameObject)
     {
         if (gameObject == this.gameObject)
         {
@@ -67,7 +64,7 @@ public abstract class Hero : Unit
     }
 
     /// <summary>
-    /// Coroutine for the attack of the characterS0 call the attack event at the end
+    /// Coroutine for the OnAttack of the characterS0 call the OnAttack event at the end
     /// </summary>
     /// <param name="damage">the number of damage to deal to the enemy</param>
     /// <returns>1 divided by the attackspeed</returns>
@@ -78,9 +75,8 @@ public abstract class Hero : Unit
         anim.Play("Death");
         hitSound.Play();
         State = CharacterState.Dying;
-        GameManager.Instance.HeroLeftInParty--;
-        GameManager.Instance.HeroList.Remove(this);
-        EventManager.Instance.CharacterEvent.FindClosestOpponentEvent(gameObject);
+        WaveManager.Instance.HeroInParty(gameObject.GetInstanceID());
+        EventManager.Instance.CharacterEvent.FindClosestOpponentEvent(false);
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }

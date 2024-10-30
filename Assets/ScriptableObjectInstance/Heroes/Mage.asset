@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7d60922270e83e489a624f9b6523e99, type: 3}
   m_Name: Mage
   m_EditorClassIdentifier: 
-  <charIcon>k__BackingField: {fileID: 127464790, guid: 968ca18f9c2e2bc48aa9a239f8ae7815, type: 3}
+  <CharIcon>k__BackingField: {fileID: 191768126, guid: 968ca18f9c2e2bc48aa9a239f8ae7815, type: 3}
   <Health>k__BackingField: 10
   <Attack>k__BackingField: 10
   <Magic>k__BackingField: 20
@@ -21,6 +21,6 @@ MonoBehaviour:
   <MinRange>k__BackingField: 1
   <MaxRange>k__BackingField: 4
   <AttSpeed>k__BackingField: 1.5
-  <LayerMask>k__BackingField:
+  <OpponentMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 128

@@ -14,8 +14,7 @@ public class Archer : Hero
         arrowCopy.GetComponent<Arrow>().target = opponent;
         arrowCopy.GetComponent<Arrow>().SetArcher(gameObject);
         arrowCopy.GetComponent<Arrow>().SetDamage(damage);
-        swingSound.Play();
-        yield return new WaitForSeconds(1/attSpeed);
+        yield return new WaitForSeconds(1/AttSpeed);
         EventManager.Instance.CharacterEvent.AttackEvent(damage, gameObject);
     }
 }

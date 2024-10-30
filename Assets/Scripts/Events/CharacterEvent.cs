@@ -5,10 +5,10 @@ using UnityEngine;
 //The events related to the character the GameObject type is used as an Id check
 public class CharacterEvent
 {
-    public event Action<GameObject> FindClosestOpponent;
-    public void FindClosestOpponentEvent(GameObject gameObject)
+    public event Action<bool> FindClosestOpponent;
+    public void FindClosestOpponentEvent(bool IsAHero)
     {
-        FindClosestOpponent?.Invoke(gameObject);
+        FindClosestOpponent?.Invoke(IsAHero);
     }
 
     public event Action<int, GameObject> Move;

@@ -1,26 +1,24 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Enemy : Unit
 {
-    [Header("GoldDropped")]
     [SerializeField] private int goldDrop;
 
     override protected void Start()
     {
         base.Start();
 
-        WaveManager.Instance.EnemyLeftInWave++;
+        IsAhero = false;
     }
 
-    protected override void FindClosestOpponent(GameObject gameObject)
+    protected override void OnSearchClosestOpponen(bool IsAHero)
     {
-        if (gameObject == this.gameObject)
+        if (!IsAhero)
         {
             opponent = null;
             State = CharacterState.Idle;
-            GameObject heroObj = null;
+            GameObject heroObj;
             foreach (Hero hero in FindObjectsOfType<Hero>())
             {
                 if (hero && hero.State != CharacterState.Dying)
@@ -43,7 +41,7 @@ public abstract class Enemy : Unit
         }
     }
 
-    protected override void Attack(int attack, GameObject gameObject)
+    protected override void OnAttack(int attack, GameObject gameObject)
     {
         if (gameObject == this.gameObject)
         {
@@ -65,12 +63,11 @@ public abstract class Enemy : Unit
     protected override IEnumerator DeathCoroutine(GameObject killer)
     {
         anim.Play("Death");
-        WaveManager.Instance.EnemyLeftInWave--;
+        WaveManager.Instance.EnemyInWave(gameObject.GetInstanceID());
         GameManager.Instance.Gold += goldDrop;
         EventManager.Instance.MiscEvent.OnGoldValueChange(GameManager.Instance.Gold);
-        EventManager.Instance.CharacterEvent.FindClosestOpponentEvent(killer);
+        EventManager.Instance.CharacterEvent.FindClosestOpponentEvent(true);
         yield return new WaitForSeconds(0.2f);
-        WaveManager.Instance.EnemyInWave(WaveManager.Instance.EnemyLeftInWave);
         Destroy(gameObject);
     }
 }
