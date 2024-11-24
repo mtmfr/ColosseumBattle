@@ -117,11 +117,12 @@ public class UI : MonoBehaviour
 
     public void SpawnSelectedHero()
     {
-        GameManager.Instance.UpdateGameState(GameState.Fight);
-        GameObject hero = Instantiate(heroToSpawn[currentHero].gameObject, WaveManager.Instance.SpawnZone(WaveManager.Instance.HeroSpawnZone), Quaternion.identity);
+        //GameObject hero = Instantiate(heroToSpawn[currentHero].gameObject, WaveManager.Instance.SpawnZone(WaveManager.Instance.HeroSpawnZone), Quaternion.identity);
+        GameObject hero = heroToSpawn[currentHero].gameObject;
         WaveManager.Instance.HeroList.Add(hero);
         startUI.SetActive(false);
         battleUI.SetActive(true);
+        GameManager.Instance.UpdateGameState(GameState.Fight);
     }
 
     public void Cancel()
@@ -140,19 +141,28 @@ public class UI : MonoBehaviour
 
         for (int costToSet = 0; costToSet < HeroPrice.Length; costToSet++)
         {
-            int cost = heroToSpawn[costToSet].Cost * WaveManager.Instance.HeroList.Count;
-            HeroPrice[costToSet].text = cost.ToString();
+            int heroPrice = heroToSpawn[costToSet].Cost * WaveManager.Instance.HeroList.Count;
+            HeroPrice[costToSet].text = heroPrice.ToString();
         }
     }
 
     public void BuyNewHero(int heroIndex)
     {
-        if (GameManager.Instance.Gold - heroToSpawn[heroIndex].Cost * WaveManager.Instance.HeroList.Count >= 0)
+        int heroCost = heroToSpawn[heroIndex].Cost;
+        int nbHeroInParty = WaveManager.Instance.HeroList.Count;
+
+        if (GameManager.Instance.Gold - heroCost * nbHeroInParty >= 0)
         {
             GameObject hero = heroToSpawn[heroIndex].gameObject;
+            GameManager.Instance.Gold -= heroCost * nbHeroInParty;
             WaveManager.Instance.HeroList.Add(hero);
-            GameManager.Instance.Gold -= heroToSpawn[heroIndex].Cost * WaveManager.Instance.HeroList.Count;
             EventManager.Instance.MiscEvent.OnGoldValueChange(GameManager.Instance.Gold);
+
+            for (int costToSet = 0; costToSet < HeroPrice.Length; costToSet++)
+            {
+                int heroPrice = heroToSpawn[costToSet].Cost * (nbHeroInParty + 1);
+                HeroPrice[costToSet].text = heroPrice.ToString();
+            }
         }
         else return;
     }

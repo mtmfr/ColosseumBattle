@@ -78,9 +78,6 @@ public class WaveManager : MonoBehaviour
     /// </summary>
     public void SpawnEnemies()
     {
-        //Get a random enemy from the enemy list (EnemyList) and check if the wave can afford it
-        //If the wave can afford it then add it to the list of enemies to spawn (EnemiesInWave)
-        //If the wave can't afford it then create a new List which will contain every enemy that the wave can still afford
         //Once the credit of the wave are down to zero break out of the while loop and spawn all of the enemies in EnemiesInWave
 
         List<Enemy> genEnemies = new();
@@ -91,21 +88,29 @@ public class WaveManager : MonoBehaviour
 
         while (Instance.waveCredit > 0)
         {
+            //Get a random enemy from the enemy list (EnemyList) and check if the wave can afford it
             randEnemyId = Random.Range(0, Instance.EnemyList.Count);
 
             randEnemyCost = Instance.EnemyList[randEnemyId].Cost;
             if (Instance.waveCredit - randEnemyCost >= 0)
             {
+                //If the wave can afford it then add it to the list of enemies to spawn (genEnemies)
                 genEnemies.Add(Instance.EnemyList[randEnemyId]);
                 Instance.waveCredit -= randEnemyCost;
+
+                //check the credit of the wave to break out of the while if it is 0
+                if (Instance.waveCredit == 0)
+                    break;
             }
+            //If the wave can't afford it then create a new List which will contain every enemy that the wave can still afford
             else if (Instance.waveCredit > 0)
             {
+                //Create a new list that will hold all the enemy that have a cost under he wave credit
                 List<Enemy> enemyUnderValue = new();
 
-                foreach (Enemy enemy in EnemyList)
+                foreach (Enemy enemy in Instance.EnemyList)
                 {
-                    if (enemy.Cost <= waveCredit)
+                    if (enemy.Cost <= Instance.waveCredit)
                     {
                         enemyUnderValue.Add(enemy);
                     }
@@ -113,18 +118,25 @@ public class WaveManager : MonoBehaviour
                         continue;
                 }
 
+                //break out of the while if the lsit of enemy that can still be afforded is null
+                if (enemyUnderValue.Count == 0)
+                    break;
+
+                //randomise the enmy to spawn from enemyUnderValue
                 randEnemyId = Random.Range(0, enemyUnderValue.Count);
 
                 randEnemyCost = Instance.EnemyList[randEnemyId].Cost;
 
-                genEnemies.Add(Instance.EnemyList[randEnemyId]);
+                genEnemies.Add(enemyUnderValue[randEnemyId]);
                 Instance.waveCredit -= randEnemyCost;
+
+                //check the credit of the wave to break out of the while if it is 0
+                if (Instance.waveCredit == 0)
+                    break;
             }
-            else 
-                break;
         }
         
-
+        //spawn all the enemies in genEnemies
         foreach(Enemy enemy in genEnemies)
         {
             GameObject enemyCopy = Instantiate(enemy.gameObject, Instance.SpawnZone(Instance.EnemySpawnZone), Quaternion.identity);
@@ -139,7 +151,9 @@ public class WaveManager : MonoBehaviour
         EventManager.Instance.MiscEvent.OnTimerChange(Instance.TimePerWave);
     }
 
-    //Get the Id of the dead hero and remove the enemy with the corresponding id from the hero list
+    ///<summary>
+    ///Get the Id of the dead hero and remove the enemy with the corresponding id from the hero list
+    ///</summary>
     public void HeroInParty(int heroId)
     {
         for (int Index = 0; Index < Instance.HeroList.Count; Index++)
@@ -160,7 +174,10 @@ public class WaveManager : MonoBehaviour
     }
 
 
-    //Get the Id of the dead enemy and remove the enemy with the corresponding id from the enemy list
+    /// <summary>
+    /// Get the Id of the dead enemy and remove the enemy with the corresponding id from the enemy list
+    /// </summary>
+    /// <param name="enemyId"></param>
     public void EnemyInWave(int enemyId)
     {
         for (int Index = 0; Index < Instance.EnemiesInWave.Count; Index++)
