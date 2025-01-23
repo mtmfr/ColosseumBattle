@@ -10,8 +10,6 @@ public class Arrow : MonoBehaviour
 
     public GameObject target;
 
-    private GameObject archer;
-
     private int damageToDeal;
 
     private void Start()
@@ -31,11 +29,6 @@ public class Arrow : MonoBehaviour
         }
     }
 
-    public void SetArcher(GameObject getArcher)
-    {
-        archer = getArcher;
-    }
-
     public void SetDamage(int damage)
     {
         damageToDeal = damage;
@@ -43,8 +36,8 @@ public class Arrow : MonoBehaviour
 
     void InflictDamage()
     {
-        EventManager.Instance.CharacterEvent.TakeDamageEvent(damageToDeal, target, archer);
-        Destroy(gameObject);
+        CharacterEvent.AttackHit(damageToDeal, target.GetInstanceID());
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

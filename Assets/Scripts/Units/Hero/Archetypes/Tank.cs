@@ -7,9 +7,9 @@ public class Tank : Hero
     {
         rb.velocity = Vector2.zero;
         anim.Play("Attack");
-        EventManager.Instance.CharacterEvent.TakeDamageEvent(damage, opponent, gameObject);
-        EventManager.Instance.CharacterEvent.FindClosestOpponentEvent(false);
-        yield return new WaitForSeconds(1/AttSpeed);
-        EventManager.Instance.CharacterEvent.AttackEvent(damage, gameObject);
+        CharacterEvent.AttackHit(damage, opponent.GetInstanceID());
+        CharacterEvent.ForceRetarget(opponent.GetInstanceID());
+        yield return new WaitForSeconds(1/attSpeed);
+        OnAttack(damage);
     }
 }

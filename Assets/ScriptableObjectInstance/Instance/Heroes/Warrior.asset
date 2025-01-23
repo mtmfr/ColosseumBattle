@@ -9,18 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7d60922270e83e489a624f9b6523e99, type: 3}
-  m_Name: Golem
+  m_Script: {fileID: 11500000, guid: 959a47db49e6d904e93521c3a7bcd424, type: 3}
+  m_Name: Warrior
   m_EditorClassIdentifier: 
-  <CharIcon>k__BackingField: {fileID: 0}
+  <CharIcon>k__BackingField: {fileID: 1365580807, guid: 910cbcace9f079245a0a5a62b2b7f863, type: 3}
   <Health>k__BackingField: 100
-  <Attack>k__BackingField: 10
+  <Attack>k__BackingField: 25
   <Magic>k__BackingField: 0
-  <Speed>k__BackingField: 2
-  <Cost>k__BackingField: 5
+  <Speed>k__BackingField: 5
+  <Cost>k__BackingField: 10
   <MinRange>k__BackingField: 0
-  <MaxRange>k__BackingField: 2
-  <AttSpeed>k__BackingField: 1
-  <OpponentMask>k__BackingField:
+  <MaxRange>k__BackingField: 1
+  <AttSpeed>k__BackingField: 2
+  <OpponentLayer>k__BackingField:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128

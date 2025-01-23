@@ -126,7 +126,7 @@ namespace TMPro.Examples
                     destinationVertices[vertexIndex + 2] = sourceVertices[vertexIndex + 2] - offset;
                     destinationVertices[vertexIndex + 3] = sourceVertices[vertexIndex + 3] - offset;
 
-                    //Vector3 jitterOffset = new Vector3(Random.MinRange(-.25f, .25f), Random.MinRange(-.25f, .25f), 0);
+                    //Vector3 jitterOffset = new Vector3(Random.minRange(-.25f, .25f), Random.minRange(-.25f, .25f), 0);
 
                     // Determine the random scale change for each characterS0.
                     float randomScale = Random.Range(1f, 1.5f);
@@ -136,7 +136,7 @@ namespace TMPro.Examples
                     scaleSortingOrder.Add(modifiedCharScale.Count - 1);
 
                     // Setup the matrix for the scale change.
-                    //matrix = Matrix4x4.TRS(jitterOffset, Quaternion.Euler(0, 0, Random.MinRange(-5f, 5f)), Vector3.one * randomScale);
+                    //matrix = Matrix4x4.TRS(jitterOffset, Quaternion.Euler(0, 0, Random.minRange(-5f, 5f)), Vector3.one * randomScale);
                     matrix = Matrix4x4.TRS(new Vector3(0, 0, 0), Quaternion.identity, Vector3.one * randomScale);
 
                     destinationVertices[vertexIndex + 0] = matrix.MultiplyPoint3x4(destinationVertices[vertexIndex + 0]);

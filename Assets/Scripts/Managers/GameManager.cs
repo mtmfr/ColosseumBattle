@@ -52,12 +52,12 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        Instance.OnGameStateChanged += GameStateMusic;
+        OnGameStateChanged += GameStateMusic;
     }
 
     private void OnDisable()
     {
-        Instance.OnGameStateChanged += GameStateMusic;
+        OnGameStateChanged += GameStateMusic;
     }
 
     #endregion
@@ -67,19 +67,19 @@ public class GameManager : MonoBehaviour
         switch (gameState)
         {
             case GameState.MainMenu:
-                Instance.mainMenuMusic.Play();
-                Instance.fightMusic.Stop();
-                Instance.shopMusic.Stop();
+                mainMenuMusic.Play();
+                fightMusic.Stop();
+                shopMusic.Stop();
                 return;
             case GameState.Fight:
-                Instance.mainMenuMusic.Stop();
-                Instance.fightMusic.Play();
-                Instance.shopMusic.Stop();
+                mainMenuMusic.Stop();
+                fightMusic.Play();
+                shopMusic.Stop();
                 return;
             case GameState.Shop:
-                Instance.mainMenuMusic.Stop();
-                Instance.fightMusic.Stop();
-                Instance.shopMusic.Play();
+                mainMenuMusic.Stop();
+                fightMusic.Stop();
+                shopMusic.Play();
                 return;
         }
     }
@@ -93,21 +93,17 @@ public class GameManager : MonoBehaviour
             case GameState.MainMenu:
                 break;
             case GameState.Start:
-                Instance.Gold = 0;
-                WaveManager.Instance.CurrentWave = 0;
+                Gold = 0;
                 break;
             case GameState.Fight:
-                WaveManager.Instance.FightStart();
-                WaveManager.Instance.StartHeroSpawn();
-                WaveManager.Instance.GenerateWave();
-                EventManager.Instance.MiscEvent.OnGoldValueChange(Instance.Gold);
+                MiscEvent.OnGoldValueChange(Gold);
                 break;
-            case GameState.Shop: 
-                WaveManager.Instance.EndWave();
-                EventManager.Instance.WaveEvent.OpenShopEvent();
+            case GameState.Shop:
+                WaveEvent.WaveEnded();
+                WaveEvent.OpenShopEvent();
                 break;
             case GameState.Lose:
-                EventManager.Instance.WaveEvent.GameOverEvent();
+                WaveEvent.GameOverEvent();
                 break;
         }
         OnGameStateChanged?.Invoke(State);

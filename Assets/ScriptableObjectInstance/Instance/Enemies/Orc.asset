@@ -9,18 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7d60922270e83e489a624f9b6523e99, type: 3}
-  m_Name: Ogre
+  m_Script: {fileID: 11500000, guid: f73432a98e0d5ad48980d37560fa6344, type: 3}
+  m_Name: Orc
   m_EditorClassIdentifier: 
   <CharIcon>k__BackingField: {fileID: 0}
-  <Health>k__BackingField: 600
-  <Attack>k__BackingField: 30
+  <Health>k__BackingField: 100
+  <Attack>k__BackingField: 15
   <Magic>k__BackingField: 0
   <Speed>k__BackingField: 2
-  <Cost>k__BackingField: 20
+  <Cost>k__BackingField: 14
   <MinRange>k__BackingField: 0
   <MaxRange>k__BackingField: 2
-  <AttSpeed>k__BackingField: 0.7
-  <OpponentMask>k__BackingField:
+  <AttSpeed>k__BackingField: 1
+  <OpponentLayer>k__BackingField:
     serializedVersion: 2
     m_Bits: 64

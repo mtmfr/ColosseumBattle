@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class Enemy : Unit
@@ -12,36 +14,15 @@ public abstract class Enemy : Unit
         IsAhero = false;
     }
 
-    protected override void OnSearchClosestOpponen(bool IsAHero)
+    protected override void OnSearchClosestOpponent()
     {
-        if (!IsAhero)
-        {
-            opponent = null;
-            State = CharacterState.Idle;
-            GameObject heroObj;
-            foreach (Hero hero in FindObjectsOfType<Hero>())
-            {
-                if (hero && hero.State != CharacterState.Dying)
-                {
-                    heroObj = hero.gameObject;
-                    if (!opponent)
-                    {
-                        opponent = heroObj;
-                    }
-                    else if (opponent && (heroObj.transform.position - transform.position).magnitude < (opponent.transform.position - transform.position).magnitude)
-                    {
-                        opponent = heroObj;
-                    }
-                }
-                else
-                {
-                    State = CharacterState.Idle;
-                }
-            }
-        }
+        State = CharacterState.Idle;
+        List<Hero> heroList = FindObjectsOfType<Hero>().ToList();
+        
+        opponent = heroList.OrderBy(hero => Vector3.Distance(hero.transform.position, transform.position)).FirstOrDefault().gameObject;
     }
 
-    protected override void OnAttack(int attack, GameObject gameObject)
+    protected override void OnAttack(int attack)
     {
         if (gameObject == this.gameObject)
         {
@@ -60,13 +41,13 @@ public abstract class Enemy : Unit
 
     protected abstract IEnumerator AttackCR(int damage);
 
-    protected override IEnumerator DeathCoroutine(GameObject killer)
+    protected override IEnumerator DeathCoroutine()
     {
         anim.Play("Death");
-        WaveManager.Instance.EnemyInWave(gameObject.GetInstanceID());
+        WaveEvent.RemoveEnemyFromWave(gameObject);
         GameManager.Instance.Gold += goldDrop;
-        EventManager.Instance.MiscEvent.OnGoldValueChange(GameManager.Instance.Gold);
-        EventManager.Instance.CharacterEvent.FindClosestOpponentEvent(true);
+        MiscEvent.OnGoldValueChange(GameManager.Instance.Gold);
+        OnSearchClosestOpponent();
         yield return new WaitForSeconds(0.2f);
         Destroy(gameObject);
     }

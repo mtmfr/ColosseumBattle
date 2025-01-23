@@ -18,15 +18,14 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    [field: SerializeField] public GameObject HeroSpawnZone { get; private set; }
-    [field: SerializeField] public GameObject EnemySpawnZone { get; private set; }
+    [SerializeField] private GameObject heroSpawnZone;
+    [SerializeField] private GameObject enemySpawnZone;
 
-    [field: SerializeField] public List<GameObject> HeroList { get; private set; } = new List<GameObject>();
+    [SerializeField] private List<GameObject> HeroList = new();
 
-
-    [field: SerializeField] public List<Enemy> EnemyList { get; private set; } = new List<Enemy>();
-    [field: SerializeField] public List<GameObject> EnemiesInWave { get; private set; } = new List<GameObject>();
-
+    [SerializeField] private List<SO_EnemyStats> enemyStats;
+    [SerializeField] private List<Enemy> enemyList;
+    List<GameObject> EnemiesInWave = new();
 
     public int CurrentWave { get; set; }
     private int waveCredit;
@@ -44,7 +43,33 @@ public class WaveManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    //Get a random point in the Collied of the spawner
+    private void OnEnable()
+    {
+        GameManager.Instance.OnGameStateChanged += ResetCurrentWave;
+        GameManager.Instance.OnGameStateChanged += FightStarted;
+
+        WaveEvent.OnAddHeroToList += AddHeroToList;
+        WaveEvent.OnRemoveHeroFromList += RemoveHeroFromList;
+
+        WaveEvent.OnRemoveEnemyFromWave += RemoveEnemyFromList;
+
+        WaveEvent.OnWaveEnded += EndWave;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.OnGameStateChanged -= ResetCurrentWave;
+
+        WaveEvent.OnAddHeroToList -= AddHeroToList;
+        WaveEvent.OnRemoveHeroFromList -= RemoveHeroFromList;
+
+        WaveEvent.OnRemoveEnemyFromWave -= RemoveEnemyFromList;
+
+        WaveEvent.OnWaveEnded -= EndWave;
+    }
+
+    #region Hero spawn
+    //Get a random point in the Collider of the spawner
     public Vector2 SpawnZone(GameObject spawnZone)
     {
         Collider2D range = spawnZone.GetComponent<Collider2D>();
@@ -57,19 +82,21 @@ public class WaveManager : MonoBehaviour
 
     public void StartHeroSpawn()
     {
-        foreach(GameObject hero in Instance.HeroList)
+        foreach(GameObject hero in HeroList)
         {
             if (hero)
             {
                 GameObject heroToSpawn = hero;
-                Instantiate(heroToSpawn, Instance.SpawnZone(Instance.HeroSpawnZone),Quaternion.identity);
+                Instantiate(heroToSpawn, SpawnZone(heroSpawnZone),Quaternion.identity);
             }
         }
     }
+    #endregion
 
+    #region enemy spawn
     public void GenerateWave()
     {
-        Instance.waveCredit = Instance.CurrentWave * 5;
+        waveCredit = CurrentWave * 5;
         SpawnEnemies();
     }
 
@@ -81,36 +108,37 @@ public class WaveManager : MonoBehaviour
         //Once the credit of the wave are down to zero break out of the while loop and spawn all of the enemies in EnemiesInWave
 
         List<Enemy> genEnemies = new();
-        Instance.EnemiesInWave.Clear();
+        EnemiesInWave.Clear();
 
         int randEnemyCost;
         int randEnemyId;
 
-        while (Instance.waveCredit > 0)
+        while (waveCredit > 0)
         {
-            //Get a random enemy from the enemy list (EnemyList) and check if the wave can afford it
-            randEnemyId = Random.Range(0, Instance.EnemyList.Count);
+            //Get a random enemy from the enemy list (enemyList) and check if the wave can afford it
+            randEnemyId = Random.Range(0, enemyList.Count);
 
-            randEnemyCost = Instance.EnemyList[randEnemyId].Cost;
-            if (Instance.waveCredit - randEnemyCost >= 0)
+            randEnemyCost = enemyStats[randEnemyId].Cost;
+            if (waveCredit - randEnemyCost >= 0)
             {
                 //If the wave can afford it then add it to the list of enemies to spawn (genEnemies)
-                genEnemies.Add(Instance.EnemyList[randEnemyId]);
-                Instance.waveCredit -= randEnemyCost;
+                genEnemies.Add(enemyList[randEnemyId]);
+                waveCredit -= randEnemyCost;
 
                 //check the credit of the wave to break out of the while if it is 0
-                if (Instance.waveCredit == 0)
+                if (waveCredit == 0)
                     break;
             }
             //If the wave can't afford it then create a new List which will contain every enemy that the wave can still afford
-            else if (Instance.waveCredit > 0)
+            else if (waveCredit > 0)
             {
                 //Create a new list that will hold all the enemy that have a cost under he wave credit
                 List<Enemy> enemyUnderValue = new();
 
-                foreach (Enemy enemy in Instance.EnemyList)
+                for (int Id = 0; Id < enemyList.Count; Id++)
                 {
-                    if (enemy.Cost <= Instance.waveCredit)
+                    Enemy enemy = enemyList[Id];
+                    if (enemyStats[Id].Cost <= waveCredit)
                     {
                         enemyUnderValue.Add(enemy);
                     }
@@ -118,20 +146,20 @@ public class WaveManager : MonoBehaviour
                         continue;
                 }
 
-                //break out of the while if the lsit of enemy that can still be afforded is null
+                //break out of the while if the list of enemy that can still be afforded is null
                 if (enemyUnderValue.Count == 0)
                     break;
 
-                //randomise the enmy to spawn from enemyUnderValue
+                //randomise the enemy to spawn from enemyUnderValue
                 randEnemyId = Random.Range(0, enemyUnderValue.Count);
 
-                randEnemyCost = Instance.EnemyList[randEnemyId].Cost;
+                randEnemyCost = enemyStats[randEnemyId].Cost;
 
                 genEnemies.Add(enemyUnderValue[randEnemyId]);
-                Instance.waveCredit -= randEnemyCost;
+                waveCredit -= randEnemyCost;
 
                 //check the credit of the wave to break out of the while if it is 0
-                if (Instance.waveCredit == 0)
+                if (    waveCredit == 0)
                     break;
             }
         }
@@ -139,72 +167,74 @@ public class WaveManager : MonoBehaviour
         //spawn all the enemies in genEnemies
         foreach(Enemy enemy in genEnemies)
         {
-            GameObject enemyCopy = Instantiate(enemy.gameObject, Instance.SpawnZone(Instance.EnemySpawnZone), Quaternion.identity);
-            Instance.EnemiesInWave.Add(enemyCopy);
+            GameObject enemyCopy = Instantiate(enemy.gameObject, SpawnZone(enemySpawnZone), Quaternion.identity);
+            EnemiesInWave.Add(enemyCopy);
         }
     }
 
-    public void FightStart()
+    #endregion
+
+    #region wave control
+
+    public void StartWave()
     {
-        Instance.CurrentWave++;
-        EventManager.Instance.WaveEvent.StartWaveEvent(Instance.CurrentWave);
-        EventManager.Instance.MiscEvent.OnTimerChange(Instance.TimePerWave);
+        CurrentWave++;
+        WaveEvent.StartWaveEvent(CurrentWave);
+        MiscEvent.OnTimerChange(TimePerWave);
     }
 
-    ///<summary>
-    ///Get the Id of the dead hero and remove the enemy with the corresponding id from the hero list
-    ///</summary>
-    public void HeroInParty(int heroId)
+    private void EndWave()
     {
-        for (int Index = 0; Index < Instance.HeroList.Count; Index++)
-        {
-            GameObject HeroInParty = Instance.HeroList[Index];
-            if (HeroInParty.GetInstanceID() == heroId)
-            {
-                Instance.HeroList.Remove(HeroInParty);
-
-                if (Instance.HeroList.Count == 0)
-                    GameOver();
-                else
-                    break;
-            }
-            else
-                continue;
-        }
-    }
-
-
-    /// <summary>
-    /// Get the Id of the dead enemy and remove the enemy with the corresponding id from the enemy list
-    /// </summary>
-    /// <param name="enemyId"></param>
-    public void EnemyInWave(int enemyId)
-    {
-        for (int Index = 0; Index < Instance.EnemiesInWave.Count; Index++)
-        {
-            GameObject enemyInWave = Instance.EnemiesInWave[Index];
-            if (enemyInWave.GetInstanceID() == enemyId)
-            {
-                Instance.EnemiesInWave.Remove(enemyInWave);
-
-                if(Instance.EnemiesInWave.Count == 0)
-                    StartCoroutine(ShopDelay());
-                else
-                    break;
-            }
-            else
-                continue;
-        }
-    }
-
-    public void EndWave()
-    {
-        foreach(Hero hero in FindObjectsOfType<Hero>())
+        foreach (Hero hero in FindObjectsOfType<Hero>())
         {
             Destroy(hero.gameObject);
         }
     }
 
+    #endregion
+
+    #region Control list
+    private void AddHeroToList(GameObject hero)
+    {
+        HeroList.Add(hero);
+    }
+
+    private void RemoveHeroFromList(GameObject hero)
+    {
+        HeroList.Remove(hero);
+
+        if (HeroList.Count == 0)
+            GameOver();
+    }
+
+    private void RemoveEnemyFromList(GameObject enemy)
+    {
+        EnemiesInWave.Remove(enemy);
+
+        if (EnemiesInWave.Count == 0)
+            StartCoroutine(ShopDelay());
+    }
+    #endregion
+
+    private void ResetCurrentWave(GameState gameState)
+    {
+        if (gameState != GameState.Start)
+            return;
+
+        CurrentWave = 0;
+    }
+
+    private void FightStarted(GameState gameState)
+    {
+        if (gameState != GameState.Fight)
+            return;
+
+        StartWave();
+        StartHeroSpawn();
+        GenerateWave();
+    }
+
+    #region gameManager update state
     private void GameOver()
     {
         GameManager.Instance.UpdateGameState(GameState.Lose);
@@ -215,4 +245,5 @@ public class WaveManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         GameManager.Instance.UpdateGameState(GameState.Shop);
     }
+    #endregion
 }

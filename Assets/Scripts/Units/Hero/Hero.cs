@@ -1,10 +1,11 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
 public abstract class Hero : Unit
 {
-
     #region Unity Function
     override protected void Start()
     {
@@ -17,49 +18,27 @@ public abstract class Hero : Unit
     /// Used to find the closest enemy from the character
     /// </summary>
     /// <param name="gameObject">this gameObject used as an id check</param>
-    protected override void OnSearchClosestOpponen(bool IsAHero)
+    protected override void OnSearchClosestOpponent()
     {
-        if (IsAhero)
-        {
-            State = CharacterState.Idle;
-            GameObject enemyObj;
-            foreach (Enemy enemy in FindObjectsOfType<Enemy>())
-            {
-                if (enemy && enemy.State != CharacterState.Dying)
-                {
-                    enemyObj = enemy.gameObject;
-                    if (!opponent)
-                    {
-                        opponent = enemyObj;
-                    }
-                    else if (opponent && (enemyObj.transform.position - transform.position).magnitude < (opponent.transform.position - transform.position).magnitude)
-                    {
-                        opponent = enemyObj;
-                    }
-                }
-                else
-                {
-                    continue;
-                }
-            }
-        }
+        State = CharacterState.Idle;
+        
+        List<Enemy> enemyList = FindObjectsOfType<Enemy>().ToList();
+
+        opponent = enemyList.OrderBy(enemy => Vector3.Distance(enemy.transform.position, transform.position)).FirstOrDefault().gameObject;
     }
 
-    protected override void OnAttack(int attack, GameObject gameObject)
+    protected override void OnAttack(int attack)
     {
-        if (gameObject == this.gameObject)
+        if (State == CharacterState.Attacking)
         {
-            if (State == CharacterState.Attacking)
-            {
-                isAttacking = true;
-                StartCoroutine(AttackCR(attack));
-            }
-            else
-            {
-                State = CharacterState.Idle;
-                isAttacking = false;
-                StopCoroutine(AttackCR(attack));
-            }
+            isAttacking = true;
+            StartCoroutine(AttackCR(attack));
+        }
+        else
+        {
+            State = CharacterState.Idle;
+            isAttacking = false;
+            StopCoroutine(AttackCR(attack));
         }
     }
 
@@ -70,13 +49,12 @@ public abstract class Hero : Unit
     /// <returns>1 divided by the attackspeed</returns>
     protected abstract IEnumerator AttackCR(int damage);
 
-    protected override IEnumerator DeathCoroutine(GameObject killer)
+    protected override IEnumerator DeathCoroutine()
     {
         anim.Play("Death");
         hitSound.Play();
-        State = CharacterState.Dying;
-        WaveManager.Instance.HeroInParty(gameObject.GetInstanceID());
-        EventManager.Instance.CharacterEvent.FindClosestOpponentEvent(false);
+        WaveEvent.RemoveHeroFromList(gameObject);
+        OnSearchClosestOpponent();
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }

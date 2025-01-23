@@ -9,18 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7d60922270e83e489a624f9b6523e99, type: 3}
-  m_Name: Skeleton
+  m_Script: {fileID: 11500000, guid: f73432a98e0d5ad48980d37560fa6344, type: 3}
+  m_Name: Hobgoblin
   m_EditorClassIdentifier: 
   <CharIcon>k__BackingField: {fileID: 0}
-  <Health>k__BackingField: 60
-  <Attack>k__BackingField: 10
+  <Health>k__BackingField: 250
+  <Attack>k__BackingField: 12
   <Magic>k__BackingField: 0
-  <Speed>k__BackingField: 3
-  <Cost>k__BackingField: 3
-  <MinRange>k__BackingField: 1
-  <MaxRange>k__BackingField: 2.5
-  <AttSpeed>k__BackingField: 2
-  <OpponentMask>k__BackingField:
+  <Speed>k__BackingField: 2
+  <Cost>k__BackingField: 12
+  <MinRange>k__BackingField: 0
+  <MaxRange>k__BackingField: 2
+  <AttSpeed>k__BackingField: 1
+  <OpponentLayer>k__BackingField:
     serializedVersion: 2
     m_Bits: 64

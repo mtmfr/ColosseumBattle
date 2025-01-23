@@ -1,16 +1,16 @@
 using System;
 using System.Data;
 
-public class MiscEvent
+public static class MiscEvent
 {
-    public event Action<int> GoldValueChange;
-    public void OnGoldValueChange(int gold)
+    public static event Action<int> GoldValueChange;
+    public static void OnGoldValueChange(int gold)
     {
         GoldValueChange?.Invoke(gold);
     }
 
-    public event Action<int> TimerValueChange;
-    public void OnTimerChange(int time)
+    public static event Action<int> TimerValueChange;
+    public static void OnTimerChange(int time)
     {
         TimerValueChange?.Invoke(time);
     }

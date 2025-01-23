@@ -6,16 +6,20 @@ public class Skeleton : Enemy
 {
     [Header("Effect")]
     [SerializeField] private GameObject arrow;
+    private GameObject UsedArrow { get
+        {
+            GameObject usedArrow = Instantiate(arrow, transform.position, Quaternion.identity);
+            return usedArrow;
+        } }
 
     protected override IEnumerator AttackCR(int damage)
     {
         rb.velocity = Vector2.zero;
         anim.Play("Attack");
-        GameObject arrowCopy = Instantiate(arrow, transform.position, Quaternion.identity);
-        arrowCopy.GetComponent<Arrow>().target = opponent;
-        arrowCopy.GetComponent<Arrow>().SetArcher(gameObject);
-        arrowCopy.GetComponent<Arrow>().SetDamage(damage);
-        yield return new WaitForSeconds(1 / AttSpeed);
-        EventManager.Instance.CharacterEvent.AttackEvent(damage, gameObject);
+        UsedArrow.SetActive(true);
+        UsedArrow.GetComponent<Arrow>().target = opponent;
+        UsedArrow.GetComponent<Arrow>().SetDamage(damage);
+        yield return new WaitForSeconds(1 / attSpeed);
+        OnAttack(damage);
     }
 }

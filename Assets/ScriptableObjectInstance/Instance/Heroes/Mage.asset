@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7d60922270e83e489a624f9b6523e99, type: 3}
+  m_Script: {fileID: 11500000, guid: 959a47db49e6d904e93521c3a7bcd424, type: 3}
   m_Name: Mage
   m_EditorClassIdentifier: 
   <CharIcon>k__BackingField: {fileID: 191768126, guid: 968ca18f9c2e2bc48aa9a239f8ae7815, type: 3}
@@ -21,6 +21,6 @@ MonoBehaviour:
   <MinRange>k__BackingField: 1
   <MaxRange>k__BackingField: 4
   <AttSpeed>k__BackingField: 1.5
-  <OpponentMask>k__BackingField:
+  <OpponentLayer>k__BackingField:
     serializedVersion: 2
     m_Bits: 128

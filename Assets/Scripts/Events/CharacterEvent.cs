@@ -3,54 +3,30 @@ using UnityEngine;
 
 
 //The events related to the character the GameObject type is used as an Id check
-public class CharacterEvent
+public static class CharacterEvent
 {
-    public event Action<bool> FindClosestOpponent;
-    public void FindClosestOpponentEvent(bool IsAHero)
+    public static event Action<int, int> OnAttackHit;
+    public static void AttackHit(int damage, int objectId)
     {
-        FindClosestOpponent?.Invoke(IsAHero);
+        OnAttackHit?.Invoke(damage, objectId);
     }
 
-    public event Action<int, GameObject> Move;
-    public void MoveEvent(int speed, GameObject gameObject)
+    public static event Action<int> OnDeath;
+    public static void Death(int objectId)
     {
-        Move?.Invoke(speed, gameObject);
+        OnDeath?.Invoke(objectId);
     }
 
-    public event Action<int, GameObject> Flee;
-    public void FleeEvent(int speed, GameObject gameObject)
+    public static event Action<int> OnForcedRetarget;
+    public static void ForceRetarget(int objectId)
     {
-        Flee?.Invoke(speed, gameObject);
+        OnForcedRetarget?.Invoke(objectId);
     }
 
-    public event Action<int, GameObject> Attack;
-    public void AttackEvent(int damage, GameObject gameObject)
+    public static event Action<int, GameObject> OnHeal;
+    public static void Heal(int heal, GameObject gameObject)
     {
-        Attack?.Invoke(damage, gameObject);
-    }
-
-    public event Action<int, GameObject, GameObject> TakeDamage;
-    public void TakeDamageEvent(int damage, GameObject gameObject, GameObject striker)
-    {
-        TakeDamage?.Invoke(damage, gameObject, striker);
-    }
-
-    public event Action<GameObject> UseUltimate;
-    public void UseUltimateEvent(GameObject gameObject)
-    {
-        UseUltimate?.Invoke(gameObject);
-    }
-
-    public event Action<GameObject, GameObject> Dying;
-    public void DyingEvent(GameObject gameObject, GameObject killer)
-    {
-        Dying?.Invoke(gameObject, killer);
-    }
-
-    public event Action<int, GameObject> Heal;
-    public void HealEvent(int heal, GameObject gameObject)
-    {
-        Heal?.Invoke(heal, gameObject);
+        OnHeal?.Invoke(heal, gameObject);
     }
 
 }
