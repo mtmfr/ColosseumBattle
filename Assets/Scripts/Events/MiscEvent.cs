@@ -9,9 +9,15 @@ public static class MiscEvent
         GoldValueChange?.Invoke(gold);
     }
 
-    public static event Action<int> TimerValueChange;
-    public static void OnTimerChange(int time)
+    public static event Action<int> OnTimerValueChange;
+    public static void TimerValueChange(int time)
     {
-        TimerValueChange?.Invoke(time);
+        OnTimerValueChange?.Invoke(time);
+    }
+
+    public static event Action OnTimerFinished;
+    public static void TimerFinished()
+    {
+        OnTimerFinished?.Invoke();
     }
 }

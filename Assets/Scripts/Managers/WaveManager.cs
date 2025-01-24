@@ -4,20 +4,6 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
-    private static WaveManager _instance;
-
-    public static WaveManager Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                Debug.LogError("No Wave Manager");
-            }
-            return _instance;
-        }
-    }
-
     [SerializeField] private GameObject heroSpawnZone;
     [SerializeField] private GameObject enemySpawnZone;
 
@@ -30,18 +16,6 @@ public class WaveManager : MonoBehaviour
     public int CurrentWave { get; set; }
     private int waveCredit;
     [field: SerializeField] public int TimePerWave { get; set; }
-
-    private void Awake()
-    {
-        if (_instance)
-            Destroy(gameObject);
-        else
-        {
-            _instance = this;
-        }
-
-        DontDestroyOnLoad(this);
-    }
 
     private void OnEnable()
     {
@@ -175,12 +149,10 @@ public class WaveManager : MonoBehaviour
     #endregion
 
     #region wave control
-
     public void StartWave()
     {
         CurrentWave++;
         WaveEvent.StartWaveEvent(CurrentWave);
-        MiscEvent.OnTimerChange(TimePerWave);
     }
 
     private void EndWave()
@@ -190,7 +162,6 @@ public class WaveManager : MonoBehaviour
             Destroy(hero.gameObject);
         }
     }
-
     #endregion
 
     #region Control list

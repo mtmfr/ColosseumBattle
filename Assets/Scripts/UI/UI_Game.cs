@@ -11,19 +11,15 @@ public class UI_Game : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.Instance.OnGameStateChanged += StartTimer;
-
         MiscEvent.GoldValueChange += GoldNumber;
-        MiscEvent.TimerValueChange += Timer;
+        MiscEvent.OnTimerValueChange += Timer;
         WaveEvent.WaveStart += CurrentWave;
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.OnGameStateChanged -= StartTimer;
-
         MiscEvent.GoldValueChange -= GoldNumber;
-        MiscEvent.TimerValueChange -= Timer;
+        MiscEvent.OnTimerValueChange -= Timer;
         WaveEvent.WaveStart -= CurrentWave;
     }
 
@@ -32,32 +28,16 @@ public class UI_Game : MonoBehaviour
         battleGoldValue.text = gold.ToString();
     }
 
-    private void StartTimer(GameState gameState)
-    {
-        if (gameState != GameState.Fight)
-            return;
-
-        StartCoroutine(TimerCoroutine());
-    }
-
     private void Timer(int time)
     {
-        if (GameManager.Instance.State == GameState.Fight)
-        {
-            timer.text = time.ToString();
-            WaveManager.Instance.TimePerWave--;
-            StartCoroutine(TimerCoroutine());
-        }
+        if (GameManager.Instance.State != GameState.Fight)
+            return;
+
+        timer.text = time.ToString();
     }
 
     private void CurrentWave(int wave)
     {
         waveNumber.text = $"wave : {wave}";
-    }
-
-    IEnumerator TimerCoroutine()
-    {
-        yield return new WaitForSeconds(1);
-        MiscEvent.OnTimerChange(WaveManager.Instance.TimePerWave);
     }
 }
