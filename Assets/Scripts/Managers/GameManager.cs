@@ -4,20 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    #region instance creation
-    private static GameManager _instance;
-    public static GameManager Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                Debug.LogError("GameManager is null");
-            }
-            return _instance;
-        }
-    }
-    #endregion
+    public static GameManager Instance { get; private set; }
 
 
     #region Gamestate
@@ -36,11 +23,11 @@ public class GameManager : MonoBehaviour
     #region UnityFunction
     private void Awake()
     {
-        if(_instance)
+        if(Instance)
             Destroy(gameObject);
         else
         {
-            _instance = this;
+            Instance = this;
         }
         DontDestroyOnLoad(this);
     }

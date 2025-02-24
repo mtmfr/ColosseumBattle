@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class UI_Start : MonoBehaviour
 {
-    [SerializeField] private GameObject HeroSelectScreen;
-    [SerializeField] private GameObject descCancel;
+    [SerializeField] private GameObject heroSelectScreen;
+    [SerializeField] private GameObject heroRecruitScreen;
 
     [SerializeField] private GameObject heroDesc;
 
@@ -16,20 +16,22 @@ public class UI_Start : MonoBehaviour
 
     private int selectedHeroId;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    /// <summary>
+    /// Get the selected hero id and show the heroDesc screen
+    /// </summary>
+    /// <param name="HeroId">the id of the selected hero</param>
     public void SelectCharacter(int HeroId)
     {
         selectedHeroId = HeroId;
         heroDesc.SetActive(true);
-        descCancel.SetActive(true);
+        heroRecruitScreen.SetActive(true);
         UpdateHeroDesc();
-        HeroSelectScreen.SetActive(false);
+        heroSelectScreen.SetActive(false);
     }
 
+    /// <summary>
+    /// Update the description of stats to be ehe one of the selected hero
+    /// </summary>
     private void UpdateHeroDesc()
     {
         SO_HeroStats stats = heroStats[selectedHeroId];
@@ -37,6 +39,9 @@ public class UI_Start : MonoBehaviour
         heroDesc.GetComponentInChildren<TextMeshProUGUI>().text = $"pv : {stats.Health}, att : {stats.Attack}, mag : {stats.Magic}, speed : {stats.Speed}, attSpeed : {stats.AttSpeed}";
     }
 
+    /// <summary>
+    /// Spawn the selected hero
+    /// </summary>
     public void SpawnSelectedHero()
     {
         //GameObject hero = Instantiate(heroToSpawn[currentHero].gameObject, WaveManager.Instance.SpawnZone(WaveManager.Instance.heroSpawnZone), Quaternion.identity);
@@ -45,10 +50,13 @@ public class UI_Start : MonoBehaviour
         GameManager.Instance.UpdateGameState(GameState.Fight);
     }
 
+    /// <summary>
+    /// Go back to the hero selection screen
+    /// </summary>
     public void Cancel()
     {
         heroDesc.SetActive(false);
-        descCancel.SetActive(false);
-        HeroSelectScreen.SetActive(true);
+        heroRecruitScreen.SetActive(false);
+        heroSelectScreen.SetActive(true);
     }
 }
