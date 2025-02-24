@@ -30,6 +30,7 @@ public abstract class Unit : MonoBehaviour
     #region ObjectComponent
     protected Rigidbody2D rb;
     protected Animator anim;
+    private SpriteRenderer sprite;
     #endregion
 
     #region Sounds
@@ -50,6 +51,8 @@ public abstract class Unit : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
+        sprite = GetComponentInChildren<SpriteRenderer>();
+        sprite.color = Color.white;
 
         State = CharacterState.Idle;
 
@@ -211,6 +214,15 @@ public abstract class Unit : MonoBehaviour
             health -= damage;
         }
         else OnDeath();
+
+        DamageFeedback();
+    }
+
+    private IEnumerator DamageFeedback()
+    {
+        sprite.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        sprite.color = Color.white;
     }
 
     private void OnHeal(int heal, GameObject gameObject)

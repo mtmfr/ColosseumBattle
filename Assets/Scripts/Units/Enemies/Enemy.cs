@@ -24,18 +24,15 @@ public abstract class Enemy : Unit
 
     protected override void OnAttack(int attack)
     {
-        if (gameObject == this.gameObject)
+        if (State == CharacterState.Attacking)
         {
-            if (State == CharacterState.Attacking)
-            {
-                StartCoroutine(AttackCR(attack));
-                isAttacking = true;
-            }
-            else
-            {
-                StopCoroutine(AttackCR(attack));
-                isAttacking = false;
-            }
+            StartCoroutine(AttackCR(attack));
+            isAttacking = true;
+        }
+        else
+        {
+            StopCoroutine(AttackCR(attack));
+            isAttacking = false;
         }
     }
 
