@@ -16,12 +16,12 @@ namespace TMPro
         {
             Debug.Log("Trying to validate...");
             
-            // Return unless the characterS0 is a valid digit
+            // Return unless the character is a valid digit
             if (ch < '0' && ch > '9') return (char)0;
 
             int length = text.Length;
 
-            // Enforce Phone Number format for every characterS0 input.
+            // Enforce Phone Number format for every character input.
             for (int i = 0; i < length + 1; i++)
             {
                 switch (i)

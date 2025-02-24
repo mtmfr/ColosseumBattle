@@ -21,6 +21,4 @@ MonoBehaviour:
   <MinRange>k__BackingField: 1
   <MaxRange>k__BackingField: 2.5
   <AttSpeed>k__BackingField: 2
-  <OpponentLayer>k__BackingField:
-    serializedVersion: 2
-    m_Bits: 64
+  <OpponentLayer>k__BackingField: Heroes

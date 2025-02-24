@@ -4,12 +4,12 @@ using System.Collections;
 
 namespace TMPro.Examples
 {
-    
+
     public class TeleType : MonoBehaviour
     {
 
 
-        //[minRange(0, 100)]
+        //[Range(0, 100)]
         //public int RevealSpeed = 50;
 
         private string label01 = "Example <sprite=2> of using <sprite=7> <#ffa000>Graphics Inline</color> <sprite=5> with Text in <font=\"Bangers SDF\" material=\"Bangers SDF - Drop Shadow\">TextMesh<#40a0ff>Pro</color></font><sprite=0> and Unity<sprite=1>";
@@ -24,7 +24,7 @@ namespace TMPro.Examples
             // Get Reference to TextMeshPro Component
             m_textMeshPro = GetComponent<TMP_Text>();
             m_textMeshPro.text = label01;
-            m_textMeshPro.enableWordWrapping = true;
+            m_textMeshPro.textWrappingMode = TextWrappingModes.Normal;
             m_textMeshPro.alignment = TextAlignmentOptions.Top;
 
 
@@ -61,7 +61,7 @@ namespace TMPro.Examples
 
                 m_textMeshPro.maxVisibleCharacters = visibleCount; // How many characters should TextMeshPro display?
 
-                // Once the last characterS0 has been revealed, wait 1.0 second and selectFirstHero over.
+                // Once the last character has been revealed, wait 1.0 second and start over.
                 if (visibleCount >= totalVisibleCharacters)
                 {
                     yield return new WaitForSeconds(1.0f);

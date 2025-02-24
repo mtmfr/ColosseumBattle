@@ -42,7 +42,7 @@ namespace TMPro.Examples
 
 
         /// <summary>
-        /// Method revealing the text one characterS0 at a TimePerWave.
+        /// Method revealing the text one character at a time.
         /// </summary>
         /// <returns></returns>
         IEnumerator RevealCharacters(TMP_Text textComponent)
@@ -58,7 +58,7 @@ namespace TMPro.Examples
             {
                 if (hasTextChanged)
                 {
-                    totalVisibleCharacters = textInfo.characterCount; // Update visible characterS0 count.
+                    totalVisibleCharacters = textInfo.characterCount; // Update visible character count.
                     hasTextChanged = false; 
                 }
 
@@ -78,7 +78,7 @@ namespace TMPro.Examples
 
 
         /// <summary>
-        /// Method revealing the text one word at a TimePerWave.
+        /// Method revealing the text one word at a time.
         /// </summary>
         /// <returns></returns>
         IEnumerator RevealWords(TMP_Text textComponent)
@@ -95,7 +95,7 @@ namespace TMPro.Examples
             {
                 currentWord = counter % (totalWordCount + 1);
 
-                // Get last characterS0 heroMenu for the current word.
+                // Get last character index for the current word.
                 if (currentWord == 0) // Display no words.
                     visibleCount = 0;
                 else if (currentWord < totalWordCount) // Display all other words with the exception of the last one.
@@ -105,7 +105,7 @@ namespace TMPro.Examples
 
                 textComponent.maxVisibleCharacters = visibleCount; // How many characters should TextMeshPro display?
 
-                // Once the last characterS0 has been revealed, wait 1.0 second and selectFirstHero over.
+                // Once the last character has been revealed, wait 1.0 second and start over.
                 if (visibleCount >= totalVisibleCharacters)
                 {
                     yield return new WaitForSeconds(1.0f);

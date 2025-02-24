@@ -157,7 +157,7 @@ public class WaveManager : MonoBehaviour
 
     private void EndWave()
     {
-        foreach (Hero hero in FindObjectsOfType<Hero>())
+        foreach (Hero hero in FindObjectsByType<Hero>(FindObjectsInactive.Exclude, FindObjectsSortMode.None))
         {
             Destroy(hero.gameObject);
         }

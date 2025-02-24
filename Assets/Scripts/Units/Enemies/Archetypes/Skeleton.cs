@@ -14,7 +14,7 @@ public class Skeleton : Enemy
 
     protected override IEnumerator AttackCR(int damage)
     {
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         anim.Play("Attack");
         UsedArrow.SetActive(true);
         UsedArrow.GetComponent<Arrow>().target = opponent;

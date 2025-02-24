@@ -24,7 +24,7 @@ public abstract class Unit : MonoBehaviour
     private float maxRange;
     protected float attSpeed;
 
-    protected LayerMask opponentLayer;
+    protected string opponentLayerName;
     #endregion
 
     #region ObjectComponent
@@ -40,7 +40,6 @@ public abstract class Unit : MonoBehaviour
 
     [Header("Opponent")]
     [SerializeField] protected GameObject opponent;
-    private List<Collider2D> opponents = new();
 
 
     #region Unity Function
@@ -104,8 +103,9 @@ public abstract class Unit : MonoBehaviour
         minRange = characterS0.MinRange;
         maxRange = characterS0.MaxRange;
 
-        opponentLayer = characterS0.OpponentLayer;
+        opponentLayerName = characterS0.OpponentLayer;
     }
+
     #region state control function
 
     /// <summary>
@@ -115,24 +115,24 @@ public abstract class Unit : MonoBehaviour
     /// <param name="max">the maximum distance at wich an opponent has to be to OnAttack</param>
     protected void DetectZone(float min, float max)
     {
-        //detection range at wich the character will flee from it's opponent
-        int fleeZone = Physics2D.OverlapCircleNonAlloc(transform.position, min, opponents.ToArray(), opponentLayer);
-
-        //detection range at which the character will start fleeing from it's opponent
-        int attackZone = Physics2D.OverlapCircleNonAlloc(transform.position, max, opponents.ToArray(), opponentLayer);
+        //Get the opponents in range
+        var opponentInFleeZone = Physics2D.OverlapCircle(transform.position, min, LayerMask.NameToLayer(opponentLayerName));
+        
+        var opponentInAttackZone = Physics2D.OverlapCircle(transform.position, max, LayerMask.NameToLayer(opponentLayerName));
 
         //determine the state of the opponent depending on the number of enemy in it's detection zone
-        if (fleeZone > 0)
+        if (opponentInFleeZone != null)
         {
             State = CharacterState.Fleeing;
         }
-        else if (attackZone == 0 && fleeZone == 0)
+        else if (opponentInAttackZone == null && opponentInFleeZone == null)
         {
             State = CharacterState.Moving;
         }
-        else if (attackZone > 0 && fleeZone == 0)
+        else if (opponentInAttackZone != null)
         {
             State = CharacterState.Attacking;
+            Debug.Log("fire");
         }
     }
 
@@ -182,7 +182,7 @@ public abstract class Unit : MonoBehaviour
 
         Vector2 dir = new(x, y);
 
-        rb.velocity = dir.normalized * speed;
+        rb.linearVelocity = dir.normalized * speed;
 
         anim.SetTrigger("IsMoving");
     }
@@ -195,7 +195,7 @@ public abstract class Unit : MonoBehaviour
 
         Vector2 dir = new(x, y);
 
-        rb.velocity = dir.normalized * speed;
+        rb.linearVelocity = dir.normalized * speed;
         anim.SetTrigger("IsMoving");
     }
     #endregion
@@ -214,8 +214,7 @@ public abstract class Unit : MonoBehaviour
             health -= damage;
         }
         else OnDeath();
-
-        DamageFeedback();
+        StartCoroutine(DamageFeedback());
     }
 
     private IEnumerator DamageFeedback()

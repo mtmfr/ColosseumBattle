@@ -11,7 +11,7 @@ public class Assassin : Hero
 
     protected override IEnumerator AttackCR(int damage)
     {
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         anim.Play("Attack");
         var copy = Instantiate(blood, new Vector2(bloodSpawn.transform.position.x, bloodSpawn.transform.position.y), Quaternion.identity);
         CharacterEvent.AttackHit(damage, opponent.GetInstanceID());

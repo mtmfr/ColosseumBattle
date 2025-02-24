@@ -64,14 +64,14 @@ namespace TMPro.Examples
             TMP_MeshInfo[] cachedMeshInfoVertexData = textInfo.CopyMeshInfoVertexData();
 
             // Allocations for sorting of the modified scales
-            List<float> modifiedCharScale = new List<float>();
-            List<int> scaleSortingOrder = new List<int>();
+            List<float> modifiedCharScale = new();
+            List<int> scaleSortingOrder = new();
 
             hasTextChanged = true;
 
             while (true)
             {
-                // Allocate new vertices 
+                // Allocate new vertices
                 if (hasTextChanged)
                 {
                     // Get updated vertex data
@@ -89,7 +89,7 @@ namespace TMPro.Examples
                     continue;
                 }
 
-                // Clear list of characterS0 scales
+                // Clear list of character scales
                 modifiedCharScale.Clear();
                 scaleSortingOrder.Clear();
 
@@ -101,22 +101,22 @@ namespace TMPro.Examples
                     if (!charInfo.isVisible)
                         continue;
 
-                    // Get the heroMenu of the material used by the current characterS0.
+                    // Get the index of the material used by the current character.
                     int materialIndex = textInfo.characterInfo[i].materialReferenceIndex;
 
-                    // Get the heroMenu of the first vertex used by this text element.
+                    // Get the index of the first vertex used by this text element.
                     int vertexIndex = textInfo.characterInfo[i].vertexIndex;
 
-                    // Get the cached vertices of the mesh used by this text element (characterS0 or sprite).
+                    // Get the cached vertices of the mesh used by this text element (character or sprite).
                     Vector3[] sourceVertices = cachedMeshInfoVertexData[materialIndex].vertices;
 
-                    // Determine the center point of each characterS0 at the baseline.
+                    // Determine the center point of each character at the baseline.
                     //Vector2 charMidBasline = new Vector2((sourceVertices[vertexIndex + 0].x + sourceVertices[vertexIndex + 2].x) / 2, charInfo.baseLine);
-                    // Determine the center point of each characterS0.
+                    // Determine the center point of each character.
                     Vector2 charMidBasline = (sourceVertices[vertexIndex + 0] + sourceVertices[vertexIndex + 2]) / 2;
 
-                    // Need to translate all 4 vertices of each quad to aligned with middle of characterS0 / baseline.
-                    // This is needed so the matrix TRS is applied at the origin for each characterS0.
+                    // Need to translate all 4 vertices of each quad to aligned with middle of character / baseline.
+                    // This is needed so the matrix TRS is applied at the origin for each character.
                     Vector3 offset = charMidBasline;
 
                     Vector3[] destinationVertices = textInfo.meshInfo[materialIndex].vertices;
@@ -126,17 +126,17 @@ namespace TMPro.Examples
                     destinationVertices[vertexIndex + 2] = sourceVertices[vertexIndex + 2] - offset;
                     destinationVertices[vertexIndex + 3] = sourceVertices[vertexIndex + 3] - offset;
 
-                    //Vector3 jitterOffset = new Vector3(Random.minRange(-.25f, .25f), Random.minRange(-.25f, .25f), 0);
+                    //Vector3 jitterOffset = new Vector3(Random.Range(-.25f, .25f), Random.Range(-.25f, .25f), 0);
 
-                    // Determine the random scale change for each characterS0.
+                    // Determine the random scale change for each character.
                     float randomScale = Random.Range(1f, 1.5f);
-                    
-                    // Add modified scale and heroMenu
+
+                    // Add modified scale and index
                     modifiedCharScale.Add(randomScale);
                     scaleSortingOrder.Add(modifiedCharScale.Count - 1);
 
                     // Setup the matrix for the scale change.
-                    //matrix = Matrix4x4.TRS(jitterOffset, Quaternion.Euler(0, 0, Random.minRange(-5f, 5f)), Vector3.one * randomScale);
+                    //matrix = Matrix4x4.TRS(jitterOffset, Quaternion.Euler(0, 0, Random.Range(-5f, 5f)), Vector3.one * randomScale);
                     matrix = Matrix4x4.TRS(new Vector3(0, 0, 0), Quaternion.identity, Vector3.one * randomScale);
 
                     destinationVertices[vertexIndex + 0] = matrix.MultiplyPoint3x4(destinationVertices[vertexIndex + 0]);
@@ -150,8 +150,8 @@ namespace TMPro.Examples
                     destinationVertices[vertexIndex + 3] += offset;
 
                     // Restore Source UVS which have been modified by the sorting
-                    Vector2[] sourceUVs0 = cachedMeshInfoVertexData[materialIndex].uvs0;
-                    Vector2[] destinationUVs0 = textInfo.meshInfo[materialIndex].uvs0;
+                    Vector4[] sourceUVs0 = cachedMeshInfoVertexData[materialIndex].uvs0;
+                    Vector4[] destinationUVs0 = textInfo.meshInfo[materialIndex].uvs0;
 
                     destinationUVs0[vertexIndex + 0] = sourceUVs0[vertexIndex + 0];
                     destinationUVs0[vertexIndex + 1] = sourceUVs0[vertexIndex + 1];
@@ -178,7 +178,7 @@ namespace TMPro.Examples
 
                     // Updated modified vertex attributes
                     textInfo.meshInfo[i].mesh.vertices = textInfo.meshInfo[i].vertices;
-                    textInfo.meshInfo[i].mesh.uv = textInfo.meshInfo[i].uvs0;
+                    textInfo.meshInfo[i].mesh.SetUVs(0, textInfo.meshInfo[i].uvs0);
                     textInfo.meshInfo[i].mesh.colors32 = textInfo.meshInfo[i].colors32;
 
                     m_TextComponent.UpdateGeometry(textInfo.meshInfo[i].mesh, i);

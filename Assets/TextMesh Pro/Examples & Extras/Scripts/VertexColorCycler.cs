@@ -28,7 +28,7 @@ namespace TMPro.Examples
         /// <returns></returns>
         IEnumerator AnimateVertexColors()
         {
-            // Force the text object to update right away so we can have geometry to modify right from the selectFirstHero.
+            // Force the text object to update right away so we can have geometry to modify right from the start.
             m_TextComponent.ForceMeshUpdate();
 
             TMP_TextInfo textInfo = m_TextComponent.textInfo;
@@ -48,13 +48,13 @@ namespace TMPro.Examples
                     continue;
                 }
 
-                // Get the heroMenu of the material used by the current characterS0.
+                // Get the index of the material used by the current character.
                 int materialIndex = textInfo.characterInfo[currentCharacter].materialReferenceIndex;
 
-                // Get the vertex colors of the mesh used by this text element (characterS0 or sprite).
+                // Get the vertex colors of the mesh used by this text element (character or sprite).
                 newVertexColors = textInfo.meshInfo[materialIndex].colors32;
 
-                // Get the heroMenu of the first vertex used by this text element.
+                // Get the index of the first vertex used by this text element.
                 int vertexIndex = textInfo.characterInfo[currentCharacter].vertexIndex;
 
                 // Only change the vertex color if the text element is visible.

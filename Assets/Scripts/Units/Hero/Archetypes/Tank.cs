@@ -5,7 +5,7 @@ public class Tank : Hero
 {
     protected override IEnumerator AttackCR(int damage)
     {
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         anim.Play("Attack");
         CharacterEvent.AttackHit(damage, opponent.GetInstanceID());
         CharacterEvent.ForceRetarget(opponent.GetInstanceID());

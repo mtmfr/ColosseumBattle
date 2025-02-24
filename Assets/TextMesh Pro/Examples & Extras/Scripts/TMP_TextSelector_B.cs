@@ -97,23 +97,23 @@ namespace TMPro.Examples
                 {
                     m_lastIndex = charIndex;
 
-                    // Get the heroMenu of the material / sub text object used by this characterS0.
+                    // Get the index of the material / sub text object used by this character.
                     int materialIndex = m_TextMeshPro.textInfo.characterInfo[charIndex].materialReferenceIndex;
 
-                    // Get the heroMenu of the first vertex of the selected characterS0.
+                    // Get the index of the first vertex of the selected character.
                     int vertexIndex = m_TextMeshPro.textInfo.characterInfo[charIndex].vertexIndex;
 
                     // Get a reference to the vertices array.
                     Vector3[] vertices = m_TextMeshPro.textInfo.meshInfo[materialIndex].vertices;
 
-                    // Determine the center point of the characterS0.
+                    // Determine the center point of the character.
                     Vector2 charMidBasline = (vertices[vertexIndex + 0] + vertices[vertexIndex + 2]) / 2;
 
-                    // Need to translate all 4 vertices of the characterS0 to aligned with middle of characterS0 / baseline.
-                    // This is needed so the matrix TRS is applied at the origin for each characterS0.
+                    // Need to translate all 4 vertices of the character to aligned with middle of character / baseline.
+                    // This is needed so the matrix TRS is applied at the origin for each character.
                     Vector3 offset = charMidBasline;
 
-                    // Translate the characterS0 to the middle baseline.
+                    // Translate the character to the middle baseline.
                     vertices[vertexIndex + 0] = vertices[vertexIndex + 0] - offset;
                     vertices[vertexIndex + 1] = vertices[vertexIndex + 1] - offset;
                     vertices[vertexIndex + 2] = vertices[vertexIndex + 2] - offset;
@@ -124,19 +124,19 @@ namespace TMPro.Examples
                     // Setup the Matrix for the scale change.
                     m_matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, Vector3.one * zoomFactor);
 
-                    // Apply Matrix operation on the given characterS0.
+                    // Apply Matrix operation on the given character.
                     vertices[vertexIndex + 0] = m_matrix.MultiplyPoint3x4(vertices[vertexIndex + 0]);
                     vertices[vertexIndex + 1] = m_matrix.MultiplyPoint3x4(vertices[vertexIndex + 1]);
                     vertices[vertexIndex + 2] = m_matrix.MultiplyPoint3x4(vertices[vertexIndex + 2]);
                     vertices[vertexIndex + 3] = m_matrix.MultiplyPoint3x4(vertices[vertexIndex + 3]);
 
-                    // Translate the characterS0 back to its original position.
+                    // Translate the character back to its original position.
                     vertices[vertexIndex + 0] = vertices[vertexIndex + 0] + offset;
                     vertices[vertexIndex + 1] = vertices[vertexIndex + 1] + offset;
                     vertices[vertexIndex + 2] = vertices[vertexIndex + 2] + offset;
                     vertices[vertexIndex + 3] = vertices[vertexIndex + 3] + offset;
 
-                    // Change Vertex Colors of the highlighted characterS0
+                    // Change Vertex Colors of the highlighted character
                     Color32 c = new Color32(255, 255, 192, 255);
 
                     // Get a reference to the vertex color
@@ -148,17 +148,17 @@ namespace TMPro.Examples
                     vertexColors[vertexIndex + 3] = c;
 
 
-                    // Get a reference to the meshInfo of the selected characterS0.
+                    // Get a reference to the meshInfo of the selected character.
                     TMP_MeshInfo meshInfo = m_TextMeshPro.textInfo.meshInfo[materialIndex];
 
-                    // Get the heroMenu of the last characterS0's vertex attributes.
+                    // Get the index of the last character's vertex attributes.
                     int lastVertexIndex = vertices.Length - 4;
 
-                    // Swap the current characterS0's vertex attributes with those of the last element in the vertex attribute arrays.
-                    // We do this to make sure this characterS0 is rendered last and over other characters.
+                    // Swap the current character's vertex attributes with those of the last element in the vertex attribute arrays.
+                    // We do this to make sure this character is rendered last and over other characters.
                     meshInfo.SwapVertexData(vertexIndex, lastVertexIndex);
 
-                    // Need to update the appropriate 
+                    // Need to update the appropriate
                     m_TextMeshPro.UpdateVertexData(TMP_VertexDataUpdateFlags.All);
                 }
                 #endregion
@@ -178,10 +178,10 @@ namespace TMPro.Examples
                     {
                         int characterIndex = wInfo.firstCharacterIndex + i;
 
-                        // Get the heroMenu of the material / sub text object used by this characterS0.
+                        // Get the index of the material / sub text object used by this character.
                         int meshIndex = m_TextMeshPro.textInfo.characterInfo[characterIndex].materialReferenceIndex;
 
-                        // Get the heroMenu of the first vertex of this characterS0.
+                        // Get the index of the first vertex of this character.
                         int vertexIndex = m_TextMeshPro.textInfo.characterInfo[characterIndex].vertexIndex;
 
                         // Get a reference to the vertex color
@@ -214,7 +214,7 @@ namespace TMPro.Examples
                     {
                         int characterIndex = wInfo.firstCharacterIndex + i;
 
-                        // Get the heroMenu of the material / sub text object used by this characterS0.
+                        // Get the index of the material / sub text object used by this character.
                         int meshIndex = m_TextMeshPro.textInfo.characterInfo[characterIndex].materialReferenceIndex;
 
                         int vertexIndex = m_TextMeshPro.textInfo.characterInfo[characterIndex].vertexIndex;
@@ -279,14 +279,14 @@ namespace TMPro.Examples
             }
             else
             {
-                // Restore any characterS0 that may have been modified
+                // Restore any character that may have been modified
                 if (m_lastIndex != -1)
                 {
                     RestoreCachedVertexAttributes(m_lastIndex);
                     m_lastIndex = -1;
                 }
             }
-            
+
         }
 
 
@@ -314,10 +314,10 @@ namespace TMPro.Examples
             int charIndex = TMP_TextUtilities.FindIntersectingCharacter(m_TextMeshPro, Input.mousePosition, m_Camera, true);
             if (charIndex != -1 && charIndex != m_lastIndex)
             {
-                //Debug.Log("Character [" + m_TextMeshPro.textInfo.characterInfo[heroMenu].characterS0 + "] was selected at POS: " + eventData.position);
+                //Debug.Log("Character [" + m_TextMeshPro.textInfo.characterInfo[index].character + "] was selected at POS: " + eventData.position);
                 m_lastIndex = charIndex;
 
-                Color32 c = new Color32((byte)Random.minRange(0, 255), (byte)Random.minRange(0, 255), (byte)Random.minRange(0, 255), 255);
+                Color32 c = new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), 255);
                 int vertexIndex = m_TextMeshPro.textInfo.characterInfo[charIndex].vertexIndex;
 
                 UIVertex[] uiVertices = m_TextMeshPro.textInfo.meshInfo.uiVertices;
@@ -424,7 +424,7 @@ namespace TMPro.Examples
                 #region Vertex Attribute Modification Example
                 UIVertex[] uiVertices = m_TextMeshPro.textInfo.meshInfo.uiVertices;
 
-                Color32 c = new Color32((byte)Random.minRange(0, 255), (byte)Random.minRange(0, 255), (byte)Random.minRange(0, 255), 255);
+                Color32 c = new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), 255);
                 for (int i = 0; i < linkInfo.characterCount; i++)
                 {
                     TMP_CharacterInfo cInfo = m_TextMeshPro.textInfo.characterInfo[linkInfo.firstCharacterIndex + i];
@@ -457,10 +457,10 @@ namespace TMPro.Examples
         {
             if (index == -1 || index > m_TextMeshPro.textInfo.characterCount - 1) return;
 
-            // Get the heroMenu of the material / sub text object used by this characterS0.
+            // Get the index of the material / sub text object used by this character.
             int materialIndex = m_TextMeshPro.textInfo.characterInfo[index].materialReferenceIndex;
 
-            // Get the heroMenu of the first vertex of the selected characterS0.
+            // Get the index of the first vertex of the selected character.
             int vertexIndex = m_TextMeshPro.textInfo.characterInfo[index].vertexIndex;
 
             // Restore Vertices
@@ -491,8 +491,8 @@ namespace TMPro.Examples
 
             // Restore UV0S
             // UVS0
-            Vector2[] src_uv0s = m_cachedMeshInfoVertexData[materialIndex].uvs0;
-            Vector2[] dst_uv0s = m_TextMeshPro.textInfo.meshInfo[materialIndex].uvs0;
+            Vector4[] src_uv0s = m_cachedMeshInfoVertexData[materialIndex].uvs0;
+            Vector4[] dst_uv0s = m_TextMeshPro.textInfo.meshInfo[materialIndex].uvs0;
             dst_uv0s[vertexIndex + 0] = src_uv0s[vertexIndex + 0];
             dst_uv0s[vertexIndex + 1] = src_uv0s[vertexIndex + 1];
             dst_uv0s[vertexIndex + 2] = src_uv0s[vertexIndex + 2];
@@ -540,7 +540,7 @@ namespace TMPro.Examples
             dst_uv2s[lastIndex + 2] = src_uv2s[lastIndex + 2];
             dst_uv2s[lastIndex + 3] = src_uv2s[lastIndex + 3];
 
-            // Need to update the appropriate 
+            // Need to update the appropriate
             m_TextMeshPro.UpdateVertexData(TMP_VertexDataUpdateFlags.All);
         }
     }

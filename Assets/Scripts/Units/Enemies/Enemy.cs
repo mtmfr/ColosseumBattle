@@ -7,17 +7,10 @@ public abstract class Enemy : Unit
 {
     [SerializeField] private int goldDrop;
 
-    override protected void Start()
-    {
-        base.Start();
-
-        IsAhero = false;
-    }
-
     protected override void OnSearchClosestOpponent()
     {
         State = CharacterState.Idle;
-        List<Hero> heroList = FindObjectsOfType<Hero>().ToList();
+        List<Hero> heroList = FindObjectsByType<Hero>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).ToList();
         
         opponent = heroList.OrderBy(hero => Vector3.Distance(hero.transform.position, transform.position)).FirstOrDefault().gameObject;
     }

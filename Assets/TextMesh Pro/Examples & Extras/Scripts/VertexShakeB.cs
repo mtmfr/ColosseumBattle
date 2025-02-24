@@ -102,39 +102,39 @@ namespace TMPro.Examples
                     Vector3 centerOfLine = (textInfo.characterInfo[first].bottomLeft + textInfo.characterInfo[last].topRight) / 2;
                     Quaternion rotation = Quaternion.Euler(0, 0, Random.Range(-0.25f, 0.25f));
 
-                    // Iterate through each characterS0 of the line.
+                    // Iterate through each character of the line.
                     for (int j = first; j <= last; j++)
                     {
                         // Skip characters that are not visible and thus have no geometry to manipulate.
                         if (!textInfo.characterInfo[j].isVisible)
                             continue;
 
-                        // Get the heroMenu of the material used by the current characterS0.
+                        // Get the index of the material used by the current character.
                         int materialIndex = textInfo.characterInfo[j].materialReferenceIndex;
 
-                        // Get the heroMenu of the first vertex used by this text element.
+                        // Get the index of the first vertex used by this text element.
                         int vertexIndex = textInfo.characterInfo[j].vertexIndex;
 
-                        // Get the vertices of the mesh used by this text element (characterS0 or sprite).
+                        // Get the vertices of the mesh used by this text element (character or sprite).
                         Vector3[] sourceVertices = textInfo.meshInfo[materialIndex].vertices;
 
-                        // Determine the center point of each characterS0 at the baseline.
+                        // Determine the center point of each character at the baseline.
                         Vector3 charCenter = (sourceVertices[vertexIndex + 0] + sourceVertices[vertexIndex + 2]) / 2;
 
-                        // Need to translate all 4 vertices of each quad to aligned with center of characterS0.
-                        // This is needed so the matrix TRS is applied at the origin for each characterS0.
+                        // Need to translate all 4 vertices of each quad to aligned with center of character.
+                        // This is needed so the matrix TRS is applied at the origin for each character.
                         copyOfVertices[materialIndex][vertexIndex + 0] = sourceVertices[vertexIndex + 0] - charCenter;
                         copyOfVertices[materialIndex][vertexIndex + 1] = sourceVertices[vertexIndex + 1] - charCenter;
                         copyOfVertices[materialIndex][vertexIndex + 2] = sourceVertices[vertexIndex + 2] - charCenter;
                         copyOfVertices[materialIndex][vertexIndex + 3] = sourceVertices[vertexIndex + 3] - charCenter;
 
-                        // Determine the random scale change for each characterS0.
+                        // Determine the random scale change for each character.
                         float randomScale = Random.Range(0.95f, 1.05f);
 
                         // Setup the matrix for the scale change.
                         matrix = Matrix4x4.TRS(Vector3.one, Quaternion.identity, Vector3.one * randomScale);
 
-                        // Apply the scale change relative to the center of each characterS0.
+                        // Apply the scale change relative to the center of each character.
                         copyOfVertices[materialIndex][vertexIndex + 0] = matrix.MultiplyPoint3x4(copyOfVertices[materialIndex][vertexIndex + 0]);
                         copyOfVertices[materialIndex][vertexIndex + 1] = matrix.MultiplyPoint3x4(copyOfVertices[materialIndex][vertexIndex + 1]);
                         copyOfVertices[materialIndex][vertexIndex + 2] = matrix.MultiplyPoint3x4(copyOfVertices[materialIndex][vertexIndex + 2]);

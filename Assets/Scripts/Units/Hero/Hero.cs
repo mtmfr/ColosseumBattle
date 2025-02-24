@@ -6,14 +6,6 @@ using UnityEngine;
 
 public abstract class Hero : Unit
 {
-    #region Unity Function
-    override protected void Start()
-    {
-        IsAhero = true;
-        base.Start();
-    }
-    #endregion
-
     /// <summary>
     /// Used to find the closest enemy from the character
     /// </summary>
@@ -22,13 +14,14 @@ public abstract class Hero : Unit
     {
         State = CharacterState.Idle;
         
-        List<Enemy> enemyList = FindObjectsOfType<Enemy>().ToList();
+        List<Enemy> enemyList = FindObjectsByType<Enemy>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).ToList();
 
         opponent = enemyList.OrderBy(enemy => Vector3.Distance(enemy.transform.position, transform.position)).FirstOrDefault().gameObject;
     }
 
     protected override void OnAttack(int attack)
     {
+        Debug.Log("roar");
         if (State == CharacterState.Attacking)
         {
             isAttacking = true;

@@ -21,7 +21,7 @@ public class Arrow : MonoBehaviour
     {
         if (target)
         {
-            rb.velocity = new Vector2(target.transform.position.x - transform.position.x, target.transform.position.y - transform.position.y).normalized * speed;
+            rb.linearVelocity = new Vector2(target.transform.position.x - transform.position.x, target.transform.position.y - transform.position.y).normalized * speed;
         }
         if (!target)
         {

@@ -12,6 +12,6 @@ public class SO_Character : ScriptableObject
     [field: SerializeField] public float MinRange { get; protected set; }
     [field: SerializeField] public float MaxRange { get; protected set; }
     [field: SerializeField] public float AttSpeed { get; protected set; }
-    [field: SerializeField] public LayerMask OpponentLayer { get; protected set; }
+    [field: SerializeField] public string OpponentLayer { get; protected set; }
 }
  
