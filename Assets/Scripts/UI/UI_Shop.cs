@@ -8,8 +8,8 @@ public class UI_Shop : MonoBehaviour
     [SerializeField] private TextMeshProUGUI shopGoldValue;
     [SerializeField] private TextMeshProUGUI[] HeroPrice;
 
-    [SerializeField] private List<SO_HeroStats> heroStats;
-    [SerializeField] private List<Hero> heroes;
+    [SerializeField] private List<Old_SO_HeroStats> heroStats;
+    [SerializeField] private List<Old_Hero> heroes;
 
     private int heroInParty;
 
@@ -45,12 +45,12 @@ public class UI_Shop : MonoBehaviour
         int heroCost = heroStats[heroIndex].Cost;
         int nbHeroInParty = heroInParty;
 
-        if (GameManager.Instance.Gold - heroCost * nbHeroInParty >= 0)
+        if (Old_GameManager.Instance.Gold - heroCost * nbHeroInParty >= 0)
         {
             GameObject hero = heroes[heroIndex].gameObject;
-            GameManager.Instance.Gold -= heroCost * nbHeroInParty;
+            Old_GameManager.Instance.Gold -= heroCost * nbHeroInParty;
             WaveEvent.AddHeroToList(hero);
-            MiscEvent.OnGoldValueChange(GameManager.Instance.Gold);
+            MiscEvent.OnGoldValueChange(Old_GameManager.Instance.Gold);
 
             for (int costToSet = 0; costToSet < HeroPrice.Length; costToSet++)
             {
@@ -63,6 +63,6 @@ public class UI_Shop : MonoBehaviour
 
     public void CloseShop()
     {
-        GameManager.Instance.UpdateGameState(GameState.Fight);
+        Old_GameManager.Instance.UpdateGameState(Old_GameState.Fight);
     }
 }

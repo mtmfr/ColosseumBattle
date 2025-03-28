@@ -11,8 +11,8 @@ public class UI_Start : MonoBehaviour
     [SerializeField] private GameObject heroDesc;
 
 
-    [SerializeField] private List<SO_HeroStats> heroStats;
-    [SerializeField] private List<Hero> heroes;
+    [SerializeField] private List<Old_SO_HeroStats> heroStats;
+    [SerializeField] private List<Old_Hero> heroes;
 
     private int selectedHeroId;
 
@@ -34,7 +34,7 @@ public class UI_Start : MonoBehaviour
     /// </summary>
     private void UpdateHeroDesc()
     {
-        SO_HeroStats stats = heroStats[selectedHeroId];
+        Old_SO_HeroStats stats = heroStats[selectedHeroId];
         heroDesc.GetComponentInChildren<Image>().sprite = stats.CharIcon;
         heroDesc.GetComponentInChildren<TextMeshProUGUI>().text = $"pv : {stats.Health}, att : {stats.Attack}, mag : {stats.Magic}, speed : {stats.Speed}, attSpeed : {stats.AttSpeed}";
     }
@@ -47,7 +47,7 @@ public class UI_Start : MonoBehaviour
         //GameObject hero = Instantiate(heroToSpawn[currentHero].gameObject, WaveManager.Instance.SpawnZone(WaveManager.Instance.heroSpawnZone), Quaternion.identity);
         GameObject hero = heroes[selectedHeroId].gameObject;
         WaveEvent.AddHeroToList(hero);
-        GameManager.Instance.UpdateGameState(GameState.Fight);
+        Old_GameManager.Instance.UpdateGameState(Old_GameState.Fight);
     }
 
     /// <summary>

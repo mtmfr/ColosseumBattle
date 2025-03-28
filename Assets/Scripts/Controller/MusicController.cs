@@ -9,20 +9,20 @@ public class MusicController : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.Instance.OnGameStateChanged += ChangeCurrentMusic;
+        Old_GameManager.Instance.OnGameStateChanged += ChangeCurrentMusic;
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.OnGameStateChanged -= ChangeCurrentMusic;
+        Old_GameManager.Instance.OnGameStateChanged -= ChangeCurrentMusic;
     }
 
-    private void ChangeCurrentMusic(GameState gameState)
+    private void ChangeCurrentMusic(Old_GameState gameState)
     {
         bool PlayFightMusic = gameState switch
         {
-            GameState.Fight => true,
-            GameState.Shop => false,
+            Old_GameState.Fight => true,
+            Old_GameState.Shop => false,
             _ => false,
         };
 

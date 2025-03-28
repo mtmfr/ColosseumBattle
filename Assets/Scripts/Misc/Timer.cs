@@ -6,24 +6,24 @@ public class Timer : MonoBehaviour
     [SerializeField] private int baseRoundDuration;
     private int roundDuration;
 
-    private GameState previousGameState;
+    private Old_GameState previousGameState;
 
     private void OnEnable()
     {
-        GameManager.Instance.OnGameStateChanged += SetTimer;
+        Old_GameManager.Instance.OnGameStateChanged += SetTimer;
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.OnGameStateChanged -= SetTimer;
+        Old_GameManager.Instance.OnGameStateChanged -= SetTimer;
     }
 
-    private void SetTimer(GameState gameState)
+    private void SetTimer(Old_GameState gameState)
     {
-        if (previousGameState == GameState.Shop)
+        if (previousGameState == Old_GameState.Shop)
             roundDuration = baseRoundDuration;
 
-        if (gameState != GameState.Fight)
+        if (gameState != Old_GameState.Fight)
             StopCoroutine(RunTimer());
         else StartCoroutine(RunTimer());
 

@@ -11,37 +11,37 @@ public class ControlUI : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.Instance.OnGameStateChanged += UpdateCurrentUI;
+        Old_GameManager.Instance.OnGameStateChanged += UpdateCurrentUI;
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.OnGameStateChanged -= UpdateCurrentUI;
+        Old_GameManager.Instance.OnGameStateChanged -= UpdateCurrentUI;
     }
 
-    private void UpdateCurrentUI(GameState gameState)
+    private void UpdateCurrentUI(Old_GameState gameState)
     {
         switch (gameState)
         {
-            case GameState.Start:
+            case Old_GameState.Start:
                 StartUI.SetActive(true);
                 GameUI.SetActive(false);
                 ShopUI.SetActive(false);
                 GameOverUI.SetActive(false);
                 break;
-            case GameState.Fight:
+            case Old_GameState.Fight:
                 StartUI.SetActive(false);
                 GameUI.SetActive(true);
                 ShopUI.SetActive(false);
                 GameOverUI.SetActive(false);
                 break;
-            case GameState.Shop:
+            case Old_GameState.Shop:
                 StartUI.SetActive(false);
                 GameUI.SetActive(false);
                 ShopUI.SetActive(true);
                 GameOverUI.SetActive(false);
                 break;
-            case GameState.Lose:
+            case Old_GameState.Lose:
                 StartUI.SetActive(false);
                 GameUI.SetActive(false);
                 ShopUI.SetActive(false);

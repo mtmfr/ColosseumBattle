@@ -30,7 +30,7 @@ public class Menu : MonoBehaviour
             loadingProgressText.text = progress * 100f + "%";
 
             yield return null;
-            GameManager.Instance.UpdateGameState(GameState.Start);
+            Old_GameManager.Instance.UpdateGameState(Old_GameState.Start);
         }
     }
 

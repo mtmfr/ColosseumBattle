@@ -30,13 +30,13 @@ public class UI_GameOver : MonoBehaviour
 
     public void Restart()
     {
-        GameManager.Instance.UpdateGameState(GameState.Start);
+        Old_GameManager.Instance.UpdateGameState(Old_GameState.Start);
         SceneManager.LoadScene(1);
     }
 
     public void GoBackToMenu()
     {
-        GameManager.Instance.UpdateGameState(GameState.MainMenu);
+        Old_GameManager.Instance.UpdateGameState(Old_GameState.MainMenu);
         SceneManager.LoadScene(0);
     }
 
