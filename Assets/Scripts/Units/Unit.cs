@@ -1,138 +1,139 @@
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
 public abstract class Unit : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    Rigidbody2D rb;
 
-    protected Unit opponent;
-    protected List<Unit> opponents = new List<Unit>();
-    protected UnitState currentState { get; private set; }
+   private UnitState currentState;
 
-    #region stats
-    protected int health;
+    float maxSpeed = 10;
+    float maxFleeSpeed = 12;
+    float speed = 5;
+    float fleeSpeed = 5.5f;
+    float acceleration = 4;
+    float deceleration = 20;
+
+
+    public float fleeDistance;
+    public float attackDistance;
+
     protected int attackPower;
-    protected float movementSpeed;
-    protected float attackSpeed;
 
-    protected float attackRange;
-    protected float fleeRange;
+    protected float attackCooldown = 0;
+    protected float attackTimer = 0;
+    protected float firstAttackCooldown;
+    protected bool isFirstAttack;
+    private float timeWithoutAttack = 0;
 
-    public int cost { get; private set; }
-    #endregion
+    public GameObject target;
 
-    protected bool wasDead = true;
-
-    protected float attackCooldown;
-
-    protected virtual void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    protected virtual void Update()
+    private void FixedUpdate()
     {
-        UnitControl();
-    }
+        SetCurrentState();
+        ResetIsFirstAttack();
 
-    protected virtual void OnEnable()
-    {
-        UnitEvent.OnDamageReceived += OnTakeDamage;
-        UnitEvent.OnHeal += OnHeal;
-    }
-
-    private void OnDisable()
-    {
-        UnitEvent.OnDamageReceived -= OnTakeDamage;
-        UnitEvent.OnHeal -= OnHeal;
-    }
-
-    protected abstract void GetTarget();
-
-    protected abstract void UpdateState();
-
-    protected void SetStats(SO_Unit unitStats)
-    {
-        if (wasDead)
-        {
-            health = unitStats.health;
-            wasDead = false;
-        }
-
-        attackPower = unitStats.attackPower;
-        movementSpeed = unitStats.movementSpeed;
-        attackRange = unitStats.attackRange;
-        fleeRange = unitStats.fleeRange;
-        attackSpeed = unitStats.attackSpeed;
-    }
-
-    protected void UnitControl()
-    {
-        if (GameManager.instance.currentGameState switch
-        {
-            GameState.WaveStart => true,
-            GameState.Wave => true,
-            _ => false,
-        })
-            return;
-
-        UpdateState();
         switch (currentState)
         {
             case UnitState.Moving:
-                ApproachTarget();
+                Move(target.transform.position);
                 break;
             case UnitState.Fleeing:
-                Flee();
+                Flee(target.transform.position);
                 break;
             case UnitState.Attacking:
-                Attack();
-                break;
-            case UnitState.Idle:
-            default:
-                GetTarget();
+                timeWithoutAttack = 0;
+                Attack(target);
                 break;
         }
     }
 
-    #region Character control
-    protected void ApproachTarget()
+    private void Move(Vector3 targetPos)
     {
-        Vector2 MovementDirection = opponent.transform.position - transform.position;
+        Vector3 newPos = Vector2.MoveTowards(transform.position, targetPos, speed * Time.fixedDeltaTime);
 
-        rb.linearVelocity = MovementDirection.normalized * movementSpeed;
+        Vector2 dir = newPos - transform.position;
+
+        if (rb.linearVelocity.sqrMagnitude < maxSpeed * maxSpeed)
+            rb.AddForce(dir * acceleration, ForceMode2D.Force);
     }
 
-    protected void Flee()
+    private void Flee(Vector3 attackerPos)
     {
-        Vector2 FleeingDirection = transform.position - opponent.transform.position;
+        Vector3 newPos = Vector2.MoveTowards(attackerPos, transform.position, fleeSpeed * Time.fixedDeltaTime);
 
-        rb.linearVelocity = movementSpeed * 1.5f * FleeingDirection.normalized;
+        Vector2 dir = transform.position - newPos;
+
+        if (rb.linearVelocity.sqrMagnitude < maxFleeSpeed * maxFleeSpeed)
+        rb.AddForce(acceleration * dir, ForceMode2D.Force);
     }
 
-    protected virtual void OnHeal(Unit unit, int healedHp)
+    private void Decelerate()
     {
+        Vector3 currentSpeed = rb.linearVelocity;
 
+        Vector3 targetSpeed = Vector3.MoveTowards(currentSpeed, Vector2.zero, deceleration * Time.fixedDeltaTime);
+
+        Vector3 newSpeed = targetSpeed - currentSpeed;
+
+        rb.AddForce(newSpeed * deceleration, ForceMode2D.Force);
     }
 
-    protected virtual void OnTakeDamage(Unit unit, int DamageToTake)
+    protected virtual void Attack(GameObject target)
     {
-        if (unit !=  this)
+        if (!rb.linearVelocity.Approximately(Vector2.zero))
+        {
+            Decelerate();
+            return;
+        }
+    }
+
+    private void ResetIsFirstAttack()
+    {
+        if (currentState == UnitState.Attacking)
             return;
 
-        if (health - DamageToTake > 0)
-            health -= DamageToTake;
-        else Death();
+        if (isFirstAttack)
+            return;
+
+        if (timeWithoutAttack < attackCooldown)
+            timeWithoutAttack += Time.fixedDeltaTime;
+        else
+            isFirstAttack = true;
+
     }
 
-    protected abstract void Attack();
-    protected abstract void Death();
-
-    protected void ChangeCurrentState(UnitState state)
+    private void SetCurrentState()
     {
-        currentState = state;
+        Vector2 targetPos = target.transform.position;
+        bool enemiesInFleeZone = Vector2.Distance(targetPos, transform.position) < fleeDistance;
+        bool enemiesInAttackZone =  Vector2.Distance(targetPos, transform.position) < attackDistance;
+
+        int caseId = (enemiesInFleeZone ? 1 : 0) + (enemiesInAttackZone ? 2 : 0);
+
+        switch (caseId)
+        {
+            case 0:
+                currentState = UnitState.Moving;
+                break;
+            case 1:
+            case 3:
+                currentState = UnitState.Fleeing;
+                break;
+            case 2:
+                currentState = UnitState.Attacking;
+                break;
+            default:
+                Debug.LogError("No state for this situation");
+                break;
+        }
     }
 
     protected enum UnitState
@@ -143,7 +144,17 @@ public abstract class Unit : MonoBehaviour
         Attacking,
         Dead
     }
-    #endregion
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireSphere(transform.position, fleeDistance);
+
+        Gizmos.color = Color.green;
+        
+        Gizmos.DrawWireSphere(transform.position, attackDistance);
+    }
 }
 
 public static class UnitEvent
