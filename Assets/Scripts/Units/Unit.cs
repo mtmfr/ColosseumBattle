@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
@@ -7,25 +6,15 @@ public abstract class Unit : MonoBehaviour
 {
     Rigidbody2D rb;
 
-   private UnitState currentState;
+    private UnitState currentState;
 
-    float maxSpeed = 10;
-    float maxFleeSpeed = 12;
-    float speed = 5;
-    float fleeSpeed = 5.5f;
-    float acceleration = 4;
-    float deceleration = 20;
+    private MovementParameters movementParameters;
+    protected AttackParameters attackParameters;
 
-
-    public float fleeDistance;
-    public float attackDistance;
-
-    protected int attackPower;
-
-    protected float attackCooldown = 0;
     protected float attackTimer = 0;
-    protected float firstAttackCooldown;
-    protected bool isFirstAttack;
+
+    protected bool isFirstAttack = true;
+
     private float timeWithoutAttack = 0;
 
     public GameObject target;
@@ -55,35 +44,41 @@ public abstract class Unit : MonoBehaviour
         }
     }
 
+    protected void SetParameters(SO_Unit unitSO)
+    {
+        movementParameters = unitSO.movementParameters;
+        attackParameters = unitSO.attackParameters;
+    }
+
     private void Move(Vector3 targetPos)
     {
-        Vector3 newPos = Vector2.MoveTowards(transform.position, targetPos, speed * Time.fixedDeltaTime);
+        Vector3 newPos = Vector2.MoveTowards(transform.position, targetPos, movementParameters.maxApproachSpeed * Time.fixedDeltaTime);
 
         Vector2 dir = newPos - transform.position;
 
-        if (rb.linearVelocity.sqrMagnitude < maxSpeed * maxSpeed)
-            rb.AddForce(dir * acceleration, ForceMode2D.Force);
+        if (rb.linearVelocity.sqrMagnitude < movementParameters.maxApproachSpeed * movementParameters.maxApproachSpeed)
+            rb.AddForce(dir * movementParameters.acceleration, ForceMode2D.Force);
     }
 
     private void Flee(Vector3 attackerPos)
     {
-        Vector3 newPos = Vector2.MoveTowards(attackerPos, transform.position, fleeSpeed * Time.fixedDeltaTime);
+        Vector3 newPos = Vector2.MoveTowards(attackerPos, transform.position, movementParameters.maxFleeSpeed * Time.fixedDeltaTime);
 
         Vector2 dir = transform.position - newPos;
 
-        if (rb.linearVelocity.sqrMagnitude < maxFleeSpeed * maxFleeSpeed)
-        rb.AddForce(acceleration * dir, ForceMode2D.Force);
+        if (rb.linearVelocity.sqrMagnitude < movementParameters.maxFleeSpeed * movementParameters.maxFleeSpeed)
+        rb.AddForce(movementParameters.acceleration * dir, ForceMode2D.Force);
     }
 
     private void Decelerate()
     {
         Vector3 currentSpeed = rb.linearVelocity;
 
-        Vector3 targetSpeed = Vector3.MoveTowards(currentSpeed, Vector2.zero, deceleration * Time.fixedDeltaTime);
+        Vector3 targetSpeed = Vector3.MoveTowards(currentSpeed, Vector2.zero, movementParameters.deceleration * Time.fixedDeltaTime);
 
         Vector3 newSpeed = targetSpeed - currentSpeed;
 
-        rb.AddForce(newSpeed * deceleration, ForceMode2D.Force);
+        rb.AddForce(newSpeed * movementParameters.deceleration, ForceMode2D.Force);
     }
 
     protected virtual void Attack(GameObject target)
@@ -103,7 +98,7 @@ public abstract class Unit : MonoBehaviour
         if (isFirstAttack)
             return;
 
-        if (timeWithoutAttack < attackCooldown)
+        if (timeWithoutAttack < attackParameters.attackCooldown)
             timeWithoutAttack += Time.fixedDeltaTime;
         else
             isFirstAttack = true;
@@ -113,8 +108,8 @@ public abstract class Unit : MonoBehaviour
     private void SetCurrentState()
     {
         Vector2 targetPos = target.transform.position;
-        bool enemiesInFleeZone = Vector2.Distance(targetPos, transform.position) < fleeDistance;
-        bool enemiesInAttackZone =  Vector2.Distance(targetPos, transform.position) < attackDistance;
+        bool enemiesInFleeZone = Vector2.Distance(targetPos, transform.position) < attackParameters.fleeDistance;
+        bool enemiesInAttackZone =  Vector2.Distance(targetPos, transform.position) < attackParameters.attackDistance;
 
         int caseId = (enemiesInFleeZone ? 1 : 0) + (enemiesInAttackZone ? 2 : 0);
 
@@ -145,15 +140,9 @@ public abstract class Unit : MonoBehaviour
         Dead
     }
 
-    private void OnDrawGizmosSelected()
+    protected virtual void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-
-        Gizmos.DrawWireSphere(transform.position, fleeDistance);
-
-        Gizmos.color = Color.green;
         
-        Gizmos.DrawWireSphere(transform.position, attackDistance);
     }
 }
 

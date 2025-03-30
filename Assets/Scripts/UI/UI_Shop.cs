@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class UI_Shop : MonoBehaviour
 {
+    /*
     [SerializeField] private TextMeshProUGUI shopGoldValue;
     [SerializeField] private TextMeshProUGUI[] HeroPrice;
 
@@ -65,4 +66,5 @@ public class UI_Shop : MonoBehaviour
     {
         Old_GameManager.Instance.UpdateGameState(Old_GameState.Fight);
     }
+    */
 }

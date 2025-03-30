@@ -4,92 +4,73 @@ using UnityEngine;
 
 public static class ObjectPool
 {
-    private static List<MonoBehaviour> inactiveObjectValues = new();
-    private static List<MonoBehaviour> activeObjectValues = new();
+    private static readonly Dictionary<Type, List<MonoBehaviour>> inactiveObjects = new();
+    private static readonly Dictionary<Type, List<MonoBehaviour>> activeObjects = new();
 
-    private static Dictionary<Type, List<MonoBehaviour>> inactiveObjects = new();
-    private static Dictionary<Type, List<MonoBehaviour>> activeObjects = new();
-
+    #region activate object
     public static T GetObject<T>(T toActivate, Vector3 position, Quaternion rotation) where T : MonoBehaviour
     {
-        Type toActivateType = toActivate.GetType();
-
-        if (!inactiveObjects.ContainsKey(toActivateType))
-        {
-            toActivate = GameObject.Instantiate(toActivate, position, rotation);
-
-            activeObjectValues.Add(toActivate);
-
-            if (!activeObjects.ContainsKey(toActivateType))
-                activeObjects.Add(toActivateType, activeObjectValues);
-
-            return toActivate;
-        }
-
         toActivate = GetObjectToActivate(toActivate);
 
         toActivate.transform.SetPositionAndRotation(position, rotation);
 
         AddToActiveObjectValue(toActivate);
 
-        if (!activeObjects.ContainsKey(toActivateType))
-            activeObjects.Add(toActivateType, activeObjectValues);
-
         return toActivate;
     }
 
     private static T GetObjectToActivate<T>(T objectToActivate) where T : MonoBehaviour
     {
-        T toActivate = null;
+        MonoBehaviour toActivate;
         Type type = objectToActivate.GetType();
 
-        foreach (MonoBehaviour inactive in inactiveObjectValues)
+        if (!inactiveObjects.TryGetValue(type, out List <MonoBehaviour> inactiveObjectList))
         {
-            if (inactive.GetType() == type)
+            toActivate = GameObject.Instantiate(objectToActivate);
+        }
+        else
+        {
+            if (inactiveObjectList.Count == 0)
+                toActivate = GameObject.Instantiate(objectToActivate);
+            else
             {
-                toActivate = (T)inactive;
-                break;
+                toActivate = inactiveObjectList[0];
             }
         }
-
-        if (toActivate != null)
-        {
-
-            toActivate.gameObject.SetActive(true);
-            return toActivate;
-        }
-
-        toActivate = GameObject.Instantiate(objectToActivate);
-
-        return toActivate;
-    }
-
-    public static void SetObjectInactive<T>(T toDeactivate) where T : MonoBehaviour
-    {
-        Type toDeactivateType = toDeactivate.GetType();
-
-        if (!activeObjects.ContainsKey(toDeactivateType))
-            return;
-
-        toDeactivate.gameObject.SetActive(false);
-
-        AddToInactiveObjectValue(toDeactivate);
-
-        if (!inactiveObjects.ContainsKey(toDeactivateType))
-            inactiveObjects.Add(toDeactivateType, inactiveObjectValues);
-    }
-
-    #region Control active & inactive values
-    private static void AddToInactiveObjectValue(MonoBehaviour deactivated)
-    {
-        inactiveObjectValues.Add(deactivated);
-        activeObjectValues.Remove(deactivated);
+            return (T)toActivate;
     }
 
     private static void AddToActiveObjectValue(MonoBehaviour activated)
     {
-        inactiveObjectValues.Remove(activated);
-        activeObjectValues.Add(activated);
+        Type type = activated.GetType();
+
+        if (activeObjects.TryGetValue(type, out List<MonoBehaviour> activeObjectList))
+        {
+            activeObjectList.Add(activated);
+        }
+        else
+        {
+            List<MonoBehaviour> newActiveList = new() { activated };
+            activeObjects.Add(type, newActiveList);
+        }
     }
     #endregion
+
+
+    public static void SetObjectInactive<T>(T toDeactivate) where T : MonoBehaviour
+    {
+        Type type = toDeactivate.GetType();
+
+        toDeactivate.gameObject.SetActive(false);
+
+        if (inactiveObjects.TryGetValue(type, out List<MonoBehaviour> activeObjectList))
+        {
+            activeObjectList.Add(toDeactivate);
+        }
+        else
+        {
+            List<MonoBehaviour> newInactiveList = new() { toDeactivate };
+            inactiveObjects.Add(type, newInactiveList);
+        }
+    }
 }

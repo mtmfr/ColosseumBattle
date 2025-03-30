@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UI_Start : MonoBehaviour
 {
+    /*
     [SerializeField] private GameObject heroSelectScreen;
     [SerializeField] private GameObject heroRecruitScreen;
 
@@ -59,4 +60,5 @@ public class UI_Start : MonoBehaviour
         heroRecruitScreen.SetActive(false);
         heroSelectScreen.SetActive(true);
     }
+    */
 }

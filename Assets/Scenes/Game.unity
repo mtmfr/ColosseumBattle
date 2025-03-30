@@ -151,8 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec2c2bfa422bd864fb22fdd560b7f9bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fleeDistance: 0
-  attackDistance: 0
+  unitSO: {fileID: 0}
   target: {fileID: 0}
 --- !u!61 &188169556
 BoxCollider2D:
@@ -309,7 +308,7 @@ GameObject:
   - component: {fileID: 210536152}
   - component: {fileID: 210536151}
   - component: {fileID: 210536150}
-  - component: {fileID: 210536149}
+  - component: {fileID: 210536154}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -317,21 +316,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &210536149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 210536148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1ae60091adea6342b3cc38babb41319, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fleeDistance: 3
-  attackDistance: 5
-  target: {fileID: 188169554}
 --- !u!61 &210536150
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -475,6 +459,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &210536154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210536148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3bc7f472661fa342a299b48a3f42aac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitSO: {fileID: 11400000, guid: a7659eea5d666c44ba2d2d7557070df1, type: 2}
+  target: {fileID: 188169554}
 --- !u!1 &847810893
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Old_WaveManager : MonoBehaviour
 {
+    /*
     [SerializeField] private GameObject heroSpawnZone;
     [SerializeField] private GameObject enemySpawnZone;
 
@@ -217,4 +218,5 @@ public class Old_WaveManager : MonoBehaviour
         Old_GameManager.Instance.UpdateGameState(Old_GameState.Shop);
     }
     #endregion
+    */
 }
