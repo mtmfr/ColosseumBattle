@@ -151,8 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec2c2bfa422bd864fb22fdd560b7f9bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitSO: {fileID: 0}
-  target: {fileID: 0}
+  enemySO: {fileID: 11400000, guid: 19ed044a330e1b64e9b7d8ce2ba94507, type: 2}
 --- !u!61 &188169556
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -471,8 +470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3bc7f472661fa342a299b48a3f42aac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitSO: {fileID: 11400000, guid: a7659eea5d666c44ba2d2d7557070df1, type: 2}
-  target: {fileID: 188169554}
+  heroSO: {fileID: 11400000, guid: a7659eea5d666c44ba2d2d7557070df1, type: 2}
 --- !u!1 &847810893
 GameObject:
   m_ObjectHideFlags: 0

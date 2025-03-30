@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Warrior : Hero
 {
-    protected override void Attack(GameObject target)
+    protected override void Attack(Unit target)
     {
         base.Attack(target);
 
@@ -30,8 +30,8 @@ public class Warrior : Hero
         }
     }
 
-    private void AttackMotion(GameObject target, int damageToDeal)
+    private void AttackMotion(Unit target, int damageToDeal)
     {
-        Debug.Log("I am attacking you");
+        UnitEvent.DealDamage(target, damageToDeal);
     }
 }

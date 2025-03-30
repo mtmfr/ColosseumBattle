@@ -10,13 +10,13 @@ public static class ObjectPool
     #region activate object
     public static T GetObject<T>(T toActivate, Vector3 position, Quaternion rotation) where T : MonoBehaviour
     {
-        toActivate = GetObjectToActivate(toActivate);
+        T objectToActivate = GetObjectToActivate(toActivate);
 
-        toActivate.transform.SetPositionAndRotation(position, rotation);
+        objectToActivate.transform.SetPositionAndRotation(position, rotation);
 
-        AddToActiveObjectValue(toActivate);
+        AddToActiveObjectValue(objectToActivate);
 
-        return toActivate;
+        return objectToActivate;
     }
 
     private static T GetObjectToActivate<T>(T objectToActivate) where T : MonoBehaviour

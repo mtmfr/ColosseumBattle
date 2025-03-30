@@ -1,8 +1,16 @@
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public abstract class Enemy : Unit
 {
-    
+    [SerializeField] private SO_Enemy enemySO;
+
+    private void Awake()
+    {
+        SetParameters(enemySO);
+    }
+
+    protected override void Death()
+    {
+        ObjectPool.SetObjectInactive(this);
+    }
 }

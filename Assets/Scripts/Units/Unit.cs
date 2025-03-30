@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
@@ -10,6 +11,10 @@ public abstract class Unit : MonoBehaviour
 
     private MovementParameters movementParameters;
     protected AttackParameters attackParameters;
+    private MiscParameters miscParameters;
+
+    private int health;
+    private int defense;
 
     protected float attackTimer = 0;
 
@@ -17,11 +22,37 @@ public abstract class Unit : MonoBehaviour
 
     private float timeWithoutAttack = 0;
 
-    public GameObject target;
+    protected Unit target;
+    Unit[] availableTarget;
+
+    protected bool wasDead = true;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        if (this is Hero)
+            GetAllUnits<Enemy>(out availableTarget);
+        else if (this is Enemy)
+            GetAllUnits<Hero>(out availableTarget);
+        else Debug.LogError("this object is neither a hero or an enemy", this);
+    }
+
+    private void OnEnable()
+    {
+        if (wasDead)
+            health = miscParameters.health;
+
+        UnitEvent.OnDamageReceived += GetDamage;
+        UnitEvent.OnHeal += GetHeal;
+        UnitEvent.OnTargetDeath += UpdateTarget;
+    }
+
+    private void OnDisable()
+    {
+        UnitEvent.OnDamageReceived -= GetDamage;
+        UnitEvent.OnHeal -= GetHeal;
+        UnitEvent.OnTargetDeath -= UpdateTarget;
     }
 
     private void FixedUpdate()
@@ -31,6 +62,17 @@ public abstract class Unit : MonoBehaviour
 
         switch (currentState)
         {
+            case UnitState.Idle:
+                if (target != null)
+                    break;
+
+                if (this is Hero)
+                    GetClosestTarget<Enemy>(out target);
+                else if (this is Enemy)
+                    GetClosestTarget<Hero>(out target);
+                else Debug.LogError("this object is neither a hero or an enemy", this);
+
+                break;
             case UnitState.Moving:
                 Move(target.transform.position);
                 break;
@@ -50,6 +92,30 @@ public abstract class Unit : MonoBehaviour
         attackParameters = unitSO.attackParameters;
     }
 
+    #region Target
+    private void GetAllUnits<T>(out Unit[] allUnits) where T : Unit
+    {
+        allUnits = FindObjectsByType<T>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+    }
+
+    private void UpdateTarget(Unit deadUnit)
+    {
+        if (deadUnit != target)
+            return;
+
+        target = null;
+    }
+
+    protected virtual void GetClosestTarget<T>(out Unit target) where T : Unit
+    {
+        availableTarget.Where(target => target.isActiveAndEnabled)
+            .OrderBy(target => Vector2.Distance(target.transform.position, transform.position));
+
+        target = availableTarget[0];
+    }
+    #endregion
+
+    #region Movement
     private void Move(Vector3 targetPos)
     {
         Vector3 newPos = Vector2.MoveTowards(transform.position, targetPos, movementParameters.maxApproachSpeed * Time.fixedDeltaTime);
@@ -74,14 +140,16 @@ public abstract class Unit : MonoBehaviour
     {
         Vector3 currentSpeed = rb.linearVelocity;
 
-        Vector3 targetSpeed = Vector3.MoveTowards(currentSpeed, Vector2.zero, movementParameters.deceleration * Time.fixedDeltaTime);
+        Vector3 targetSpeed = Vector3.MoveTowards(currentSpeed, Vector2.zero, movementParameters.maxDecelerationSpeed * Time.fixedDeltaTime);
 
         Vector3 newSpeed = targetSpeed - currentSpeed;
 
         rb.AddForce(newSpeed * movementParameters.deceleration, ForceMode2D.Force);
     }
+    #endregion
 
-    protected virtual void Attack(GameObject target)
+    #region Attack
+    protected virtual void Attack(Unit target)
     {
         if (!rb.linearVelocity.Approximately(Vector2.zero))
         {
@@ -104,9 +172,49 @@ public abstract class Unit : MonoBehaviour
             isFirstAttack = true;
 
     }
+    #endregion
 
+    #region Health
+    private void GetHeal(Unit healedUnit, int damageToHeal)
+    {
+        if (healedUnit != this)
+            return;
+
+        int maxHealth = miscParameters.health;
+
+        health += damageToHeal;
+
+        if (health > maxHealth)
+            health = maxHealth;
+    }
+
+    private void GetDamage(Unit damagedUnit, int damageReceived)
+    {
+        if (damagedUnit != this)
+            return;
+
+        int damageToReceive = damageReceived - (damageReceived + miscParameters.defense) / damageReceived;
+
+        if (damageToReceive <= 0)
+            damageToReceive = 1;
+
+        if (health - damageToReceive <= 0)
+            Death();
+        else health -= damageToReceive;
+    }
+
+    protected abstract void Death();
+    #endregion
+
+    #region State
     private void SetCurrentState()
     {
+        if (target == null)
+        {
+            currentState = UnitState.Idle;
+            return;
+        }
+
         Vector2 targetPos = target.transform.position;
         bool enemiesInFleeZone = Vector2.Distance(targetPos, transform.position) < attackParameters.fleeDistance;
         bool enemiesInAttackZone =  Vector2.Distance(targetPos, transform.position) < attackParameters.attackDistance;
@@ -139,6 +247,7 @@ public abstract class Unit : MonoBehaviour
         Attacking,
         Dead
     }
+    #endregion
 
     protected virtual void OnDrawGizmosSelected()
     {
@@ -148,8 +257,8 @@ public abstract class Unit : MonoBehaviour
 
 public static class UnitEvent
 {
-    public static event Action<Unit> OnDeath;
-    public static void Dying(Unit thisUnit) => OnDeath?.Invoke(thisUnit);
+    public static event Action<Unit> OnTargetDeath;
+    public static void Dying(Unit thisUnit) => OnTargetDeath?.Invoke(thisUnit);
 
     public static event Action<Unit, int> OnDamageReceived;
     public static void DealDamage(Unit unitToDamage, int damageToDeal) => OnDamageReceived?.Invoke(unitToDamage, damageToDeal);
