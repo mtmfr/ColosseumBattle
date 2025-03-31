@@ -14,11 +14,12 @@ public abstract class Unit : MonoBehaviour
     private MiscParameters miscParameters;
 
     private int health;
-    private int defense;
 
     protected float attackTimer = 0;
+    protected float fleeTimer = 0;
 
     protected bool isFirstAttack = true;
+    protected bool hasStoppedFleeing = false;
 
     private float timeWithoutAttack = 0;
 
@@ -30,12 +31,6 @@ public abstract class Unit : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
-        if (this is Hero)
-            GetAllUnits<Enemy>(out availableTarget);
-        else if (this is Enemy)
-            GetAllUnits<Hero>(out availableTarget);
-        else Debug.LogError("this object is neither a hero or an enemy", this);
     }
 
     private void OnEnable()
@@ -43,9 +38,17 @@ public abstract class Unit : MonoBehaviour
         if (wasDead)
             health = miscParameters.health;
 
+        if (this is Hero)
+            availableTarget = GetAllUnits<Enemy>();
+        else if (this is Enemy)
+            availableTarget = GetAllUnits<Hero>();
+        else Debug.LogError("this object is neither a hero or an enemy", this);
+
         UnitEvent.OnDamageReceived += GetDamage;
         UnitEvent.OnHeal += GetHeal;
         UnitEvent.OnTargetDeath += UpdateTarget;
+
+        OnRetarget += Retarget;
     }
 
     private void OnDisable()
@@ -53,6 +56,8 @@ public abstract class Unit : MonoBehaviour
         UnitEvent.OnDamageReceived -= GetDamage;
         UnitEvent.OnHeal -= GetHeal;
         UnitEvent.OnTargetDeath -= UpdateTarget;
+
+        OnRetarget -= Retarget;
     }
 
     private void FixedUpdate()
@@ -67,10 +72,10 @@ public abstract class Unit : MonoBehaviour
                     break;
 
                 if (this is Hero)
-                    GetClosestTarget<Enemy>(out target);
+                    target = GetClosestTarget<Enemy>();
                 else if (this is Enemy)
-                    GetClosestTarget<Hero>(out target);
-                else Debug.LogError("this object is neither a hero or an enemy", this);
+                    target = GetClosestTarget<Hero>();
+                else Debug.LogError("this Unit is neither a hero or an enemy", this);
 
                 break;
             case UnitState.Moving:
@@ -94,9 +99,9 @@ public abstract class Unit : MonoBehaviour
     }
 
     #region Target
-    private void GetAllUnits<T>(out Unit[] allUnits) where T : Unit
+    private T[] GetAllUnits<T>() where T : Unit
     {
-        allUnits = FindObjectsByType<T>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+        return FindObjectsByType<T>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
     }
 
     private void UpdateTarget(Unit deadUnit)
@@ -107,12 +112,25 @@ public abstract class Unit : MonoBehaviour
         target = null;
     }
 
-    protected virtual void GetClosestTarget<T>(out Unit target) where T : Unit
+    protected virtual T GetClosestTarget<T>() where T : Unit
     {
         availableTarget.Where(target => target.isActiveAndEnabled)
             .OrderBy(target => Vector2.Distance(target.transform.position, transform.position));
 
-        target = availableTarget[0];
+        return (T)availableTarget[0];
+    }
+    #endregion
+
+    #region Retarget
+    protected event Action<Unit, Unit> OnRetarget;
+    protected void ForceRetarget(Unit retargeted) => OnRetarget?.Invoke(retargeted, this);
+
+    private void Retarget(Unit thisUnit, Unit newTarget)
+    {
+        if (thisUnit != this)
+            return;
+
+        target = newTarget;
     }
     #endregion
 
@@ -129,6 +147,14 @@ public abstract class Unit : MonoBehaviour
 
     private void Flee(Vector3 attackerPos)
     {
+        if (fleeTimer > miscParameters.maxFleeTime)
+        {
+            hasStoppedFleeing = true;
+            return;
+        }
+
+        fleeTimer += Time.fixedDeltaTime;
+
         Vector3 newPos = Vector2.MoveTowards(attackerPos, transform.position, movementParameters.maxFleeSpeed * Time.fixedDeltaTime);
 
         Vector2 dir = transform.position - newPos;
@@ -137,7 +163,7 @@ public abstract class Unit : MonoBehaviour
         rb.AddForce(movementParameters.acceleration * dir, ForceMode2D.Force);
     }
 
-    private void Decelerate()
+    protected void Decelerate()
     {
         Vector3 currentSpeed = rb.linearVelocity;
 
@@ -226,13 +252,19 @@ public abstract class Unit : MonoBehaviour
         {
             case 0:
                 currentState = UnitState.Moving;
+                hasStoppedFleeing = false;
+                fleeTimer = 0;
                 break;
             case 1:
             case 3:
-                currentState = UnitState.Fleeing;
-                break;
+                if (!hasStoppedFleeing)
+                    currentState = UnitState.Fleeing;
+                else currentState = UnitState.Attacking;
+                    break;
             case 2:
                 currentState = UnitState.Attacking;
+                hasStoppedFleeing = false;
+                fleeTimer = 0;
                 break;
             default:
                 Debug.LogError("No state for this situation");

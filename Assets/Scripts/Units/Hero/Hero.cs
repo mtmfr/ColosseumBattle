@@ -9,6 +9,37 @@ public abstract class Hero : Unit
         SetParameters(heroSO);
     }
 
+    protected override void Attack(Unit target)
+    {
+        base.Attack(target);
+
+        if (isFirstAttack)
+        {
+            if (attackTimer < attackParameters.firstAttackCooldown)
+            {
+                attackTimer += Time.fixedDeltaTime;
+                return;
+            }
+            else
+            {
+                AttackMotion(target, attackParameters.attackPower);
+                attackTimer = 0;
+                isFirstAttack = false;
+            }
+        }
+
+        if (attackTimer < attackParameters.attackCooldown)
+            attackTimer += Time.fixedDeltaTime;
+        else
+        {
+            AttackMotion(target, attackParameters.attackPower);
+            attackTimer = 0;
+        }
+    }
+
+    protected abstract void AttackMotion(Unit target, int damageToDeal);
+
+
     protected override void Death()
     {
         ObjectPool.SetObjectInactive(this);

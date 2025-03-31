@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class Warrior : Hero
+public class Priest : Hero
 {
     protected override void AttackMotion(Unit target, int damageToDeal)
     {
-        UnitEvent.DealDamage(target, damageToDeal);
+        
     }
 }

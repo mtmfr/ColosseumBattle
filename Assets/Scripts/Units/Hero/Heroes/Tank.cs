@@ -1,9 +1,10 @@
 using UnityEngine;
 
-public class Warrior : Hero
+public class Tank : Hero
 {
     protected override void AttackMotion(Unit target, int damageToDeal)
     {
         UnitEvent.DealDamage(target, damageToDeal);
+        ForceRetarget(target);
     }
 }

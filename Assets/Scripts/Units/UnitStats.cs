@@ -32,6 +32,7 @@ public class AttackParameters
 [Serializable]
 public class MiscParameters
 {
+    [field: SerializeField] public int maxFleeTime { get; private set; }
     [field: SerializeField] public int health { get; private set; }
     [field: SerializeField] public int defense { get; private set; }
     [field: SerializeField] public int cost { get; private set; }

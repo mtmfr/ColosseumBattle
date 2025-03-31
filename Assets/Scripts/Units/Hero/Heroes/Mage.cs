@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Warrior : Hero
+public class Mage : Hero
 {
     protected override void AttackMotion(Unit target, int damageToDeal)
     {
