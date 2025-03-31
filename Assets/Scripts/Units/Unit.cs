@@ -90,6 +90,7 @@ public abstract class Unit : MonoBehaviour
     {
         movementParameters = unitSO.movementParameters;
         attackParameters = unitSO.attackParameters;
+        miscParameters = unitSO.miscParameters;
     }
 
     #region Target

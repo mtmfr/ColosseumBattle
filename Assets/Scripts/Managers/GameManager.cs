@@ -5,7 +5,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
 
+    public int gold { get; private set; }
+
     public GameState currentGameState { get; private set; } = GameState.WaveStart;
+
+    private GameManager() { }
 
     private void Awake()
     {
@@ -41,6 +45,9 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
+
+    public void AddGold(int goldToAdd) => gold += goldToAdd;
+    public void RemoveGold(int goldToRemove) => gold -= goldToRemove;
 }
 
 public enum GameState

@@ -11,6 +11,7 @@ public abstract class Enemy : Unit
 
     protected override void Death()
     {
+        GameManager.instance.AddGold(enemySO.goldDrop);
         ObjectPool.SetObjectInactive(this);
     }
 }
