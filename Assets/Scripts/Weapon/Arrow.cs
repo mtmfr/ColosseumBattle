@@ -25,7 +25,7 @@ public class Arrow : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (timer < flyTime)
+        if (timer/flyTime < 0.99f)
         {
             Vector3 newPos = Vector3.Lerp(transform.position, target.transform.position, timer/flyTime);
             rb.MovePosition(newPos);
@@ -33,7 +33,7 @@ public class Arrow : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.TryGetComponent(out Unit unit))
             return;

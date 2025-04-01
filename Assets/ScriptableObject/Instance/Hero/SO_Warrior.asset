@@ -21,7 +21,7 @@ MonoBehaviour:
   <attackParameters>k__BackingField:
     <fleeDistance>k__BackingField: 3
     <attackDistance>k__BackingField: 5
-    <attackPower>k__BackingField: 0
+    <attackPower>k__BackingField: 1
     <firstAttackCooldown>k__BackingField: 0.7
     <attackCooldown>k__BackingField: 1.5
   <miscParameters>k__BackingField:

@@ -26,7 +26,7 @@ MonoBehaviour:
     <attackCooldown>k__BackingField: 0
   <miscParameters>k__BackingField:
     <maxFleeTime>k__BackingField: 0
-    <health>k__BackingField: 1
+    <health>k__BackingField: 10
     <defense>k__BackingField: 0
     <cost>k__BackingField: 0
   <goldDrop>k__BackingField: 0

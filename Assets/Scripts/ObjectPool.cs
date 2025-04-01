@@ -64,13 +64,8 @@ public static class ObjectPool
         toDeactivate.gameObject.SetActive(false);
 
         if (inactiveObjects.TryGetValue(type, out List<MonoBehaviour> activeObjectList))
-        {
             activeObjectList.Add(toDeactivate);
-        }
         else
-        {
-            List<MonoBehaviour> newInactiveList = new() { toDeactivate };
-            inactiveObjects.Add(type, newInactiveList);
-        }
+            inactiveObjects.Add(type, new List<MonoBehaviour>() { toDeactivate });
     }
 }
