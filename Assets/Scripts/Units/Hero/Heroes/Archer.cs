@@ -6,7 +6,8 @@ public class Archer : Hero
 
     protected override void AttackMotion(Unit target, int damageToDeal)
     {
-        Arrow shotArrow = ObjectPool.GetObject(arrow, transform.position, transform.rotation);
+        Arrow shotArrow = ObjectPool.GetObject(arrow, transform.position, Quaternion.identity);
+
         shotArrow.SetArrow(target, damageToDeal, attackParameters.attackCooldown);
     }
 }

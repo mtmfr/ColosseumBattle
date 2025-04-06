@@ -15,6 +15,7 @@ public static class ObjectPool
         objectToActivate.transform.SetPositionAndRotation(position, rotation);
 
         AddToActiveObjectValue(objectToActivate);
+        objectToActivate.gameObject.SetActive(true);
 
         return objectToActivate;
     }

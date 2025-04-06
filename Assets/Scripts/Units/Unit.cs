@@ -9,11 +9,11 @@ public abstract class Unit : MonoBehaviour
 
     private UnitState currentState;
 
-    private MovementParameters movementParameters;
-    protected AttackParameters attackParameters;
-    private MiscParameters miscParameters;
+    public MovementParameters movementParameters { get; private set; } 
+    public AttackParameters attackParameters { get; private set; }
+    public MiscParameters miscParameters { get; private set; }
 
-    private int health;
+    public int health { get; private set; }
 
     protected float attackTimer = 0;
     protected float fleeTimer = 0;
@@ -24,7 +24,7 @@ public abstract class Unit : MonoBehaviour
     private float timeWithoutAttack = 0;
 
     protected Unit target;
-    Unit[] availableTarget;
+    protected Unit[] availableTarget { get; private set; }
 
     protected bool wasDead = true;
 
@@ -48,7 +48,7 @@ public abstract class Unit : MonoBehaviour
         UnitEvent.OnHeal += GetHeal;
         UnitEvent.OnTargetDeath += UpdateTarget;
 
-        OnRetarget += Retarget;
+        UnitEvent.OnRetarget += Retarget;
     }
 
     private void OnDisable()
@@ -57,7 +57,7 @@ public abstract class Unit : MonoBehaviour
         UnitEvent.OnHeal -= GetHeal;
         UnitEvent.OnTargetDeath -= UpdateTarget;
 
-        OnRetarget -= Retarget;
+        UnitEvent.OnRetarget -= Retarget;
     }
 
     private void FixedUpdate()
@@ -71,12 +71,7 @@ public abstract class Unit : MonoBehaviour
                 if (target != null)
                     break;
 
-                if (this is Hero)
-                    target = GetClosestTarget<Enemy>();
-                else if (this is Enemy)
-                    target = GetClosestTarget<Hero>();
-                else Debug.LogError("this Unit is neither a hero or an enemy", this);
-
+                SetTarget();
                 break;
             case UnitState.Moving:
                 Move(target.transform.position);
@@ -112,18 +107,56 @@ public abstract class Unit : MonoBehaviour
         target = null;
     }
 
-    protected virtual T GetClosestTarget<T>() where T : Unit
+    protected T GetClosestTarget<T>() where T : Unit
     {
         availableTarget.Where(target => target.isActiveAndEnabled)
             .OrderBy(target => Vector2.Distance(target.transform.position, transform.position));
 
         return (T)availableTarget[0];
     }
-    #endregion
 
-    #region Retarget
-    protected event Action<Unit, Unit> OnRetarget;
-    protected void ForceRetarget(Unit retargeted) => OnRetarget?.Invoke(retargeted, this);
+    /// <summary>
+    /// Get the target that meet the required conditions. 
+    /// </summary>
+    /// <param name="sortType">The sorting to use</param>
+    /// <returns>Either the closest target or the one with the lowest hp</returns>
+    protected T GetTarget<T>(SortType sortType = SortType.Distance) where T : Unit
+    {
+        switch (sortType)
+        {
+            case SortType.Distance:
+                availableTarget.Where(target => target.isActiveAndEnabled)
+                    .OrderBy(target => Vector2.Distance(target.transform.position, transform.position));
+                break;
+            case SortType.Health:
+                availableTarget.Where(target => target.isActiveAndEnabled).OrderBy(target => health);
+                break;
+            default:
+                Debug.LogException(new Exception("Incorect type for the sorting type of  GetTarget"), this);
+                return null;
+        }
+
+        return (T)availableTarget[0];
+    }
+
+    /// <summary>
+    /// The sorting type of GetTarget
+    /// </summary>
+    protected enum SortType : byte
+    {
+        None,
+        Distance,
+        Health
+    }
+
+    protected virtual void SetTarget()
+    {
+        if (this is Hero)
+            target = GetTarget<Enemy>();
+        else if (this is Enemy)
+            target = GetTarget<Hero>();
+        else Debug.LogError("this Unit is neither a hero or an enemy", this);
+    }
 
     private void Retarget(Unit thisUnit, Unit newTarget)
     {
@@ -298,4 +331,7 @@ public static class UnitEvent
 
     public static event Action<Unit, int> OnHeal;
     public static void HealedDamage(Unit unitToHeal, int damageToHeal) => OnHeal?.Invoke(unitToHeal, damageToHeal);
+
+    public static event Action<Unit, Unit> OnRetarget;
+    public static void ForceRetarget(Unit thisUnit, Unit retargeted) => OnRetarget?.Invoke(thisUnit, retargeted);
 }
