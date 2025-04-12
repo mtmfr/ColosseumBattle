@@ -9,6 +9,11 @@ public abstract class Hero : Unit
         SetParameters(heroSO);
     }
 
+    protected override void GetAvailableTarget()
+    {
+        availableTarget = GetAllUnits<Enemy>();
+    }
+
     protected override void Attack(Unit target)
     {
         base.Attack(target);

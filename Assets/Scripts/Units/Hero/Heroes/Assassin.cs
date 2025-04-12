@@ -1,16 +1,15 @@
 using UnityEngine;
 
-public class Assassin : MonoBehaviour
+public class Assassin : Hero
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    protected override void SetTarget()
     {
-        
+        target = GetTarget<Hero>(SortType.Health);
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void AttackMotion(Unit target, int damageToDeal)
     {
-        
+        UnitEvent.DealDamage(target, damageToDeal);
     }
 }

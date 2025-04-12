@@ -24,7 +24,7 @@ public abstract class Unit : MonoBehaviour
     private float timeWithoutAttack = 0;
 
     protected Unit target;
-    protected Unit[] availableTarget { get; private set; }
+    protected Unit[] availableTarget;
 
     protected bool wasDead = true;
 
@@ -38,11 +38,7 @@ public abstract class Unit : MonoBehaviour
         if (wasDead)
             health = miscParameters.health;
 
-        if (this is Hero)
-            availableTarget = GetAllUnits<Enemy>();
-        else if (this is Enemy)
-            availableTarget = GetAllUnits<Hero>();
-        else Debug.LogError("this object is neither a hero or an enemy", this);
+        GetAvailableTarget();
 
         UnitEvent.OnDamageReceived += GetDamage;
         UnitEvent.OnHeal += GetHeal;
@@ -94,7 +90,9 @@ public abstract class Unit : MonoBehaviour
     }
 
     #region Target
-    private T[] GetAllUnits<T>() where T : Unit
+    protected abstract void GetAvailableTarget();
+
+    protected T[] GetAllUnits<T>() where T : Unit
     {
         return FindObjectsByType<T>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
     }
@@ -125,11 +123,11 @@ public abstract class Unit : MonoBehaviour
         switch (sortType)
         {
             case SortType.Distance:
-                availableTarget.Where(target => target.isActiveAndEnabled)
+                availableTarget.Where(target => target.isActiveAndEnabled && target is T)
                     .OrderBy(target => Vector2.Distance(target.transform.position, transform.position));
                 break;
             case SortType.Health:
-                availableTarget.Where(target => target.isActiveAndEnabled).OrderBy(target => health);
+                availableTarget.Where(target => target.isActiveAndEnabled && target is T).OrderBy(target => health);
                 break;
             default:
                 Debug.LogException(new Exception("Incorect type for the sorting type of  GetTarget"), this);

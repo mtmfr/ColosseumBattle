@@ -9,6 +9,11 @@ public abstract class Enemy : Unit
         SetParameters(enemySO);
     }
 
+    protected override void GetAvailableTarget()
+    {
+        availableTarget = GetAllUnits<Hero>();
+    }
+
     protected override void Death()
     {
         GameManager.instance.AddGold(enemySO.goldDrop);

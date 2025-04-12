@@ -1,8 +1,12 @@
-using System.Linq;
 using UnityEngine;
 
 public class Priest : Hero
 {
+    protected override void GetAvailableTarget()
+    {
+        availableTarget = GetAllUnits<Unit>();
+    }
+
     protected override void SetTarget()
     {
         target = GetTarget<Hero>(SortType.Health);
