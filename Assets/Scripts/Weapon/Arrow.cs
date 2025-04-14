@@ -35,6 +35,12 @@ public class Arrow : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        int collisionLayer = 1 << other.gameObject.layer;
+        int targetLayer = 1 << target.gameObject.layer;
+
+        if ((collisionLayer & targetLayer) == 0)
+            return;
+
         if (!other.TryGetComponent(out Unit unit))
             return;
 

@@ -23,11 +23,14 @@ public class FireBall : MonoBehaviour
 
         foreach (Collider2D collider in attackCol)
         {
+            if (attackCol[0] == null)
+                break;
             
-            if (!collider.TryGetComponent<Unit>(out Unit ToDamage))
+            if (!collider.TryGetComponent(out Unit ToDamage))
                 continue;
 
             UnitEvent.DealDamage(ToDamage, damage);
         }
+        ObjectPool.SetObjectInactive(this);
     }
 }

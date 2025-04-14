@@ -57,7 +57,6 @@ public static class ObjectPool
     }
     #endregion
 
-
     public static void SetObjectInactive<T>(T toDeactivate) where T : MonoBehaviour
     {
         Type type = toDeactivate.GetType();

@@ -7,6 +7,9 @@ public class Mage : Hero
     {
         UnitEvent.DealDamage(target, damageToDeal);
 
+        if (target == null)
+            return;
+
         FireBall castedFireball = ObjectPool.GetObject(fireBall, target.transform.position, Quaternion.identity);
         castedFireball.SetFireball(1 << target.gameObject.layer, damageToDeal);
     }

@@ -309,6 +309,7 @@ GameObject:
   - component: {fileID: 210536150}
   - component: {fileID: 210536154}
   - component: {fileID: 210536155}
+  - component: {fileID: 210536156}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -479,13 +480,27 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 210536148}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1ae60091adea6342b3cc38babb41319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   heroSO: {fileID: 11400000, guid: a7659eea5d666c44ba2d2d7557070df1, type: 2}
   arrow: {fileID: 1398186198}
+--- !u!114 &210536156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210536148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9ecdafee4ff4df4e9462a21c4f61749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heroSO: {fileID: 11400000, guid: a7659eea5d666c44ba2d2d7557070df1, type: 2}
+  fireBall: {fileID: 1398186203}
 --- !u!1 &847810893
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,6 +558,7 @@ GameObject:
   - component: {fileID: 1398186200}
   - component: {fileID: 1398186199}
   - component: {fileID: 1398186198}
+  - component: {fileID: 1398186203}
   m_Layer: 0
   m_Name: Square (1)
   m_TagString: Untagged
@@ -705,6 +721,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1398186203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398186197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 767abdd2ceeb8ca43b2f6b8dff5da238, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRadius: 3
 --- !u!1 &1736982765
 GameObject:
   m_ObjectHideFlags: 0
