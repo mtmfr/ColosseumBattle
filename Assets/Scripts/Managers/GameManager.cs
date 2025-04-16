@@ -1,60 +1,50 @@
 using System;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public static class GameManager
 {
-    public static GameManager instance { get; private set; }
+    public static int gold { get; private set; }
 
-    public int gold { get; private set; }
+    public static GameState currentGameState { get; private set; } = GameState.Wave;
 
-    public GameState currentGameState { get; private set; } = GameState.WaveStart;
-
-    private GameManager() { }
-
-    private void Awake()
-    {
-        if (instance != null)
-            Destroy(gameObject);
-        
-        instance = this;
-
-        DontDestroyOnLoad(gameObject); 
-    }
-
-    public event Action<GameState> OnGameStateChange;
-    public void UpdateGameState(GameState gameState)
+    public static event Action<GameState> OnGameStateChange;
+    public static void UpdateGameState(GameState gameState)
     {
         currentGameState = gameState;
         
         OnGameStateChange?.Invoke(gameState);
 
+        WaveManager waveManager = WaveManager.instance;
+
         switch (gameState)
         {
             case GameState.MainMenu:
                 break;
-            case GameState.WaveStart:
-                UpdateGameState(GameState.Start);
-                break;
             case GameState.Start:
+
+                waveManager.GenerateNextWave();
+                break;
+            case GameState.Wave:
+                waveManager.SwitchWaveState(WaveManager.WaveState.Start);
                 break;
             case GameState.Shop:
                 break;
             case GameState.GameOver:
+                waveManager.ResetWave();
                 break;
             default:
                 break;
         }
     }
 
-    public void AddGold(int goldToAdd) => gold += goldToAdd;
-    public void RemoveGold(int goldToRemove) => gold -= goldToRemove;
+    public static void AddGold(int goldToAdd) => gold += goldToAdd;
+    public static void RemoveGold(int goldToRemove) => gold -= goldToRemove;
 }
 
 public enum GameState
 {
     MainMenu,
     Start,
-    WaveStart,
     Wave,
     Shop,
     GameOver
