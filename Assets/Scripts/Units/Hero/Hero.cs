@@ -18,6 +18,12 @@ public abstract class Hero : Unit
     {
         base.Attack(target);
 
+        if (target == null)
+        {
+            attackTimer = 0;
+            return;
+        }
+
         if (isFirstAttack)
         {
             if (attackTimer < attackParameters.firstAttackCooldown)

@@ -49,6 +49,9 @@ public abstract class Unit : MonoBehaviour
 
     private void OnDisable()
     {
+        target = null;
+        currentState = UnitState.Idle;
+
         UnitEvent.OnDamageReceived -= GetDamage;
         UnitEvent.OnHeal -= GetHeal;
         UnitEvent.OnTargetDeath -= UpdateTarget;
@@ -58,6 +61,9 @@ public abstract class Unit : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (WaveManager.instance.waveState != WaveManager.WaveState.Middle)
+            return;
+
         SetCurrentState();
         ResetIsFirstAttack();
 
@@ -78,6 +84,8 @@ public abstract class Unit : MonoBehaviour
             case UnitState.Attacking:
                 timeWithoutAttack = 0;
                 Attack(target);
+                break;
+            default:
                 break;
         }
     }
