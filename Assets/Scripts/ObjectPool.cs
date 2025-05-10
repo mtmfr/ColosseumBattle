@@ -33,10 +33,7 @@ public static class ObjectPool
         {
             if (inactiveObjectList.Count == 0)
                 toActivate = GameObject.Instantiate(objectToActivate);
-            else
-            {
-                toActivate = inactiveObjectList[0];
-            }
+            else toActivate = inactiveObjectList[0];
         }
             return (T)toActivate;
     }
@@ -65,7 +62,12 @@ public static class ObjectPool
 
         if (inactiveObjects.TryGetValue(type, out List<MonoBehaviour> activeObjectList))
             activeObjectList.Add(toDeactivate);
-        else
-            inactiveObjects.Add(type, new List<MonoBehaviour>() { toDeactivate });
+        else inactiveObjects.Add(type, new List<MonoBehaviour>() { toDeactivate });
+    }
+
+    public static void DiscardAllObject()
+    {
+        inactiveObjects.Clear();
+        activeObjects.Clear();
     }
 }

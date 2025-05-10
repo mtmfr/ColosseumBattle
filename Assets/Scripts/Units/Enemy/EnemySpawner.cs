@@ -1,13 +1,17 @@
+using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-public class EnemySpawner : MonoBehaviour
+[Serializable]
+public class EnemySpawner
 {
     [SerializeField] private BoxCollider2D enemySpawnZone;
 
-    private List<Enemy> spawnableEnemies = new();
+    [SerializeField] private List<Enemy> spawnableEnemies = new();
     public Enemy[] enemiesInWave { get; private set; }
+
+    private EnemySpawner() { }
 
     /// <summary>
     /// Get the available credit for the next wave
@@ -15,6 +19,7 @@ public class EnemySpawner : MonoBehaviour
     private int GetWaveCredit(int currentWave)
     {
         int nextWave = currentWave + 1;
+
         if (nextWave <= 0)
             return 0;
 
@@ -41,7 +46,7 @@ public class EnemySpawner : MonoBehaviour
             if (enemyToAdd == null)
                 break;
 
-            int enemyCost = enemyToAdd.miscParameters.cost;
+            int enemyCost = enemyToAdd.enemySO.miscParameters.cost;
 
             if (enemyCost > waveCredit)
             {
@@ -94,17 +99,15 @@ public class EnemySpawner : MonoBehaviour
     [ContextMenu("RandomSpawnPos")]
     private Vector2 GetRandomSpawnPoint()
     {
-        float minXPos = enemySpawnZone.transform.position.x - enemySpawnZone.size.x / 2;
-        float maxXPos = enemySpawnZone.transform.position.x + enemySpawnZone.size.x / 2;
+        float minXPos = enemySpawnZone.bounds.min.x;
+        float maxXPos = enemySpawnZone.bounds.max.x;
 
         float randomXPos = Random.Range(minXPos, maxXPos);
 
-        float minYPos = enemySpawnZone.transform.position.y - enemySpawnZone.size.y / 2;
-        float maxYPos = enemySpawnZone.transform.position.y + enemySpawnZone.size.y / 2;
+        float minYPos = enemySpawnZone.bounds.min.y;
+        float maxYPos = enemySpawnZone.bounds.max.y;
 
         float randmYPos = Random.Range(minYPos, maxYPos);
-
-        Debug.Log(new Vector2(randomXPos, randmYPos));
 
         return new Vector2(randomXPos, randmYPos);
     }

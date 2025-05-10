@@ -1,18 +1,16 @@
 using System;
-using UnityEngine;
+using System.Net.Http.Headers;
+using UnityEngine.SceneManagement;
 
 public static class GameManager
 {
     public static int gold { get; private set; }
 
-    public static GameState currentGameState { get; private set; } = GameState.Wave;
+    public static GameState currentGameState { get; private set; } = GameState.None;
 
     public static event Action<GameState> OnGameStateChange;
     public static void UpdateGameState(GameState gameState)
     {
-        currentGameState = gameState;
-        
-        OnGameStateChange?.Invoke(gameState);
 
         WaveManager waveManager = WaveManager.instance;
 
@@ -21,20 +19,35 @@ public static class GameManager
             case GameState.MainMenu:
                 break;
             case GameState.Start:
-
                 waveManager.GenerateNextWave();
                 break;
             case GameState.Wave:
-                waveManager.SwitchWaveState(WaveManager.WaveState.Start);
+                if (currentGameState == GameState.Pause)
+                    waveManager.UpdateWaveState(WaveManager.WaveState.Middle);
+                else waveManager.UpdateWaveState(WaveManager.WaveState.Start);
                 break;
             case GameState.Shop:
                 break;
             case GameState.GameOver:
-                waveManager.ResetWave();
+                ObjectPool.DiscardAllObject();
+                waveManager.ResetWaveCount();
+                ResetScene();
                 break;
             default:
                 break;
         }
+        
+        OnGameStateChange?.Invoke(gameState);
+        currentGameState = gameState;
+    }
+
+    private static void ResetScene()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        GC.Collect();
+        SceneManager.LoadScene(currentScene.buildIndex);
+        UpdateGameState(GameState.MainMenu);
     }
 
     public static void AddGold(int goldToAdd) => gold += goldToAdd;
@@ -43,9 +56,11 @@ public static class GameManager
 
 public enum GameState
 {
+    None,
     MainMenu,
     Start,
     Wave,
     Shop,
+    Pause,
     GameOver
 }
