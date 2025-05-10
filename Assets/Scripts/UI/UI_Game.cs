@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,6 +24,11 @@ public class UI_Game : MonoBehaviour
     private void Start()
     {
         pauseButton.onClick.AddListener(PauseGame);
+    }
+
+    private void OnDestroy()
+    {
+        pauseButton.onClick.RemoveAllListeners();
     }
 
     private void Update()

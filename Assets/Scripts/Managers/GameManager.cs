@@ -1,5 +1,4 @@
 using System;
-using System.Net.Http.Headers;
 using UnityEngine.SceneManagement;
 
 public static class GameManager
@@ -31,7 +30,6 @@ public static class GameManager
             case GameState.GameOver:
                 ObjectPool.DiscardAllObject();
                 waveManager.ResetWaveCount();
-                ResetScene();
                 break;
             default:
                 break;
@@ -41,7 +39,7 @@ public static class GameManager
         currentGameState = gameState;
     }
 
-    private static void ResetScene()
+    public static void ResetScene()
     {
         Scene currentScene = SceneManager.GetActiveScene();
 
