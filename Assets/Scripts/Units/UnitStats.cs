@@ -37,3 +37,10 @@ public class MiscParameters
     [field: SerializeField] public int defense { get; private set; }
     [field: SerializeField] public int cost { get; private set; }
 }
+
+[Serializable]
+public class UIParameters
+{
+    [field: SerializeField] public string heroDescription { get; private set; }
+    [field: SerializeField] public Sprite characterSprite { get; private set; }
+}

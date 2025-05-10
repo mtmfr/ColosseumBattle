@@ -5,13 +5,14 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
 public abstract class Unit : MonoBehaviour
 {
-    Rigidbody2D rb;
+    private Rigidbody2D rb;
 
     private UnitState currentState;
 
-    public MovementParameters movementParameters { get; private set; } 
-    public AttackParameters attackParameters { get; private set; }
-    public MiscParameters miscParameters { get; private set; }
+    protected MovementParameters movementParameters;
+    protected AttackParameters attackParameters;
+    protected MiscParameters miscParameters;
+    protected UIParameters uiParameters;
 
     public int health { get; private set; }
 
@@ -38,8 +39,6 @@ public abstract class Unit : MonoBehaviour
         if (wasDead)
             health = miscParameters.health;
 
-        GetAvailableTarget();
-
         UnitEvent.OnDamageReceived += GetDamage;
         UnitEvent.OnHeal += GetHeal;
         UnitEvent.OnTargetDeath += UpdateTarget;
@@ -61,6 +60,9 @@ public abstract class Unit : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GameManager.currentGameState != GameState.Wave)
+            return;
+
         if (WaveManager.instance.waveState != WaveManager.WaveState.Middle)
             return;
 
@@ -70,6 +72,9 @@ public abstract class Unit : MonoBehaviour
         switch (currentState)
         {
             case UnitState.Idle:
+
+                if (availableTarget == null)
+                    GetAvailableTarget();
                 if (target != null)
                     break;
 
@@ -95,6 +100,7 @@ public abstract class Unit : MonoBehaviour
         movementParameters = unitSO.movementParameters;
         attackParameters = unitSO.attackParameters;
         miscParameters = unitSO.miscParameters;
+        uiParameters = unitSO.uiParameters;
     }
 
     #region Target
@@ -141,8 +147,9 @@ public abstract class Unit : MonoBehaviour
                 Debug.LogException(new Exception("Incorect type for the sorting type of  GetTarget"), this);
                 return null;
         }
+        int lastId = Array.FindLastIndex(availableTarget, e => e != null);
 
-        return (T)availableTarget[0];
+        return availableTarget[0] != null ? (T)availableTarget[0] : null;
     }
 
     /// <summary>
@@ -289,17 +296,20 @@ public abstract class Unit : MonoBehaviour
 
         switch (caseId)
         {
+            //Target is in no zone
             case 0:
                 currentState = UnitState.Moving;
                 hasStoppedFleeing = false;
                 fleeTimer = 0;
                 break;
+            //Target is in flee zone
             case 1:
             case 3:
                 if (!hasStoppedFleeing)
                     currentState = UnitState.Fleeing;
                 else currentState = UnitState.Attacking;
                     break;
+            //Target is in attackZone but not in flee zone
             case 2:
                 currentState = UnitState.Attacking;
                 hasStoppedFleeing = false;

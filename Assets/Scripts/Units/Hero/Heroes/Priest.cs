@@ -19,7 +19,8 @@ public class Priest : Hero
     {
         if (target is Hero)
         {
-            int healedAmount = Mathf.FloorToInt(damageToDeal * (target.health/(float)target.miscParameters.health));
+            Hero heroToHeal = (Hero)target;
+            int healedAmount = Mathf.FloorToInt(damageToDeal * (heroToHeal.health/(float)heroToHeal.heroSO.miscParameters.health));
 
             UnitEvent.HealedDamage(target, healedAmount);
         }

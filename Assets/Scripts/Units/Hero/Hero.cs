@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class Hero : Unit
 {
-    [SerializeField] private SO_Hero heroSO;
+    [field: SerializeField] public SO_Hero heroSO { get; private set; }
 
     private void Awake()
     {

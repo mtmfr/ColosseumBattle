@@ -29,3 +29,6 @@ MonoBehaviour:
     <health>k__BackingField: 0
     <defense>k__BackingField: 0
     <cost>k__BackingField: 0
+  <uiParameters>k__BackingField:
+    <heroDescription>k__BackingField: 
+    <characterSprite>k__BackingField: {fileID: 786689805, guid: 47d7646cf627f634fb6d1c8e0be66854, type: 3}

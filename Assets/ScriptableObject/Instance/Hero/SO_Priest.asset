@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99557cb0af7166e4f92d065d06ba8153, type: 3}
-  m_Name: Goblin
+  m_Script: {fileID: 11500000, guid: 83aa2ce5dae01734a89053b115cd7ed5, type: 3}
+  m_Name: SO_Priest
   m_EditorClassIdentifier: 
   <movementParameters>k__BackingField:
     <maxApproachSpeed>k__BackingField: 0
@@ -26,7 +26,9 @@ MonoBehaviour:
     <attackCooldown>k__BackingField: 0
   <miscParameters>k__BackingField:
     <maxFleeTime>k__BackingField: 0
-    <health>k__BackingField: 10
+    <health>k__BackingField: 0
     <defense>k__BackingField: 0
-    <cost>k__BackingField: 1
-  <goldDrop>k__BackingField: 0
+    <cost>k__BackingField: 0
+  <uiParameters>k__BackingField:
+    <heroDescription>k__BackingField: 
+    <characterSprite>k__BackingField: {fileID: -960515015, guid: 30ddebd1c853dd54ea1e5a9ba372a85e, type: 3}
