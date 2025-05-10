@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class UI_GameOver : MonoBehaviour
+public class UI_Pause : MonoBehaviour
 {
     public void SetActive(GameState gameState)
     {
-        if (gameState == GameState.GameOver)
+        if (gameState == GameState.Pause)
             gameObject.SetActive(true);
         else gameObject.SetActive(false);
     }
