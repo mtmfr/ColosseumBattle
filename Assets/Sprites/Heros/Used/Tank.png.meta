@@ -3,7 +3,7 @@ guid: 615bd727e6bc6fb4ba4fc29df2dcc3be
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -67,7 +67,7 @@ TextureImporter:
   swizzle: 50462976
   cookieLightType: 0
   platformSettings:
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -80,7 +80,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -93,7 +93,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -106,7 +106,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: percival__0
+      name: Tank_0
       rect:
         serializedVersion: 2
         x: 0
@@ -133,18 +133,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c9ad5e29cf549964c8575b29c6330480
-      internalID: -305662272
+      spriteID: b31ad1c37735a784e9ec257bc1250783
+      internalID: -417095229
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: percival__1
+      name: Tank_1
       rect:
         serializedVersion: 2
         x: 32
@@ -154,18 +155,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3981ec247e652d946ade56f36631ffa9
-      internalID: 1374626200
+      spriteID: c4f2362e0b66dae45b0dd7f8c67f03ba
+      internalID: -426588199
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: percival__2
+      name: Tank_2
       rect:
         serializedVersion: 2
         x: 64
@@ -175,18 +177,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e8c3e79f1b03ef49acd3d08d84cfd63
-      internalID: -1693125552
+      spriteID: d3fbf00d2fa02ce47b88d6d421518489
+      internalID: -1501515414
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: percival__3
+      name: Tank_3
       rect:
         serializedVersion: 2
         x: 96
@@ -196,18 +199,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 345d5c3c7a558664f9e8bd6287ad79a4
-      internalID: 833980843
+      spriteID: f3b3b31a1c31b8c43bfa8d066a0605b6
+      internalID: 1575265027
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: percival__8
+      name: Tank_8
       rect:
         serializedVersion: 2
         x: 0
@@ -217,18 +221,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a1840b951317304fa9715e211659d7f
-      internalID: -1376991010
+      spriteID: b8dc9783e58b73146a8b891efec96060
+      internalID: 547039504
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: percival__9
+      name: Tank_9
       rect:
         serializedVersion: 2
         x: 32
@@ -238,18 +243,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31a66d8417bed6e4f909dd955c5300cd
-      internalID: -738260776
+      spriteID: 522fdbf499f7cb5418604e561550a6a1
+      internalID: 477687188
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: percival__10
+      name: Tank_10
       rect:
         serializedVersion: 2
         x: 64
@@ -259,18 +265,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48aa0d588ed165b45904bada3f8732e2
-      internalID: -872136298
+      spriteID: 9b391d6c917ad994eaa7a342753a7fff
+      internalID: 321051309
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: percival__11
+      name: Tank_11
       rect:
         serializedVersion: 2
         x: 96
@@ -280,18 +287,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e566de4b0de003a4b803d187e654b2e4
-      internalID: -1390735489
+      spriteID: 1a060e0f1a6ec94458ee2595401e1132
+      internalID: 759641281
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: percival__16
+      name: Tank_16
       rect:
         serializedVersion: 2
         x: 0
@@ -301,18 +309,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 43e870b316a087e4293205d54d336778
-      internalID: -1541046109
+      spriteID: 6815ee55c8e9e164eb8375a67be0d4df
+      internalID: 1214727971
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: percival__17
+      name: Tank_17
       rect:
         serializedVersion: 2
         x: 32
@@ -322,18 +331,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0bec6235f5964fd46a6cf0b14e87e8f5
-      internalID: 255421797
+      spriteID: 3fb4f47d86068344d956459d3684051c
+      internalID: 1424872373
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: percival__18
+      name: Tank_18
       rect:
         serializedVersion: 2
         x: 64
@@ -343,18 +353,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 861ff0174ed99a84cacef36280271826
-      internalID: -1405951016
+      spriteID: bf6b74a9df650d34b89eca8691a986e1
+      internalID: 408148868
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: percival__19
+      name: Tank_19
       rect:
         serializedVersion: 2
         x: 96
@@ -364,18 +375,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d8ec3250d1769f4390ab805b21a8278
-      internalID: -356050601
+      spriteID: da32ab39e073c2a47922fffedaa07bd4
+      internalID: -1299647567
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: percival__24
+      name: Tank_24
       rect:
         serializedVersion: 2
         x: 0
@@ -385,18 +397,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dfd8333d167be6b468bd5b4c05574372
-      internalID: 1785491862
+      spriteID: 34be6d831ac82a04b9f557cbea627a16
+      internalID: -1925125313
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: percival__25
+      name: Tank_25
       rect:
         serializedVersion: 2
         x: 32
@@ -406,18 +419,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd06e10c3945df64d9ecaf4e5d826a72
-      internalID: 1179780099
+      spriteID: 8309785ed8ae4ac4fac966ceb865a7a3
+      internalID: 670792941
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: percival__26
+      name: Tank_26
       rect:
         serializedVersion: 2
         x: 64
@@ -427,18 +441,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1d88993802269341804c093fef08e83
-      internalID: 279514125
+      spriteID: 1cb55addf87126a4fb9e69a6e2aaf69a
+      internalID: -75885937
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: percival__27
+      name: Tank_27
       rect:
         serializedVersion: 2
         x: 96
@@ -448,18 +463,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85a5118b2e6d6f848808d5fe0382b3b5
-      internalID: 710534562
+      spriteID: dd583b7415be6a449bca377ced95f205
+      internalID: 1934990307
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: percival__32
+      name: Tank_32
       rect:
         serializedVersion: 2
         x: 0
@@ -469,18 +485,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7087ce6eea72a74ab96a386c224a4d3
-      internalID: -1315764474
+      spriteID: 4dac9907a5809ee4d80b11127bd71e86
+      internalID: 1558640440
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: percival__33
+      name: Tank_33
       rect:
         serializedVersion: 2
         x: 32
@@ -490,18 +507,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5dd18790de8d82d4a8fdc6ed42189f31
-      internalID: -1207516310
+      spriteID: 6b93dfd201827b743b9dc408851e0482
+      internalID: 1575039865
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: percival__34
+      name: Tank_34
       rect:
         serializedVersion: 2
         x: 64
@@ -511,18 +529,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c670faecafc3cff4e98605deb9f893bb
-      internalID: -398198133
+      spriteID: 23780d2458e4ff340ba1cd14aed0805b
+      internalID: 1100039741
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: percival__35
+      name: Tank_35
       rect:
         serializedVersion: 2
         x: 96
@@ -532,270 +551,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9fdf933d2ececb348a60484d2a8a35d5
-      internalID: 1572625589
+      spriteID: 8358bb5c5b76d36499dda31827a0d034
+      internalID: -486532830
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: percival__40
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8832c42e6cc1f3d44b1ec444087f4854
-      internalID: -1755953926
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: percival__41
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 62736ab267c67e84db5837298bfb5d20
-      internalID: 1565472633
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: percival__42
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1c0a7df0ae650a6478b49beb40b03dd5
-      internalID: 270187336
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: percival__43
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 364b4bb7af4632b498bc0d4575f682f0
-      internalID: 399002183
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: percival__48
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9806d2418ee83a045b5a5c0b8b135785
-      internalID: 1897352676
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: percival__49
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1750e6df7bd0a814582c29871a850034
-      internalID: 1290633978
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: percival__50
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7e244d7d2eca97948ba97e283fe25ce5
-      internalID: -1166830998
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: percival__51
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2cb82a719a80b3c4c88dc2c239dec221
-      internalID: -351150836
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: percival__56
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 38b8dec19ebf967499584c4c7de3544b
-      internalID: 1045920116
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: percival__57
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0291d551d026ee544b264d9c41e11558
-      internalID: -1240282035
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: percival__58
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e566a13b7c206d84a9f74c0b72159d2f
-      internalID: -1411476084
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: percival__59
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bffa5e4939d5b5b4899bca0a88e9902b
-      internalID: 459788124
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: percival__64
+      name: Tank_64
       rect:
         serializedVersion: 2
         x: 0
@@ -805,18 +573,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba5d16dd9983ebe4a9278d50870c1db1
-      internalID: 2139352108
+      spriteID: 0e391e8346c15064eaafa0a3a2a6cdc5
+      internalID: 864245496
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: percival__65
+      name: Tank_65
       rect:
         serializedVersion: 2
         x: 32
@@ -826,18 +595,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 080c7cb8a2d524343bf4f142c300f5da
-      internalID: -1442418847
+      spriteID: 3494dbabaa3079d439b7cade391d5c8d
+      internalID: -510062303
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: percival__66
+      name: Tank_66
       rect:
         serializedVersion: 2
         x: 64
@@ -847,18 +617,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1181247323750043bbb45e309a5cd90
-      internalID: -342096323
+      spriteID: d8a7670df42ffe2439b0e62346aaed4f
+      internalID: 1971290621
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: percival__67
+      name: Tank_67
       rect:
         serializedVersion: 2
         x: 96
@@ -868,18 +639,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd22b69f54dd0394fb40b1e6293400db
-      internalID: 818679792
+      spriteID: 6cd65ffdbe37ec74db7edc67c1b209ef
+      internalID: 1688163824
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: percival__72
+      name: Tank_72
       rect:
         serializedVersion: 2
         x: 0
@@ -889,18 +661,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ffe7f79dade3e3745b39e580ff01d6c3
-      internalID: -735454497
+      spriteID: f62d972fdb212d04b804360f488f193d
+      internalID: -76703955
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: percival__73
+      name: Tank_73
       rect:
         serializedVersion: 2
         x: 32
@@ -910,18 +683,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7b47d3b546fe68418679d64e009422c
-      internalID: -109379267
+      spriteID: 2c264694d3df1fc47ae6cbb25c6bc2da
+      internalID: -1114417623
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: percival__74
+      name: Tank_74
       rect:
         serializedVersion: 2
         x: 64
@@ -931,18 +705,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09d26bec2c84c6a409e5a283c00b4a52
-      internalID: -649699394
+      spriteID: edf2b450bda89a34b81463fec4324a3f
+      internalID: 1968854790
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: percival__75
+      name: Tank_75
       rect:
         serializedVersion: 2
         x: 96
@@ -952,17 +727,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 644fd740091563b479f5942065968441
-      internalID: -176994549
+      spriteID: c3cbb42f00998c14e97a84aca412c2d8
+      internalID: -39090864
       vertices: []
       indices: 
       edges: []
       weights: []
     outline: []
+    customData: 
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
@@ -972,88 +749,89 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
     nameFileIdTable:
       Tank_0: -417095229
-      percival__0: -305662272
-      percival__1: 1374626200
-      percival__10: -872136298
-      percival__11: -1390735489
-      percival__12: 62970383
-      percival__13: -747846092
-      percival__14: 438108613
-      percival__15: 2107426658
-      percival__16: -1541046109
-      percival__17: 255421797
-      percival__18: -1405951016
-      percival__19: -356050601
-      percival__2: -1693125552
-      percival__20: -857989926
-      percival__21: 1690616820
-      percival__22: 424591026
-      percival__23: -988970491
-      percival__24: 1785491862
-      percival__25: 1179780099
-      percival__26: 279514125
-      percival__27: 710534562
-      percival__28: 2118831329
-      percival__29: 89322563
-      percival__3: 833980843
-      percival__30: -1829596493
-      percival__31: 189481670
-      percival__32: -1315764474
-      percival__33: -1207516310
-      percival__34: -398198133
-      percival__35: 1572625589
-      percival__36: 880048565
-      percival__37: -1901584337
-      percival__38: 1634198883
-      percival__39: 500692424
-      percival__4: 1387499875
-      percival__40: -1755953926
-      percival__41: 1565472633
-      percival__42: 270187336
-      percival__43: 399002183
-      percival__44: 1122914917
-      percival__45: 21690444
-      percival__46: 1159464640
-      percival__47: -562995629
-      percival__48: 1897352676
-      percival__49: 1290633978
-      percival__5: -411634494
-      percival__50: -1166830998
-      percival__51: -351150836
-      percival__52: -615960431
-      percival__53: -267503285
-      percival__54: -1477324342
-      percival__55: 269284679
-      percival__56: 1045920116
-      percival__57: -1240282035
-      percival__58: -1411476084
-      percival__59: 459788124
-      percival__6: -696015635
-      percival__60: 518050298
-      percival__61: -626500243
-      percival__62: -1019631037
-      percival__63: 722582481
-      percival__64: 2139352108
-      percival__65: -1442418847
-      percival__66: -342096323
-      percival__67: 818679792
-      percival__68: -1481458642
-      percival__69: 810507041
-      percival__7: -1286707628
-      percival__70: -950071501
-      percival__71: -573568608
-      percival__72: -735454497
-      percival__73: -109379267
-      percival__74: -649699394
-      percival__75: -176994549
-      percival__76: -643685648
-      percival__77: 1339170369
-      percival__78: 815132624
-      percival__79: 817116307
-      percival__8: -1376991010
-      percival__9: -738260776
+      Tank_1: -426588199
+      Tank_10: 321051309
+      Tank_11: 759641281
+      Tank_12: 2058613470
+      Tank_13: -419116912
+      Tank_14: -88197085
+      Tank_15: 1218057540
+      Tank_16: 1214727971
+      Tank_17: 1424872373
+      Tank_18: 408148868
+      Tank_19: -1299647567
+      Tank_2: -1501515414
+      Tank_20: -1636029089
+      Tank_21: 1816118296
+      Tank_22: -269259491
+      Tank_23: -1235609710
+      Tank_24: -1925125313
+      Tank_25: 670792941
+      Tank_26: -75885937
+      Tank_27: 1934990307
+      Tank_28: 1314873658
+      Tank_29: -1480407454
+      Tank_3: 1575265027
+      Tank_30: -1143663649
+      Tank_31: -1841689021
+      Tank_32: 1558640440
+      Tank_33: 1575039865
+      Tank_34: 1100039741
+      Tank_35: -486532830
+      Tank_36: -480803357
+      Tank_37: 1983223002
+      Tank_38: 89805286
+      Tank_39: 1036947438
+      Tank_4: 1716925038
+      Tank_40: 1297566088
+      Tank_41: 954619885
+      Tank_42: -806757234
+      Tank_43: 1145385013
+      Tank_44: 853823799
+      Tank_45: -1290376605
+      Tank_46: 1981695896
+      Tank_47: 1833510711
+      Tank_48: -1799177464
+      Tank_49: -2057578534
+      Tank_5: 1059948515
+      Tank_50: -1510767960
+      Tank_51: -1457940479
+      Tank_52: 2007190054
+      Tank_53: -788695732
+      Tank_54: -2063136552
+      Tank_55: 180015096
+      Tank_56: -336599760
+      Tank_57: -1316594979
+      Tank_58: -1565564499
+      Tank_59: 1001191683
+      Tank_6: 552779798
+      Tank_60: -544826660
+      Tank_61: 1995289192
+      Tank_62: 397286619
+      Tank_63: 1020344234
+      Tank_64: 864245496
+      Tank_65: -510062303
+      Tank_66: 1971290621
+      Tank_67: 1688163824
+      Tank_68: 1186295416
+      Tank_69: 254996726
+      Tank_7: -646744371
+      Tank_70: -1814864902
+      Tank_71: 228463707
+      Tank_72: -76703955
+      Tank_73: -1114417623
+      Tank_74: 1968854790
+      Tank_75: -39090864
+      Tank_76: -1826526299
+      Tank_77: 2144523633
+      Tank_78: 19554724
+      Tank_79: 1183663378
+      Tank_8: 547039504
+      Tank_9: 477687188
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

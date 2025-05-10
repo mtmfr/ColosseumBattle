@@ -3,7 +3,7 @@ guid: 47d7646cf627f634fb6d1c8e0be66854
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -67,7 +67,7 @@ TextureImporter:
   swizzle: 50462976
   cookieLightType: 0
   platformSettings:
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -80,7 +80,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -93,7 +93,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -106,7 +106,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -123,91 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bandit__0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 256
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 914ad59ad236d4446bd6019217687eda
-      internalID: 1421874711
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bandit__1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 256
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 39dd1f3f0cb5cc34f9dcec25966b2fc8
-      internalID: -2127865939
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bandit__2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 256
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 13849a07ce0ae3d408f0ad25f15abe59
-      internalID: -41272922
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bandit__3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 256
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 25dba47232725bd499b8f7f576374b59
-      internalID: -357563109
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bandit__4
+      name: Warrior_4
       rect:
         serializedVersion: 2
         x: 0
@@ -215,20 +131,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bae79d9bfa6178d4c9da66eab6522117
-      internalID: 1365580807
+      spriteID: 487ee98d6bdf66543a956c288e5f054c
+      internalID: 786689805
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bandit__5
+      name: Warrior_5
       rect:
         serializedVersion: 2
         x: 32
@@ -236,20 +153,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8fe0c270b045a3648850c0ee6e0c73f3
-      internalID: 445348885
+      spriteID: b350cd18abaf7954b8286f11eb6de133
+      internalID: -1447256516
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bandit__6
+      name: Warrior_6
       rect:
         serializedVersion: 2
         x: 64
@@ -257,20 +175,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa32e7e6f432dc64887bb938dd9d4f28
-      internalID: -1354831623
+      spriteID: 06e6c70b7e218e94786df89b40e67ea4
+      internalID: 706239656
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bandit__7
+      name: Warrior_7
       rect:
         serializedVersion: 2
         x: 96
@@ -278,20 +197,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98506275236268247a208e187e063cb9
-      internalID: -1801281941
+      spriteID: cfa925fa353635e4791dbfca73344914
+      internalID: -2097932029
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bandit__8
+      name: Warrior_8
       rect:
         serializedVersion: 2
         x: 0
@@ -299,20 +219,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8cd0b8bcf6fc9b64c947199ac0f9881a
-      internalID: -404255657
+      spriteID: a4bb0c5ef17018849b36aadcd6bbe111
+      internalID: 309915757
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bandit__9
+      name: Warrior_9
       rect:
         serializedVersion: 2
         x: 32
@@ -320,20 +241,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dec92554993541e4ea507a22dcd5d4ae
-      internalID: -210740821
+      spriteID: bacc2708ef1bb55459cb29d9940edaf5
+      internalID: -1467607391
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bandit__10
+      name: Warrior_10
       rect:
         serializedVersion: 2
         x: 64
@@ -341,20 +263,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98c3bea3e68fab94f92dfe4b84a08e25
-      internalID: 1234825224
+      spriteID: ad8ef2b9a3ad5d3419caffaefa4237e5
+      internalID: -1926351894
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bandit__11
+      name: Warrior_11
       rect:
         serializedVersion: 2
         x: 96
@@ -362,20 +285,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa3c0aa66d09e2b4cb7123d9c919687a
-      internalID: -1457348427
+      spriteID: baa780042ca727447a4094ac511ca493
+      internalID: 1075109443
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bandit__12
+      name: Warrior_12
       rect:
         serializedVersion: 2
         x: 128
@@ -383,20 +307,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f84222e5ec6565458abc0c960f60a36
-      internalID: 553270954
+      spriteID: 29bc127138f587449a16559fe69dc06c
+      internalID: 1708643746
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bandit__13
+      name: Warrior_13
       rect:
         serializedVersion: 2
         x: 160
@@ -404,20 +329,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 734c6966143219a4ab69110e86877853
-      internalID: -1751914064
+      spriteID: 6339737be32d1c74a8e5f728629a740a
+      internalID: -598931804
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bandit__14
+      name: Warrior_14
       rect:
         serializedVersion: 2
         x: 192
@@ -425,20 +351,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e76f83d3f14cfea48a78a70ea412324d
-      internalID: -900664733
+      spriteID: 6b5fd67d4b67b6a43bd605b10efc49c3
+      internalID: 530064285
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bandit__15
+      name: Warrior_15
       rect:
         serializedVersion: 2
         x: 224
@@ -446,209 +373,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d691846d76a321e43b09e20d67c2554f
-      internalID: -2097040617
+      spriteID: f2efa3e39e4b25a4995f01efbce495cf
+      internalID: 725246740
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bandit__16
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 132d89db1172b6d4f98bdfb4b4b03348
-      internalID: -1133185076
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bandit__17
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b5ac6d0a96e75ac4987709a77a057563
-      internalID: -2059109332
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bandit__18
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f51c5ddd1e196844789142721630954a
-      internalID: -676888120
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bandit__19
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 94e4e387b28966b49b466e6ee85c9ae8
-      internalID: 1546004285
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bandit__20
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5ac74413aa2890845a12a7ac719a68ab
-      internalID: 1437957109
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bandit__21
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e84f91227d98ebb4fb61d8dcdabdfd18
-      internalID: 1789559175
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bandit__22
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 280c84fcd16cb654dba63dd9160cadb5
-      internalID: 237128399
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bandit__23
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d0b9ae31f05f11e4a95984cbd8e800a4
-      internalID: -85482903
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bandit__24
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4722ce11f17b5cc418082de33826f636
-      internalID: 128627493
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bandit__25
+      name: Warrior_25
       rect:
         serializedVersion: 2
         x: 0
@@ -656,20 +395,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc3c18d0a2d4e824392f300c2ec638f3
-      internalID: 335224748
+      spriteID: 4b2add92eac17eb4faaa3fe975aa5c27
+      internalID: 1614853918
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bandit__26
+      name: Warrior_26
       rect:
         serializedVersion: 2
         x: 32
@@ -677,20 +417,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6530b425af6f37429ed66811e5180cf
-      internalID: -2004242102
+      spriteID: 7193b47ac64965a43a2266d8f97dfbf9
+      internalID: 1647519559
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bandit__27
+      name: Warrior_27
       rect:
         serializedVersion: 2
         x: 64
@@ -698,20 +439,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1419d5e4fa8b67d41808a8e9e108c21d
-      internalID: 1231899297
+      spriteID: 68615de95132e2b4b8f75f94805632ac
+      internalID: -183158772
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bandit__28
+      name: Warrior_28
       rect:
         serializedVersion: 2
         x: 96
@@ -719,20 +461,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e155b0d08f8c4d74d91024530c949205
-      internalID: -508591617
+      spriteID: ae322aa701f97c2439d7bb2ef25a64f8
+      internalID: -1108482646
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bandit__29
+      name: Warrior_29
       rect:
         serializedVersion: 2
         x: 0
@@ -740,20 +483,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 455eb31b19f36644aada613d4bf673d8
-      internalID: -1453749365
+      spriteID: a039a97aa30125a4f934c5cbd26bf0a4
+      internalID: 1277557430
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bandit__30
+      name: Warrior_30
       rect:
         serializedVersion: 2
         x: 32
@@ -761,20 +505,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9bd0e52866981a242b738f258a271c5b
-      internalID: -1770481735
+      spriteID: 6d24887889921be4a83ff70e73e64b07
+      internalID: 1556785923
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bandit__31
+      name: Warrior_31
       rect:
         serializedVersion: 2
         x: 64
@@ -782,20 +527,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f159127715d85341939e481e10a1ff7
-      internalID: -1177714873
+      spriteID: 0af7dc5ac54931b449ed5bea525bb81a
+      internalID: -535633187
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bandit__32
+      name: Warrior_32
       rect:
         serializedVersion: 2
         x: 96
@@ -803,19 +549,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 71e70ee01347cc74b9bbea070d0a6361
-      internalID: -367551003
+      spriteID: 9bbc22f62fc4d4440bd2b90dbd647480
+      internalID: -997342204
       vertices: []
       indices: 
       edges: []
       weights: []
     outline: []
+    customData: 
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
@@ -825,40 +573,42 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
     nameFileIdTable:
-      bandit__0: 1421874711
-      bandit__1: -2127865939
-      bandit__10: 1234825224
-      bandit__11: -1457348427
-      bandit__12: 553270954
-      bandit__13: -1751914064
-      bandit__14: -900664733
-      bandit__15: -2097040617
-      bandit__16: -1133185076
-      bandit__17: -2059109332
-      bandit__18: -676888120
-      bandit__19: 1546004285
-      bandit__2: -41272922
-      bandit__20: 1437957109
-      bandit__21: 1789559175
-      bandit__22: 237128399
-      bandit__23: -85482903
-      bandit__24: 128627493
-      bandit__25: 335224748
-      bandit__26: -2004242102
-      bandit__27: 1231899297
-      bandit__28: -508591617
-      bandit__29: -1453749365
-      bandit__3: -357563109
-      bandit__30: -1770481735
-      bandit__31: -1177714873
-      bandit__32: -367551003
-      bandit__4: 1365580807
-      bandit__5: 445348885
-      bandit__6: -1354831623
-      bandit__7: -1801281941
-      bandit__8: -404255657
-      bandit__9: -210740821
+      Warrior_0: -503327779
+      Warrior_1: -291438045
+      Warrior_10: -1926351894
+      Warrior_11: 1075109443
+      Warrior_12: 1708643746
+      Warrior_13: -598931804
+      Warrior_14: 530064285
+      Warrior_15: 725246740
+      Warrior_16: 578556671
+      Warrior_17: 1557186483
+      Warrior_18: 746827542
+      Warrior_19: -112435988
+      Warrior_2: 2046796636
+      Warrior_20: 2013756218
+      Warrior_21: -908757005
+      Warrior_22: -50292602
+      Warrior_23: -1906726077
+      Warrior_24: 1141863350
+      Warrior_25: 1614853918
+      Warrior_26: 1647519559
+      Warrior_27: -183158772
+      Warrior_28: -1108482646
+      Warrior_29: 1277557430
+      Warrior_3: -2042275660
+      Warrior_30: 1556785923
+      Warrior_31: -535633187
+      Warrior_32: -997342204
+      Warrior_4: 786689805
+      Warrior_5: -1447256516
+      Warrior_6: 706239656
+      Warrior_7: -2097932029
+      Warrior_8: 309915757
+      Warrior_9: -1467607391
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

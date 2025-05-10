@@ -3,7 +3,7 @@ guid: 968ca18f9c2e2bc48aa9a239f8ae7815
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -67,7 +67,7 @@ TextureImporter:
   swizzle: 50462976
   cookieLightType: 0
   platformSettings:
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -80,7 +80,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -93,7 +93,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -106,7 +106,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: merlin__0
+      name: Mage_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,20 +131,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2c32b470201d9864e8e8de218a1fc2f5
-      internalID: 127464790
+      spriteID: 6c66aff99e152d542993dc912c424e02
+      internalID: 88247767
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: merlin__1
+      name: Mage_1
       rect:
         serializedVersion: 2
         x: 32
@@ -152,20 +153,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2f5f9b51647df3418e2a3bcc7c10e1c
-      internalID: 191768126
+      spriteID: 5c9a9ec0e164a8846af2f930447b6faf
+      internalID: 988504181
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: merlin__2
+      name: Mage_2
       rect:
         serializedVersion: 2
         x: 64
@@ -173,20 +175,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0354e167d6a368240968eda124ebbf30
-      internalID: 939326359
+      spriteID: 7ac3dd576c454ed4db05fbf56af91869
+      internalID: -298792846
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: merlin__3
+      name: Mage_3
       rect:
         serializedVersion: 2
         x: 96
@@ -194,272 +197,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ebde4294af3efa4cb746f10c67da0f7
-      internalID: -530416497
+      spriteID: 4a70b8237f03bbd428c1683ad917c701
+      internalID: 1101571484
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: merlin__4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 320
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 75784be25377c5448abe535d781e1139
-      internalID: -1544778863
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__5
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 320
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f49b0b096111c1e43a3a6c7722aae8f5
-      internalID: -183709656
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__6
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 320
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0a19f410848832349ab2950c751f17ad
-      internalID: -1951340358
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__7
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 320
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9fb21b53b39f45c46837fd22d2f1260c
-      internalID: 546537005
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__8
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 288
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b69e054def309df428d9c10636d7319f
-      internalID: -743313744
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__9
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 288
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2dfe1fe0c65ff014093d0b1b2514bb78
-      internalID: 2089953620
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__10
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 288
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9c89f8fdf46da42478b4c1cdd00a78c2
-      internalID: 1638709564
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__11
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 288
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f87963639df02f9429b6436fc0ea5ad8
-      internalID: 1284366284
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__12
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 288
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cbcb0c64116f816419a8e8b902becace
-      internalID: 554097384
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__13
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 288
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6967de2b5d9589049afd72508987c03b
-      internalID: -1785068490
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__14
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 288
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8e1959b511a3f6e41800183ebdfd4e28
-      internalID: 1895013359
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__15
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 288
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f6a77d676d827aa45baef5fb0145bc95
-      internalID: -1050102684
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__16
+      name: Mage_16
       rect:
         serializedVersion: 2
         x: 0
@@ -467,20 +219,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7b6159fd3d31b14fb6159c11cfeaf02
-      internalID: 327869275
+      spriteID: aa065a366bbf3054aa613850fca76902
+      internalID: 328334361
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: merlin__17
+      name: Mage_17
       rect:
         serializedVersion: 2
         x: 32
@@ -488,20 +241,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a12470eda7a8ce94da03048dc5edea0a
-      internalID: -1378597955
+      spriteID: 45d4d180c54c4124d9e03f273934bb1f
+      internalID: 5967474
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: merlin__18
+      name: Mage_18
       rect:
         serializedVersion: 2
         x: 64
@@ -509,20 +263,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87f1fe0d7a5636b4e9f9bce2a5af3a1f
-      internalID: 1506546963
+      spriteID: 8a91c419c0a8ba24888ab7e0a95abac1
+      internalID: -434988650
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: merlin__19
+      name: Mage_19
       rect:
         serializedVersion: 2
         x: 96
@@ -530,1112 +285,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c2dec9bab462f2479b231b8484edd5b
-      internalID: 2055059560
+      spriteID: 4804b675089ca0742861ac8b77029b97
+      internalID: -591792743
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: merlin__20
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 256
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f3dd09aaa4146de45b9177ccab42186d
-      internalID: 1764430826
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__21
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 256
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c4c904f72cb43de45aac2332f82e4497
-      internalID: -1071650104
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__22
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 256
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4bc09fb3875e19b4c9ecf4ba953ce08d
-      internalID: 159958825
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__23
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 256
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2348413a78b189f4aa9b7aabcf6454cc
-      internalID: 1565120731
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__24
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 224
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6298226ba221e234582f0dedcecd265d
-      internalID: 1641938385
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__25
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 224
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 444ce6ac1d79bc54094376943779b5c8
-      internalID: 1186051918
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__26
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 224
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dc70afc724664db48a680fe3cb84b614
-      internalID: 1227058919
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__27
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 224
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f5422b5369ffe6e429ff01dc12838120
-      internalID: -1713241258
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__28
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 224
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b3c0bf4042346a147a37124c1b81dd05
-      internalID: 1628041193
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__29
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 224
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d47b9fc5bd104144488ab157490aa430
-      internalID: -2140064862
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__30
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 224
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0bc1ac2d0aafca34490abb89bcbc2226
-      internalID: 250242431
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__31
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 224
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: eb7b2741f5d28f44bbbce8f9e7910478
-      internalID: 1367838584
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__32
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 192
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: edf8cc2042e324a4d9c4c6ab5c02c9f0
-      internalID: -994188418
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__33
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 192
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1884487e63542094d911591ed9631532
-      internalID: -2095783449
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__34
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 192
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 302d9155e8e760e4891bb4fab124e036
-      internalID: 1205483570
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__35
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 192
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4471afa44099fc6479e716d557d839ad
-      internalID: -132593394
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__36
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 192
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0e297f05b5ae82947b92cdf40f312c93
-      internalID: -1267600680
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__37
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 192
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bb3bd12218af8f741a4f9566a0eecf68
-      internalID: 2128963473
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__38
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 192
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 52f468c2e38872144b950dd532f588e4
-      internalID: -394812648
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__39
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 192
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 495f156ec8442ba49850e18ae5eec60b
-      internalID: -1868931661
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__40
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8f820c1f93c5a7f4da60145a69372c3a
-      internalID: -1422750570
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__41
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 88e17b9ccc635bb4db48099af54e5f32
-      internalID: 1602171786
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__42
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c7f675adbf20818489143b5a9d2c82f7
-      internalID: -1728874642
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__43
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e58ce640b01b9a84cb6155e7188ee6e8
-      internalID: -449056176
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__44
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: adec304bbf24a744da6bc05164b84398
-      internalID: -785337634
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__45
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f1df245c9f5037a4fbc56a7598892dd8
-      internalID: 2055027376
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__46
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1fae4277cc3c5d54da1149ebc6cd6567
-      internalID: 770327868
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__47
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d840a1869fb16a944aa669f1bf26dc17
-      internalID: -680021793
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__48
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4e3896edfa581954dbd5c3bac8f76929
-      internalID: -180367786
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__49
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7e8f6cceba7daed4ebad2e8bbd934d9f
-      internalID: 392330957
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__50
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b9e6f98b7238e1e4f96633c5b8dfd9dc
-      internalID: -1492043824
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__51
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 333fb713d9aad7b4199d626cdbcb1bd3
-      internalID: 1472081482
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__52
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9e493fdcb4f484d43aea377a0db3ac46
-      internalID: -351503183
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__53
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4375720760aebf84c9f24e7fceec3b64
-      internalID: -1790999934
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__54
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: eda78f639f6dccd41bbd9cc310b737e9
-      internalID: -606898277
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__55
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0268dcd17e9113e4c8f135e802159f08
-      internalID: -1199325173
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__56
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 30f84fd4e1b927d449bd0bac467c4b4e
-      internalID: 479054681
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__57
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 62d6228e2fcdb824f89218879c127440
-      internalID: 1842981582
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__58
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 521d4edcfff25744b91969ede7466e7d
-      internalID: -839948793
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__59
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c934f112e24ea3340afc332bec8b1815
-      internalID: 2050388220
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__60
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 41e3a56d99381e64caef92ef14b53d1e
-      internalID: -537532912
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__61
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2c22346eb2fb5584d99b89860009ed6b
-      internalID: 1786251424
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__62
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7f445268301881b46bbdf98c3ff21b45
-      internalID: 2107420341
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__63
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ba1eb723efcfa714ba13d743230c1a24
-      internalID: -322509556
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__64
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d359ff7390c0763418b9c9236330f961
-      internalID: 997432875
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__65
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 43ac7431a47f281478f7a88da7db8176
-      internalID: 1983861927
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__66
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b35baad69c60a3040a3edd4fd6e2e7e6
-      internalID: 1778108011
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__67
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 20977d9b2b0b5684ba011ce9042ee021
-      internalID: 867078151
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__68
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5349356ac1a12f847b5825ac73b28b66
-      internalID: 604027985
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__69
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3b0fc19628b1bbf4b9dd9837bbbb1cc1
-      internalID: -667142855
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__70
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 84ad4315bdbf83941907a9b14ea8e9f7
-      internalID: -647676438
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__71
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 03b644d8c70ea664680e744f2c3e318a
-      internalID: -88059760
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__72
+      name: Mage_72
       rect:
         serializedVersion: 2
         x: 0
@@ -1643,20 +307,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98ad1407f2c78de4a9a82f97ccf28dd6
-      internalID: 314398884
+      spriteID: 0cc18565ff96ac947af83ff8fc6c5307
+      internalID: -2111529013
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: merlin__73
+      name: Mage_73
       rect:
         serializedVersion: 2
         x: 32
@@ -1664,20 +329,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2aec39a797018cb4183f966d71de6a90
-      internalID: -1564740551
+      spriteID: 205c4609d54661546a1edfa0ed26b4bd
+      internalID: 816212679
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: merlin__74
+      name: Mage_74
       rect:
         serializedVersion: 2
         x: 64
@@ -1685,20 +351,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f9427bf36aeb0db42949a8f9c097a9f2
-      internalID: -2064429109
+      spriteID: 6c9c97dcec746f74aa9d2f117ab8a240
+      internalID: 935853765
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: merlin__75
+      name: Mage_75
       rect:
         serializedVersion: 2
         x: 96
@@ -1706,104 +373,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb8612e4456befb488a5d5484114f8a5
-      internalID: 1258756867
+      spriteID: ac6bdee09aa6bf84e9479e99c122533c
+      internalID: 1381429409
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: merlin__76
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c33e3ee3fdaca134f9e795ac538d0bb4
-      internalID: 346510269
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__77
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ed2c8a55b8860d44a86128d364254c19
-      internalID: 418204865
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__78
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 15c5cbb86743b7b4dbae1f0f61c743b5
-      internalID: 510031036
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__79
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: db7bd3f20439a9840978ec3673462a92
-      internalID: -1222450906
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__80
+      name: Mage_80
       rect:
         serializedVersion: 2
         x: 0
@@ -1811,20 +395,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3566a19dfe336a648b7febcde7d0e07d
-      internalID: -747328834
+      spriteID: 7c1088d6962c1434a8107b48a02ab384
+      internalID: -2098159926
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: merlin__81
+      name: Mage_81
       rect:
         serializedVersion: 2
         x: 32
@@ -1832,20 +417,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0db6cb672c58eb4ca87c760004fb8ce
-      internalID: -409554761
+      spriteID: ed2981bb2af85cd4c8b687a290938ac3
+      internalID: 179301169
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: merlin__82
+      name: Mage_82
       rect:
         serializedVersion: 2
         x: 64
@@ -1853,20 +439,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8cb77705c6dd36a4ca94832e5ff71f4d
-      internalID: -197764851
+      spriteID: f32922911a403014ea8a5f08a692e115
+      internalID: 1666813470
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: merlin__83
+      name: Mage_83
       rect:
         serializedVersion: 2
         x: 96
@@ -1874,103 +461,21 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff3e25f38e3c60f438694a5246e86ccd
-      internalID: 966048328
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__84
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f6a9179da4d653541b45754838344210
-      internalID: 1085818775
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__85
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 41a6aad3262ee894db3be5ce0c4464ea
-      internalID: 1922286903
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__86
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 32be30500b4c0cd4cba7d62da908fc41
-      internalID: 1216297297
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: merlin__87
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 57970c1e130f80b4ba3ba2067e31c90e
-      internalID: -726287992
+      spriteID: 4673a10606185d0419d3b2fb298f8772
+      internalID: 875992291
       vertices: []
       indices: 
       edges: []
       weights: []
     outline: []
+    customData: 
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
@@ -1980,95 +485,97 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
     nameFileIdTable:
-      merlin__0: 127464790
-      merlin__1: 191768126
-      merlin__10: 1638709564
-      merlin__11: 1284366284
-      merlin__12: 554097384
-      merlin__13: -1785068490
-      merlin__14: 1895013359
-      merlin__15: -1050102684
-      merlin__16: 327869275
-      merlin__17: -1378597955
-      merlin__18: 1506546963
-      merlin__19: 2055059560
-      merlin__2: 939326359
-      merlin__20: 1764430826
-      merlin__21: -1071650104
-      merlin__22: 159958825
-      merlin__23: 1565120731
-      merlin__24: 1641938385
-      merlin__25: 1186051918
-      merlin__26: 1227058919
-      merlin__27: -1713241258
-      merlin__28: 1628041193
-      merlin__29: -2140064862
-      merlin__3: -530416497
-      merlin__30: 250242431
-      merlin__31: 1367838584
-      merlin__32: -994188418
-      merlin__33: -2095783449
-      merlin__34: 1205483570
-      merlin__35: -132593394
-      merlin__36: -1267600680
-      merlin__37: 2128963473
-      merlin__38: -394812648
-      merlin__39: -1868931661
-      merlin__4: -1544778863
-      merlin__40: -1422750570
-      merlin__41: 1602171786
-      merlin__42: -1728874642
-      merlin__43: -449056176
-      merlin__44: -785337634
-      merlin__45: 2055027376
-      merlin__46: 770327868
-      merlin__47: -680021793
-      merlin__48: -180367786
-      merlin__49: 392330957
-      merlin__5: -183709656
-      merlin__50: -1492043824
-      merlin__51: 1472081482
-      merlin__52: -351503183
-      merlin__53: -1790999934
-      merlin__54: -606898277
-      merlin__55: -1199325173
-      merlin__56: 479054681
-      merlin__57: 1842981582
-      merlin__58: -839948793
-      merlin__59: 2050388220
-      merlin__6: -1951340358
-      merlin__60: -537532912
-      merlin__61: 1786251424
-      merlin__62: 2107420341
-      merlin__63: -322509556
-      merlin__64: 997432875
-      merlin__65: 1983861927
-      merlin__66: 1778108011
-      merlin__67: 867078151
-      merlin__68: 604027985
-      merlin__69: -667142855
-      merlin__7: 546537005
-      merlin__70: -647676438
-      merlin__71: -88059760
-      merlin__72: 314398884
-      merlin__73: -1564740551
-      merlin__74: -2064429109
-      merlin__75: 1258756867
-      merlin__76: 346510269
-      merlin__77: 418204865
-      merlin__78: 510031036
-      merlin__79: -1222450906
-      merlin__8: -743313744
-      merlin__80: -747328834
-      merlin__81: -409554761
-      merlin__82: -197764851
-      merlin__83: 966048328
-      merlin__84: 1085818775
-      merlin__85: 1922286903
-      merlin__86: 1216297297
-      merlin__87: -726287992
-      merlin__9: 2089953620
+      Mage_0: 88247767
+      Mage_1: 988504181
+      Mage_10: -326017101
+      Mage_11: 441384525
+      Mage_12: 339503672
+      Mage_13: -1233419398
+      Mage_14: -190622628
+      Mage_15: 1837964832
+      Mage_16: 328334361
+      Mage_17: 5967474
+      Mage_18: -434988650
+      Mage_19: -591792743
+      Mage_2: -298792846
+      Mage_20: -1910833148
+      Mage_21: 1896534888
+      Mage_22: -949343044
+      Mage_23: 489714021
+      Mage_24: 354591954
+      Mage_25: 230470017
+      Mage_26: 49799952
+      Mage_27: 778603331
+      Mage_28: -871432442
+      Mage_29: -425616750
+      Mage_3: 1101571484
+      Mage_30: -1201743620
+      Mage_31: -493940423
+      Mage_32: -339761177
+      Mage_33: -2141429864
+      Mage_34: 1255540444
+      Mage_35: -1905540950
+      Mage_36: 1527220601
+      Mage_37: -30676807
+      Mage_38: -1027744500
+      Mage_39: 1452765153
+      Mage_4: -1296173026
+      Mage_40: 857524927
+      Mage_41: -702718447
+      Mage_42: 1299949478
+      Mage_43: 943814728
+      Mage_44: 694581637
+      Mage_45: 146810149
+      Mage_46: -999846756
+      Mage_47: -1782186534
+      Mage_48: 1676701051
+      Mage_49: -233653781
+      Mage_5: 65589898
+      Mage_50: 1528572528
+      Mage_51: 2124637618
+      Mage_52: 1696643325
+      Mage_53: -2042957304
+      Mage_54: 413884703
+      Mage_55: -321808274
+      Mage_56: -616218897
+      Mage_57: -790990092
+      Mage_58: -277617887
+      Mage_59: -1582836729
+      Mage_6: 162681650
+      Mage_60: 639567665
+      Mage_61: 1125807791
+      Mage_62: 242858590
+      Mage_63: -222744595
+      Mage_64: 451218729
+      Mage_65: 463182693
+      Mage_66: -808209352
+      Mage_67: 791711159
+      Mage_68: -1584633775
+      Mage_69: -959708917
+      Mage_7: -1830868614
+      Mage_70: 1990843226
+      Mage_71: 1576459475
+      Mage_72: -2111529013
+      Mage_73: 816212679
+      Mage_74: 935853765
+      Mage_75: 1381429409
+      Mage_76: -577609364
+      Mage_77: -1467640521
+      Mage_78: -1698488230
+      Mage_79: -1014150415
+      Mage_8: 1149549845
+      Mage_80: -2098159926
+      Mage_81: 179301169
+      Mage_82: 1666813470
+      Mage_83: 875992291
+      Mage_84: 1206557061
+      Mage_85: 758150438
+      Mage_86: 242536304
+      Mage_87: -104585549
+      Mage_9: 63333415
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

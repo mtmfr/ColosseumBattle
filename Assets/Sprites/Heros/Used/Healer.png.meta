@@ -3,7 +3,7 @@ guid: 30ddebd1c853dd54ea1e5a9ba372a85e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -67,7 +67,7 @@ TextureImporter:
   swizzle: 50462976
   cookieLightType: 0
   platformSettings:
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -80,7 +80,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -93,7 +93,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -106,7 +106,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: healer_0
+      name: Healer_0
       rect:
         serializedVersion: 2
         x: 0
@@ -133,18 +133,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a231ce80b008c4147b9be4431c7551e0
-      internalID: -265724549
+      spriteID: 6ced7bb3afebc02428df002a798903a1
+      internalID: -960515015
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: healer_1
+      name: Healer_1
       rect:
         serializedVersion: 2
         x: 24
@@ -154,18 +155,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1477a4b19c3cca24595f984d361d5ec0
-      internalID: 1051596238
+      spriteID: ae7b93c82d8b38c4a99150b7953f5828
+      internalID: -2015117381
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: healer_2
+      name: Healer_2
       rect:
         serializedVersion: 2
         x: 48
@@ -175,18 +177,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9845e77ac631714ba0881bab7f3521d
-      internalID: -1185457268
+      spriteID: b8934f6b46dd6044ca6abb5a496e84f0
+      internalID: 661800947
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: healer_3
+      name: Healer_3
       rect:
         serializedVersion: 2
         x: 72
@@ -196,18 +199,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78d5b19cd32f64b46b5b9cb86f148bf5
-      internalID: -135113906
+      spriteID: 575ddefd559791f418728e2d985fe5de
+      internalID: 972839256
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: healer_8
+      name: Healer_8
       rect:
         serializedVersion: 2
         x: 0
@@ -217,18 +221,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cadcc7c2b9e8f2049aa9c9a5a818a161
-      internalID: 1602783520
+      spriteID: 5b3aad06b5d6fc8498693938178bf982
+      internalID: -411916386
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: healer_9
+      name: Healer_9
       rect:
         serializedVersion: 2
         x: 24
@@ -238,18 +243,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6296a2bef4d2834e87853957055a737
-      internalID: -1970250493
+      spriteID: 212fb722ed7d89041b4f823f4f38ebdf
+      internalID: -111577755
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: healer_10
+      name: Healer_10
       rect:
         serializedVersion: 2
         x: 48
@@ -259,18 +265,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06aa9ebf750ecab41ab39ce853b6bf0e
-      internalID: -48884393
+      spriteID: 4e4d0f63a7e7e154587d1e2a3aa7539c
+      internalID: 778077268
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: healer_11
+      name: Healer_11
       rect:
         serializedVersion: 2
         x: 72
@@ -280,102 +287,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a4ab7c53521e454a84130ae5b594723
-      internalID: -1363963007
+      spriteID: 20b0bb636c77dbf459701eaf4e172874
+      internalID: 1523821057
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: healer_16
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 48
-        width: 24
-        height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 76cfabfb07b5679468842c5e0cf7dd2b
-      internalID: 1969722613
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: healer_17
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 48
-        width: 24
-        height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7185387a5a2eb5c4fbf379ce56c9942e
-      internalID: 1392497296
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: healer_18
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 48
-        width: 24
-        height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 00384eb2dbc5f6f4b871e6fd01ec8370
-      internalID: -612468870
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: healer_19
-      rect:
-        serializedVersion: 2
-        x: 72
-        y: 48
-        width: 24
-        height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 99c9d0845da071b459b5611c19985a13
-      internalID: -1234758896
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: healer_24
+      name: Healer_24
       rect:
         serializedVersion: 2
         x: 0
@@ -385,18 +309,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22b34107f9d927748a6f869337ed6542
-      internalID: 1099039430
+      spriteID: f249db14f65369d48a993e78959485f1
+      internalID: 1970117501
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: healer_25
+      name: Healer_25
       rect:
         serializedVersion: 2
         x: 24
@@ -406,18 +331,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d699429f13f1e44ca9f814546c7974c
-      internalID: 1076900979
+      spriteID: 6a53485ee04c25b4dbd6bc852d1c676f
+      internalID: 84886251
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: healer_26
+      name: Healer_26
       rect:
         serializedVersion: 2
         x: 48
@@ -427,18 +353,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1b355a6c3428c940a95d4443a696ddb
-      internalID: -70830327
+      spriteID: 94d129959dc7da04788561f3b8787a73
+      internalID: 1346990644
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: healer_27
+      name: Healer_27
       rect:
         serializedVersion: 2
         x: 72
@@ -448,18 +375,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45d795cb0a963a3428ae2c8160419886
-      internalID: -1264010472
+      spriteID: fb8966fa6d1cea542aed182b23776ae8
+      internalID: 1582872085
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: healer_32
+      name: Healer_32
       rect:
         serializedVersion: 2
         x: 0
@@ -469,18 +397,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d31432b5bbcf61944a4507d07a83ffee
-      internalID: 750961953
+      spriteID: 8df5464280d07994dbaab0915388a4cc
+      internalID: -2124864356
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: healer_33
+      name: Healer_33
       rect:
         serializedVersion: 2
         x: 24
@@ -490,18 +419,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45d52d165c63a9c44bbde8dc9b9e7e02
-      internalID: 77474140
+      spriteID: fc29ce90d927ee74fbfd6e30530b5c53
+      internalID: -1974644784
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: healer_34
+      name: Healer_34
       rect:
         serializedVersion: 2
         x: 48
@@ -511,18 +441,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68c4c9330896b2c408789aec17f325b6
-      internalID: 1044920463
+      spriteID: a316c87b335020a4d9ec4c20369c578c
+      internalID: -1101322253
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: healer_35
+      name: Healer_35
       rect:
         serializedVersion: 2
         x: 72
@@ -532,17 +463,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d24e0626a6eead498350e54e0fb65f3
-      internalID: 1339369198
+      spriteID: f3363204d8973e54ebf54a28ceec36ed
+      internalID: -1799935148
       vertices: []
       indices: 
       edges: []
       weights: []
     outline: []
+    customData: 
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
@@ -552,47 +485,49 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
     nameFileIdTable:
-      healer_0: -265724549
-      healer_1: 1051596238
-      healer_10: -48884393
-      healer_11: -1363963007
-      healer_12: -1430906522
-      healer_13: 2038577517
-      healer_14: 2104920096
-      healer_15: 971083927
-      healer_16: 1969722613
-      healer_17: 1392497296
-      healer_18: -612468870
-      healer_19: -1234758896
-      healer_2: -1185457268
-      healer_20: 538431814
-      healer_21: -1678059092
-      healer_22: -1502117955
-      healer_23: 1952403499
-      healer_24: 1099039430
-      healer_25: 1076900979
-      healer_26: -70830327
-      healer_27: -1264010472
-      healer_28: 493326727
-      healer_29: -1371363385
-      healer_3: -135113906
-      healer_30: 264758364
-      healer_31: 752425315
-      healer_32: 750961953
-      healer_33: 77474140
-      healer_34: 1044920463
-      healer_35: 1339369198
-      healer_36: 1676188991
-      healer_37: 281170833
-      healer_38: 1296094434
-      healer_39: -1496433687
-      healer_4: 1858840901
-      healer_5: 2027552165
-      healer_6: -1394026404
-      healer_7: 1447060902
-      healer_8: 1602783520
-      healer_9: -1970250493
+      Healer_0: -960515015
+      Healer_1: -2015117381
+      Healer_10: 778077268
+      Healer_11: 1523821057
+      Healer_12: -1041366916
+      Healer_13: -32170971
+      Healer_14: 1042615422
+      Healer_15: -1917138159
+      Healer_16: 1764809432
+      Healer_17: -2064424962
+      Healer_18: 928111132
+      Healer_19: -206789759
+      Healer_2: 661800947
+      Healer_20: -1525538439
+      Healer_21: -1421490350
+      Healer_22: 244554614
+      Healer_23: -1238462070
+      Healer_24: 1970117501
+      Healer_25: 84886251
+      Healer_26: 1346990644
+      Healer_27: 1582872085
+      Healer_28: -534434648
+      Healer_29: 178299700
+      Healer_3: 972839256
+      Healer_30: -1096555964
+      Healer_31: 354728253
+      Healer_32: -2124864356
+      Healer_33: -1974644784
+      Healer_34: -1101322253
+      Healer_35: -1799935148
+      Healer_36: -805026592
+      Healer_37: -567107367
+      Healer_38: -1930290005
+      Healer_39: 1819883261
+      Healer_4: 1037333771
+      Healer_5: 1612128081
+      Healer_6: -1566520218
+      Healer_7: -189599429
+      Healer_8: -411916386
+      Healer_9: -111577755
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
