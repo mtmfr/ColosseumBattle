@@ -3,7 +3,6 @@ public static class PartyManager
     public static Hero[] heroesInBattle { get; private set; } = new Hero[5];
     public static Hero[] heroesInParty { get; private set; } = new Hero[10];
 
-
     /// <summary>
     /// Add a new hero to the party
     /// </summary>
@@ -16,12 +15,8 @@ public static class PartyManager
         int firstFreeId = heroesInBattle.GetFirstNullId();
 
         if (firstFreeId < 0)
-        {
             AddHeroToParty(heroBought);
-            return;
-        }
-
-        heroesInBattle[firstFreeId] = heroBought;
+        else heroesInBattle[firstFreeId] = heroBought;
     }
 
     /// <summary>

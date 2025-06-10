@@ -17,7 +17,7 @@ public class UI_Start : MonoBehaviour
 
     [SerializeField] private Button cancelButton;
 
-    private void OnEnable()
+    private void Start()
     {
         //Bind SelectHero to the delegate of the buttons in heroButtons
         for (int button = 0;  button < heroButtons.Length; button++)
@@ -25,7 +25,7 @@ public class UI_Start : MonoBehaviour
             Button heroButton = heroButtons[button];
 
             if (heroButton == null)
-                break;
+                Debug.LogError($"No button at id {button}", this);
 
             //create an id variable so that every hero can be selected
             //without it the only called hero will be the one with the last id
@@ -38,7 +38,7 @@ public class UI_Start : MonoBehaviour
         cancelButton.onClick.AddListener(Cancel);
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         for (int button = 0; button < heroButtons.Length; button++)
         {
@@ -52,11 +52,6 @@ public class UI_Start : MonoBehaviour
         cancelButton.onClick.RemoveAllListeners();
     }
 
-    private void OnDestroy()
-    {
-        GameManager.OnGameStateChange -= SetActive;
-    }
-
     private void SelectHero(int id)
     {
         if (heroes.units[id] is not Hero)
@@ -65,13 +60,13 @@ public class UI_Start : MonoBehaviour
             return;
         }
 
-        Hero selectedHero = (Hero)heroes.units[id];
+        Hero selectedHero = heroes.units[id] as Hero;
 
         UIParameters parameters = selectedHero.heroSO.uiParameters;
         heroDescription.text = parameters.heroDescription;
         selectedSprite.sprite = parameters.characterSprite;
 
-        WaveManager.instance.AddHeroToParty(selectedHero);
+        PartyManager.NewHeroBought(selectedHero);
 
         heroSelectionGO.SetActive(false);
         heroDescriptionGO.SetActive(true);
