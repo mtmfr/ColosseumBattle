@@ -16,8 +16,6 @@ public abstract class Enemy : Unit
 
     protected override void Attack(Unit target)
     {
-        base.Attack(target);
-
         if (target == null)
         {
             attackTimer = 0;
@@ -57,5 +55,7 @@ public abstract class Enemy : Unit
     {
         GameManager.AddGold(enemySO.goldDrop);
         ObjectPool.SetObjectInactive(this);
+
+        WaveManager.instance.EnemyDied();
     }
 }

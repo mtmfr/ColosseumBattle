@@ -15,9 +15,6 @@ public class WaveManager : MonoBehaviour
     #endregion
 
     [SerializeField] private HeroSpawner heroSpawner;
-
-    private Hero[] heroFrontline = new Hero[5];
-    public List<Hero> heroesInParty { get; private set; } = new();
     private int heroesInBattle;
 
     public int currentWave;
@@ -46,9 +43,12 @@ public class WaveManager : MonoBehaviour
         nextWaveEnemies = enemySpawner.GetNextEnemies(currentWave);
     }
 
+    /// <summary>
+    /// Set the new state of the wave
+    /// </summary>
+    /// <param name="newState"></param>
     public void UpdateWaveState(WaveState newState)
     {
-
         switch (newState)
         {
             case WaveState.Start:
@@ -60,8 +60,8 @@ public class WaveManager : MonoBehaviour
 
                 nextWaveEnemies = null;
 
-                heroSpawner.SpawnHeroes(heroFrontline);
-                heroesInBattle = heroFrontline.Length;
+                heroSpawner.SpawnHeroes(PartyManager.heroesInBattle);
+                heroesInBattle = PartyManager.heroesInBattle.Length;
 
                 currentWave++;
                 break;
@@ -91,26 +91,8 @@ public class WaveManager : MonoBehaviour
             UpdateWaveState(WaveState.End);
     }
 
-    public void AddHeroToParty(Hero heroToAdd)
+    public void HeroDied()
     {
-        int lastId = Array.FindLastIndex(heroFrontline, e => e != null);
-
-        if (lastId < 0)
-        {
-            heroFrontline[0] = heroToAdd;
-        }
-        else if (lastId < 5)
-        {
-            heroFrontline[lastId + 1] = heroToAdd;
-        }
-        else heroesInParty.Add(heroToAdd);
-    }
-
-    public void HeroDied(Hero deadHero)
-    {
-        int deadIndex = Array.FindIndex(heroFrontline, hero => hero == deadHero);
-        heroFrontline[deadIndex] = null;
-
         heroesInBattle--;
 
         if (heroesInBattle <= 0)

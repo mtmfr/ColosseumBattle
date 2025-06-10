@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 [Serializable]
 public class EnemySpawner
 {
+    [Tooltip("The authorized position of spawn for the enemies")]
     [SerializeField] private BoxCollider2D enemySpawnZone;
 
     [SerializeField] private List<Enemy> spawnableEnemies = new();
@@ -27,13 +28,16 @@ public class EnemySpawner
     }
 
     /// <summary>
-    /// Create the next wave of enemies
+    /// Generate the next wave of enemies
     /// </summary>
     public Enemy[] GetNextEnemies(int currentWave)
     {
         int waveCredit = GetWaveCredit(currentWave);
 
+        //Create a list of the enemies that can be spawned
         List<Enemy> availableEnemies = spawnableEnemies;
+
+        //Create a list that will contain the enemies to spawn
         List<Enemy> enemiesToSpawn = new();
 
         while (waveCredit > 0)
@@ -48,8 +52,10 @@ public class EnemySpawner
 
             int enemyCost = enemyToAdd.enemySO.miscParameters.cost;
 
+                //If the cost of the enemy is greater than the remaining credit of the wave
             if (enemyCost > waveCredit)
             {
+                //Remove it from available enmies and start a new loop
                 availableEnemies.RemoveAt(generatedId);
                 continue;
             }
@@ -70,9 +76,9 @@ public class EnemySpawner
     /// <summary>
     /// Get a random enemy to spawn from the passed list
     /// </summary>
-    /// <param name="enemyList"></param>
-    /// <param name="enemyId"></param>
-    /// <returns></returns>
+    /// <param name="enemyList">the list to select enemy from</param>
+    /// <param name="enemyId">the id of the picked enemy</param>
+    /// <returns>the random enemy and it's id or null and -1 as the id</returns>
     private Enemy GetRandomEnemy(List<Enemy> enemyList, out int enemyId)
     {
         int spawnableCount = enemyList.Count;
@@ -88,6 +94,10 @@ public class EnemySpawner
         return enemyList[enemyId];
     }
 
+    /// <summary>
+    /// Spawn the enemies of the wave
+    /// </summary>
+    /// <param name="enemiesToSpawn">The enemies to spawn</param>
     public void SpawnEnemies(Enemy[] enemiesToSpawn)
     {
         for (int enemyId = 0; enemyId < enemiesToSpawn.Length; enemyId++)
@@ -96,7 +106,9 @@ public class EnemySpawner
         }
     }
 
-    [ContextMenu("RandomSpawnPos")]
+    /// <summary>
+    /// Get a random spawn position in the spawn zone of the enemies
+    /// </summary>
     private Vector2 GetRandomSpawnPoint()
     {
         float minXPos = enemySpawnZone.bounds.min.x;

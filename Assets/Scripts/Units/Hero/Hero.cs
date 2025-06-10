@@ -16,8 +16,6 @@ public abstract class Hero : Unit
 
     protected override void Attack(Unit target)
     {
-        base.Attack(target);
-
         if (target == null)
         {
             attackTimer = 0;

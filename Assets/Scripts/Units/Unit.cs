@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ using UnityEngine;
 public abstract class Unit : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
 
     private UnitState currentState;
 
@@ -29,9 +31,12 @@ public abstract class Unit : MonoBehaviour
 
     protected bool wasDead = true;
 
+    Color32 hitColor = new (255, 170, 150, 255);
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnEnable()
@@ -87,6 +92,7 @@ public abstract class Unit : MonoBehaviour
                 Flee(target.transform.position);
                 break;
             case UnitState.Attacking:
+                rb.linearVelocity = Vector2.zero;
                 timeWithoutAttack = 0;
                 Attack(target);
                 break;
@@ -147,9 +153,8 @@ public abstract class Unit : MonoBehaviour
                 Debug.LogException(new Exception("Incorect type for the sorting type of  GetTarget"), this);
                 return null;
         }
-        int lastId = Array.FindLastIndex(availableTarget, e => e != null);
 
-        return availableTarget[0] != null ? (T)availableTarget[0] : null;
+        return availableTarget[0] as T;
     }
 
     /// <summary>
@@ -183,12 +188,9 @@ public abstract class Unit : MonoBehaviour
     #region Movement
     private void Move(Vector3 targetPos)
     {
-        Vector3 newPos = Vector2.MoveTowards(transform.position, targetPos, movementParameters.maxApproachSpeed * Time.fixedDeltaTime);
+        Vector3 direction = targetPos - transform.position;
 
-        Vector2 dir = newPos - transform.position;
-
-        if (rb.linearVelocity.sqrMagnitude < movementParameters.maxApproachSpeed * movementParameters.maxApproachSpeed)
-            rb.AddForce(dir * movementParameters.acceleration, ForceMode2D.Force);
+        rb.linearVelocity = direction.normalized * movementParameters.maxApproachSpeed;
     }
 
     private void Flee(Vector3 attackerPos)
@@ -201,12 +203,9 @@ public abstract class Unit : MonoBehaviour
 
         fleeTimer += Time.fixedDeltaTime;
 
-        Vector3 newPos = Vector2.MoveTowards(attackerPos, transform.position, movementParameters.maxFleeSpeed * Time.fixedDeltaTime);
+        Vector3 direction = transform.position - attackerPos;
 
-        Vector2 dir = transform.position - newPos;
-
-        if (rb.linearVelocity.sqrMagnitude < movementParameters.maxFleeSpeed * movementParameters.maxFleeSpeed)
-        rb.AddForce(movementParameters.acceleration * dir, ForceMode2D.Force);
+        rb.linearVelocity = direction.normalized * movementParameters.maxFleeSpeed;
     }
 
     protected void Decelerate()
@@ -222,14 +221,7 @@ public abstract class Unit : MonoBehaviour
     #endregion
 
     #region Attack
-    protected virtual void Attack(Unit target)
-    {
-        if (!rb.linearVelocity.Approximately(Vector2.zero))
-        {
-            Decelerate();
-            return;
-        }
-    }
+    protected abstract void Attack(Unit target);
 
     private void ResetIsFirstAttack()
     {
@@ -274,6 +266,15 @@ public abstract class Unit : MonoBehaviour
         if (health - damageToReceive <= 0)
             Death();
         else health -= damageToReceive;
+
+        StartCoroutine(DamageFeedBack());
+    }
+
+    private IEnumerator DamageFeedBack()
+    {
+        spriteRenderer.color = hitColor;
+        yield return new WaitForSeconds(0.15f);
+        spriteRenderer.color = Color.white;
     }
 
     protected abstract void Death();
@@ -292,32 +293,23 @@ public abstract class Unit : MonoBehaviour
         bool enemiesInFleeZone = Vector2.Distance(targetPos, transform.position) < attackParameters.fleeDistance;
         bool enemiesInAttackZone =  Vector2.Distance(targetPos, transform.position) < attackParameters.attackDistance;
 
-        int caseId = (enemiesInFleeZone ? 1 : 0) + (enemiesInAttackZone ? 2 : 0);
-
-        switch (caseId)
+        if (enemiesInFleeZone)
         {
-            //Target is in no zone
-            case 0:
-                currentState = UnitState.Moving;
-                hasStoppedFleeing = false;
-                fleeTimer = 0;
-                break;
-            //Target is in flee zone
-            case 1:
-            case 3:
-                if (!hasStoppedFleeing)
-                    currentState = UnitState.Fleeing;
-                else currentState = UnitState.Attacking;
-                    break;
-            //Target is in attackZone but not in flee zone
-            case 2:
-                currentState = UnitState.Attacking;
-                hasStoppedFleeing = false;
-                fleeTimer = 0;
-                break;
-            default:
-                Debug.LogError("No state for this situation");
-                break;
+            if (!hasStoppedFleeing)
+                currentState = UnitState.Fleeing;
+            else currentState = UnitState.Attacking;
+        }
+        else if (enemiesInAttackZone)
+        {
+            currentState = UnitState.Attacking;
+            hasStoppedFleeing = false;
+            fleeTimer = 0;
+        }
+        else
+        {
+            currentState = UnitState.Moving;
+            hasStoppedFleeing = false;
+            fleeTimer = 0;
         }
     }
 

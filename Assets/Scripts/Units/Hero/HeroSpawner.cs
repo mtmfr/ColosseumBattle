@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -5,8 +6,13 @@ using Random = UnityEngine.Random;
 [Serializable]
 public class HeroSpawner
 {
+    [Tooltip("The authorized position of spawn for the heroes")]
     [SerializeField] private BoxCollider2D heroSpawnZone;
 
+    /// <summary>
+    /// Spawn the hero in the referenced array
+    /// </summary>
+    /// <param name="heroesToSpawn">the heroes to spawn</param>
     public void SpawnHeroes(Hero[] heroesToSpawn)
     {
         for (int heroId = 0; heroId < heroesToSpawn.Length; heroId++)
@@ -18,7 +24,9 @@ public class HeroSpawner
         }
     }
 
-    [ContextMenu("RandomSpawnPos")]
+    /// <summary>
+    /// Get a random spawn point from the hero spawn zone
+    /// </summary>
     private Vector2 GetRandomSpawnPoint()
     {
         float minXPos = heroSpawnZone.bounds.min.x;
