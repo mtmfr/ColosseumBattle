@@ -5,7 +5,7 @@ public class UI_Controller : MonoBehaviour
     [SerializeField] private UI_MainMenu mainMenu;
     [SerializeField] private UI_Start start;
     [SerializeField] private UI_Game game;
-    [SerializeField] private UI_AfterWave shop;
+    [SerializeField] private UI_InterWave shop;
     [SerializeField] private UI_Pause pause;
     [SerializeField] private UI_GameOver gameOver;
 

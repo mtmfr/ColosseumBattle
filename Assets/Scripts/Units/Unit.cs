@@ -265,9 +265,11 @@ public abstract class Unit : MonoBehaviour
 
         if (health - damageToReceive <= 0)
             Death();
-        else health -= damageToReceive;
-
-        StartCoroutine(DamageFeedBack());
+        else
+        {
+            health -= damageToReceive;
+            StartCoroutine(DamageFeedBack());
+        }
     }
 
     private IEnumerator DamageFeedBack()

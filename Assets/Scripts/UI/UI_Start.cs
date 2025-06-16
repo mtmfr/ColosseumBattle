@@ -17,6 +17,9 @@ public class UI_Start : MonoBehaviour
 
     [SerializeField] private Button cancelButton;
 
+    private Hero selectedHero;
+
+    #region Unity fonctions
     private void Start()
     {
         //Bind SelectHero to the delegate of the buttons in heroButtons
@@ -33,7 +36,7 @@ public class UI_Start : MonoBehaviour
             heroButton.onClick.AddListener(delegate { SelectHero(id); });
         }
 
-        startButton.onClick.AddListener(StartGame);
+        startButton.onClick.AddListener(delegate { StartGame(selectedHero); });
 
         cancelButton.onClick.AddListener(Cancel);
     }
@@ -47,10 +50,11 @@ public class UI_Start : MonoBehaviour
             heroButton.onClick.RemoveAllListeners();
         }
 
-        startButton.onClick.RemoveAllListeners();
+        startButton.onClick.RemoveListener(delegate { StartGame(selectedHero); });
 
-        cancelButton.onClick.RemoveAllListeners();
+        cancelButton.onClick.RemoveListener(Cancel);
     }
+    #endregion
 
     private void SelectHero(int id)
     {
@@ -60,22 +64,24 @@ public class UI_Start : MonoBehaviour
             return;
         }
 
-        Hero selectedHero = heroes.units[id] as Hero;
+        selectedHero = heroes.units[id] as Hero;
 
         UIParameters parameters = selectedHero.heroSO.uiParameters;
         heroDescription.text = parameters.heroDescription;
         selectedSprite.sprite = parameters.characterSprite;
 
-        PartyManager.NewHeroBought(selectedHero);
-
         heroSelectionGO.SetActive(false);
         heroDescriptionGO.SetActive(true);
     }
 
-    private void StartGame()
+    private void StartGame(Hero heroToStartWith)
     {
         heroSelectionGO.SetActive(true);
         heroDescriptionGO.SetActive(false);
+
+        selectedHero = null;
+        PartyManager.NewHeroBought(heroToStartWith);
+
         GameManager.UpdateGameState(GameState.Wave);
     }
 

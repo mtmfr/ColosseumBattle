@@ -8,6 +8,17 @@ public static class ObjectPool
     private static readonly Dictionary<Type, List<MonoBehaviour>> activeObjects = new();
 
     #region activate object
+
+    public static T GetObject<T>(T toActivate) where T : MonoBehaviour
+    {
+        T objectToActivate = GetObjectToActivate(toActivate);
+
+        AddToActiveObjectValue(objectToActivate);
+        objectToActivate.gameObject.SetActive(true);
+
+        return objectToActivate;
+    }
+
     public static T GetObject<T>(T toActivate, Vector3 position, Quaternion rotation) where T : MonoBehaviour
     {
         T objectToActivate = GetObjectToActivate(toActivate);
@@ -38,7 +49,7 @@ public static class ObjectPool
             return (T)toActivate;
     }
 
-    private static void AddToActiveObjectValue(MonoBehaviour activated)
+    public static void AddToActiveObjectValue(MonoBehaviour activated)
     {
         Type type = activated.GetType();
 

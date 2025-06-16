@@ -48,7 +48,12 @@ public static class GameManager
         UpdateGameState(GameState.MainMenu);
     }
 
-    public static void AddGold(int goldToAdd) => gold += goldToAdd;
+    public static void AddGold(int goldToAdd)
+    {
+        if (gold + goldToAdd <= 9999)
+            gold += goldToAdd;
+        else gold = 9999;
+    } 
     public static void RemoveGold(int goldToRemove) => gold -= goldToRemove;
 }
 

@@ -50,4 +50,67 @@ public static class PartyManager
         heroesInBattle = new Hero[5];
         heroesInParty = new Hero[1]; 
     }
+
+    /// <summary>
+    /// Check if there will still be at least 1 hero in battle when moving one to the party
+    /// </summary>
+    /// <param name="toMove">the data of the hero to move</param>
+    /// <returns>true if there will still be at least one hero in battle.
+    /// <br>false otherwise.</br>
+    /// </returns>
+    public static bool CanHeroBeMovedToParty(HeroPartyData toMove)
+    {
+        Hero[] inBattleCopy = new Hero [5];
+        heroesInBattle.CopyTo(inBattleCopy, 0);
+
+        //Remove the hero at the it's id in the battle to simulate the exchange with a null party place
+        inBattleCopy[toMove.id] = null;
+
+        for (int id = 0;  id < inBattleCopy.Length; id++)
+        {
+            if (inBattleCopy[id] != null)
+                return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Exchange the placement of 2 heroes in the heroesInParty array
+    /// </summary>
+    public static void InvertPartyPlace(HeroPartyData fromParty, HeroPartyData toParty)
+    {
+        heroesInParty[toParty.id] = fromParty.hero;
+        heroesInParty[fromParty.id] = toParty.hero;
+    }
+
+    /// <summary>
+    /// Exchange the placement of 2 heroes in the heroesInBattle array
+    /// </summary>
+    public static void InvertBattlePosition(HeroPartyData fromBattle, HeroPartyData toBattle)
+    {
+        heroesInBattle[toBattle.id] = fromBattle.hero;
+        heroesInBattle[fromBattle.id] = toBattle.hero;
+    }
+
+    /// <summary>
+    /// Exchange a hero in the party to one in battle
+    /// </summary>
+    public static void MoveToParty(HeroPartyData fromBattle, HeroPartyData toParty)
+    {
+        heroesInParty[toParty.id] = fromBattle.hero;
+        heroesInBattle[fromBattle.id] = toParty.hero;
+    }
+}
+
+public struct HeroPartyData
+{
+    public Hero hero;
+    public int id;
+
+    public HeroPartyData(Hero hero, int id)
+    {
+        this.hero = hero;
+        this.id = id;
+    }
 }
