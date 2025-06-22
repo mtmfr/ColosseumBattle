@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -27,7 +28,7 @@ public abstract class Unit : MonoBehaviour
     private float timeWithoutAttack = 0;
 
     protected Unit target;
-    protected Unit[] availableTarget;
+    protected List<Unit> availableTarget = new();
 
     protected bool wasDead = true;
 
@@ -44,9 +45,11 @@ public abstract class Unit : MonoBehaviour
         if (wasDead)
             health = miscParameters.health;
 
+        spriteRenderer.color = Color.white;
+
         UnitEvent.OnDamageReceived += GetDamage;
         UnitEvent.OnHeal += GetHeal;
-        UnitEvent.OnTargetDeath += UpdateTarget;
+        UnitEvent.OnTargetDeath += TargetDied;
 
         UnitEvent.OnRetarget += Retarget;
     }
@@ -58,7 +61,7 @@ public abstract class Unit : MonoBehaviour
 
         UnitEvent.OnDamageReceived -= GetDamage;
         UnitEvent.OnHeal -= GetHeal;
-        UnitEvent.OnTargetDeath -= UpdateTarget;
+        UnitEvent.OnTargetDeath -= TargetDied;
 
         UnitEvent.OnRetarget -= Retarget;
     }
@@ -78,7 +81,7 @@ public abstract class Unit : MonoBehaviour
         {
             case UnitState.Idle:
 
-                if (availableTarget == null)
+                if (availableTarget == null || availableTarget.Count == 0)
                     GetAvailableTarget();
                 if (target != null)
                     break;
@@ -117,20 +120,15 @@ public abstract class Unit : MonoBehaviour
         return FindObjectsByType<T>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
     }
 
-    private void UpdateTarget(Unit deadUnit)
+    protected void TargetDied(Unit deadUnit)
     {
-        if (deadUnit != target)
-            return;
+        if (deadUnit == target)
+        {
+            availableTarget.Remove(target);
+            target = null;
+        }
 
-        target = null;
-    }
-
-    protected T GetClosestTarget<T>() where T : Unit
-    {
-        availableTarget.Where(target => target.isActiveAndEnabled)
-            .OrderBy(target => Vector2.Distance(target.transform.position, transform.position));
-
-        return (T)availableTarget[0];
+        SetTarget();
     }
 
     /// <summary>
@@ -140,21 +138,22 @@ public abstract class Unit : MonoBehaviour
     /// <returns>Either the closest target or the one with the lowest hp</returns>
     protected T GetTarget<T>(SortType sortType = SortType.Distance) where T : Unit
     {
-        switch (sortType)
+        List <Unit> targets = sortType switch
         {
-            case SortType.Distance:
-                availableTarget.Where(target => target.isActiveAndEnabled && target is T)
-                    .OrderBy(target => Vector2.Distance(target.transform.position, transform.position));
-                break;
-            case SortType.Health:
-                availableTarget.Where(target => target.isActiveAndEnabled && target is T).OrderBy(target => health);
-                break;
-            default:
-                Debug.LogException(new Exception("Incorect type for the sorting type of  GetTarget"), this);
-                return null;
-        }
+            SortType.Distance => availableTarget.Where(target => target.isActiveAndEnabled && target is T)
+                    .OrderBy(target => Vector2.Distance(target.transform.position, transform.position))
+                    .ToList(),
+            SortType.Health => availableTarget.Where(target => target.isActiveAndEnabled && target is T).OrderBy(target => target.health)
+                    .ThenBy(target => Vector2.Distance(target.transform.position, transform.position))
+                    .ToList(),
+            _ => availableTarget.Where(target => target.isActiveAndEnabled && target is T)
+                    .OrderBy(target => Vector2.Distance(target.transform.position, transform.position))
+                    .ToList(),
+        };
 
-        return availableTarget[0] as T;
+        if (targets.Count > 0)
+            return targets[0] as T;
+        else return null;
     }
 
     /// <summary>
@@ -167,14 +166,7 @@ public abstract class Unit : MonoBehaviour
         Health
     }
 
-    protected virtual void SetTarget()
-    {
-        if (this is Hero)
-            target = GetTarget<Enemy>();
-        else if (this is Enemy)
-            target = GetTarget<Hero>();
-        else Debug.LogError("this Unit is neither a hero or an enemy", this);
-    }
+    protected abstract void SetTarget();
 
     private void Retarget(Unit thisUnit, Unit newTarget)
     {

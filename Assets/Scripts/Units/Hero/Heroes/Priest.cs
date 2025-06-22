@@ -1,10 +1,11 @@
+using System.Linq;
 using UnityEngine;
 
 public class Priest : Hero
 {
     protected override void GetAvailableTarget()
     {
-        availableTarget = GetAllUnits<Unit>();
+        availableTarget = GetAllUnits<Unit>().ToList();
     }
 
     protected override void SetTarget()
@@ -17,10 +18,9 @@ public class Priest : Hero
 
     protected override void AttackMotion(Unit target, int damageToDeal)
     {
-        if (target is Hero)
+        if (target is Hero heroToHeal)
         {
-            Hero heroToHeal = (Hero)target;
-            int healedAmount = Mathf.FloorToInt(damageToDeal * (heroToHeal.health/(float)heroToHeal.heroSO.miscParameters.health));
+            int healedAmount = Mathf.FloorToInt(damageToDeal * (heroToHeal.health / (float)heroToHeal.heroSO.miscParameters.health));
 
             UnitEvent.HealedDamage(target, healedAmount);
         }

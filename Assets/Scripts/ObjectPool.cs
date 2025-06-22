@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public static class ObjectPool
 {
@@ -38,12 +39,12 @@ public static class ObjectPool
 
         if (!inactiveObjects.TryGetValue(type, out List <MonoBehaviour> inactiveObjectList))
         {
-            toActivate = GameObject.Instantiate(objectToActivate);
+            toActivate = Object.Instantiate(objectToActivate);
         }
         else
         {
             if (inactiveObjectList.Count == 0)
-                toActivate = GameObject.Instantiate(objectToActivate);
+                toActivate = Object.Instantiate(objectToActivate);
             else toActivate = inactiveObjectList[0];
         }
             return (T)toActivate;
@@ -53,15 +54,12 @@ public static class ObjectPool
     {
         Type type = activated.GetType();
 
-        if (activeObjects.TryGetValue(type, out List<MonoBehaviour> activeObjectList))
-        {
-            activeObjectList.Add(activated);
-        }
-        else
-        {
-            List<MonoBehaviour> newActiveList = new() { activated };
-            activeObjects.Add(type, newActiveList);
-        }
+        if (activeObjects.ContainsKey(type))
+            activeObjects[type].Add(activated);
+        else activeObjects.Add(type, new List<MonoBehaviour>() { activated });
+
+        if (inactiveObjects.ContainsKey(type))
+            inactiveObjects[type].Remove(activated);
     }
     #endregion
 
@@ -71,9 +69,11 @@ public static class ObjectPool
 
         toDeactivate.gameObject.SetActive(false);
 
-        if (inactiveObjects.TryGetValue(type, out List<MonoBehaviour> activeObjectList))
-            activeObjectList.Add(toDeactivate);
+        if (inactiveObjects.ContainsKey(type))
+            inactiveObjects[type].Add(toDeactivate);
         else inactiveObjects.Add(type, new List<MonoBehaviour>() { toDeactivate });
+
+        activeObjects[type].Remove(toDeactivate);
     }
 
     public static void DiscardAllObject()

@@ -9,9 +9,19 @@ public abstract class Hero : Unit
         SetParameters(heroSO);
     }
 
+    protected override void SetTarget()
+    {
+        target = GetTarget<Enemy>();
+    }
+
     protected override void GetAvailableTarget()
     {
-        availableTarget = GetAllUnits<Enemy>();
+        Enemy[] targetArray = GetAllUnits<Enemy>();
+
+        for (int id = 0; id < targetArray.Length; id++)
+        {
+            availableTarget.Add(targetArray[id]);
+        }
     }
 
     protected override void Attack(Unit target)
@@ -51,6 +61,7 @@ public abstract class Hero : Unit
 
     protected override void Death()
     {
+        UnitEvent.Dying(this);
         ObjectPool.SetObjectInactive(this);
     }
 

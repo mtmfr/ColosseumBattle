@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -15,7 +14,7 @@ public class WaveManager : MonoBehaviour
     #endregion
 
     [SerializeField] private HeroSpawner heroSpawner;
-    private int heroesInBattle;
+    private int aliveHeroes;
 
     public int currentWave;
 
@@ -56,12 +55,12 @@ public class WaveManager : MonoBehaviour
                     throw new ArgumentNullException("No enemies in wave", "there is no enemies to be spawn in the wave");
 
                 enemiesInWave = nextWaveEnemies.Length;
-                enemySpawner.SpawnEnemies(nextWaveEnemies);
+                enemySpawner.SpawnEnemies(ref nextWaveEnemies);
 
                 nextWaveEnemies = null;
 
-                heroSpawner.SpawnHeroes(PartyManager.heroesInBattle);
-                heroesInBattle = PartyManager.heroesInBattle.Length;
+                heroSpawner.SpawnHeroes(ref PartyManager.heroesInBattle);
+                aliveHeroes = PartyManager.heroesInBattle.Length;
 
                 currentWave++;
                 break;
@@ -69,7 +68,8 @@ public class WaveManager : MonoBehaviour
                 break;
             case WaveState.End:
                 GenerateNextWave();
-                waveState = WaveState.None;
+                waveState = WaveState.NotInWave;
+                heroSpawner.DespawnHeroes(PartyManager.heroesInBattle);
                 GameManager.UpdateGameState(GameState.Shop);
                 break;
             default:
@@ -93,9 +93,9 @@ public class WaveManager : MonoBehaviour
 
     public void HeroDied()
     {
-        heroesInBattle--;
+        aliveHeroes--;
 
-        if (heroesInBattle <= 0)
+        if (aliveHeroes <= 0)
             GameManager.UpdateGameState(GameState.GameOver);
     }
 
@@ -103,7 +103,7 @@ public class WaveManager : MonoBehaviour
 
     public enum WaveState
     {
-        None,
+        NotInWave,
         /// <summary>
         /// The start of the wave to summon the units
         /// </summary>

@@ -98,11 +98,19 @@ public class EnemySpawner
     /// Spawn the enemies of the wave
     /// </summary>
     /// <param name="enemiesToSpawn">The enemies to spawn</param>
-    public void SpawnEnemies(Enemy[] enemiesToSpawn)
+    public void SpawnEnemies(ref Enemy[] enemiesToSpawn)
     {
         for (int enemyId = 0; enemyId < enemiesToSpawn.Length; enemyId++)
         {
-            ObjectPool.GetObject(enemiesToSpawn[enemyId], GetRandomSpawnPoint(), Quaternion.identity);
+            Enemy enemy = enemiesToSpawn[enemyId];
+            Vector2 spawnPoint = GetRandomSpawnPoint();
+
+            Enemy spawned = ObjectPool.GetObject(enemy, spawnPoint, Quaternion.identity);
+
+            //Replace the referece in the array to the spawned hero
+            //Without it the object pooling can't deactivate it
+            if (spawned.GetInstanceID() != enemy.GetInstanceID())
+                enemiesToSpawn[enemyId] = spawned;
         }
     }
 

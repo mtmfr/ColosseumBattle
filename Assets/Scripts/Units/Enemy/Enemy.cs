@@ -9,9 +9,19 @@ public abstract class Enemy : Unit
         SetParameters(enemySO);
     }
 
+    protected override void SetTarget()
+    {
+        target = GetTarget<Hero>();
+    }
+
     protected override void GetAvailableTarget()
     {
-        availableTarget = GetAllUnits<Hero>();
+        Hero[] targetArray = GetAllUnits<Hero>();
+
+        for (int id = 0; id < targetArray.Length; id++)
+        {
+            availableTarget.Add(targetArray[id]);
+        }
     }
 
     protected override void Attack(Unit target)
@@ -53,6 +63,7 @@ public abstract class Enemy : Unit
 
     protected override void Death()
     {
+        UnitEvent.Dying(this);
         GameManager.AddGold(enemySO.goldDrop);
         ObjectPool.SetObjectInactive(this);
 

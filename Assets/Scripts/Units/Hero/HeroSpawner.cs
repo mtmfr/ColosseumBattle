@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -13,14 +12,32 @@ public class HeroSpawner
     /// Spawn the hero in the referenced array
     /// </summary>
     /// <param name="heroesToSpawn">the heroes to spawn</param>
-    public void SpawnHeroes(Hero[] heroesToSpawn)
+    public void SpawnHeroes(ref Hero[] heroesToSpawn)
     {
         for (int heroId = 0; heroId < heroesToSpawn.Length; heroId++)
         {
-            if (heroesToSpawn[heroId] == null)
+            Hero hero = heroesToSpawn[heroId];
+
+            if (hero == null)
                 continue;
 
-            ObjectPool.GetObject(heroesToSpawn[heroId], GetRandomSpawnPoint(), Quaternion.identity);
+            Hero spawnedHero = ObjectPool.GetObject(hero, GetRandomSpawnPoint(), Quaternion.identity);
+
+            //Replace the referece in the array to the spawned hero
+            //Without it the object pooling can't deactivate it
+            if (spawnedHero.GetInstanceID() != hero.GetInstanceID())
+                heroesToSpawn[heroId] = spawnedHero;
+        }
+    }
+
+    public void DespawnHeroes(Hero[] heroesToDespawn)
+    {
+        for (int heroId = 0; heroId < heroesToDespawn.Length; heroId++)
+        {
+            if (heroesToDespawn[heroId] == null)
+                continue;
+
+            ObjectPool.SetObjectInactive(heroesToDespawn[heroId]);
         }
     }
 

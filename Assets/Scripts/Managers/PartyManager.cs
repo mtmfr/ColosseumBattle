@@ -1,6 +1,6 @@
 public static class PartyManager
 {
-    public static Hero[] heroesInBattle { get; private set; } = new Hero[5];
+    public static Hero[] heroesInBattle = new Hero[5];
     public static Hero[] heroesInParty { get; private set; } = new Hero[10];
 
     /// <summary>
@@ -51,6 +51,7 @@ public static class PartyManager
         heroesInParty = new Hero[1]; 
     }
 
+    #region Party management
     /// <summary>
     /// Check if there will still be at least 1 hero in battle when moving one to the party
     /// </summary>
@@ -101,6 +102,7 @@ public static class PartyManager
         heroesInParty[toParty.id] = fromBattle.hero;
         heroesInBattle[fromBattle.id] = toParty.hero;
     }
+    #endregion
 }
 
 public struct HeroPartyData
