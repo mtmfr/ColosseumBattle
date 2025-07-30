@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6303458937685280707}
   - component: {fileID: 6701920894689980581}
   - component: {fileID: 2605790152260156175}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Assassin
   m_TagString: Untagged
   m_Icon: {fileID: 0}

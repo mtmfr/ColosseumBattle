@@ -13,22 +13,20 @@ MonoBehaviour:
   m_Name: SO_Tank
   m_EditorClassIdentifier: 
   <movementParameters>k__BackingField:
-    <maxApproachSpeed>k__BackingField: 0
+    <maxApproachSpeed>k__BackingField: 2
     <maxFleeSpeed>k__BackingField: 0
-    <maxDecelerationSpeed>k__BackingField: 0
-    <acceleration>k__BackingField: 0
-    <deceleration>k__BackingField: 0
   <attackParameters>k__BackingField:
     <fleeDistance>k__BackingField: 0
-    <attackDistance>k__BackingField: 0
-    <attackPower>k__BackingField: 0
-    <firstAttackCooldown>k__BackingField: 0
-    <attackCooldown>k__BackingField: 0
+    <attackDistance>k__BackingField: 2
+    <attackPower>k__BackingField: 3
+    <firstAttackCooldown>k__BackingField: 1.1
+    <attackCooldown>k__BackingField: 1.3
   <miscParameters>k__BackingField:
     <maxFleeTime>k__BackingField: 0
-    <health>k__BackingField: 0
-    <defense>k__BackingField: 0
-    <cost>k__BackingField: 0
+    <health>k__BackingField: 50
+    <defense>k__BackingField: 5
+    <cost>k__BackingField: 10
   <uiParameters>k__BackingField:
-    <heroDescription>k__BackingField: 
+    <heroDescription>k__BackingField: Slow dosn't do a lot of damage but an expert
+      at taunting his enemy, it's said that an arm once broke by hitting him.
     <characterSprite>k__BackingField: {fileID: -417095229, guid: 615bd727e6bc6fb4ba4fc29df2dcc3be, type: 3}

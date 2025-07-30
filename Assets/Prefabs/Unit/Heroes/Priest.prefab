@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 874514266928276158}
   - component: {fileID: 5274042130066449155}
   - component: {fileID: 6235082964470578711}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Priest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,3 +176,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <heroSO>k__BackingField: {fileID: 11400000, guid: 683011d7c760822429c3ca72c55309ab, type: 2}
+  attackLight: {fileID: 7161661094403350060, guid: f868760a093ccf844bf3037ab74d1ce8, type: 3}
+  healingLight: {fileID: 7072617903249473104, guid: b35c22f9f6338f44f9b8bd8afb55ee44, type: 3}

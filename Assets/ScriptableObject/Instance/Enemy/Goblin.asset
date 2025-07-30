@@ -13,20 +13,20 @@ MonoBehaviour:
   m_Name: Goblin
   m_EditorClassIdentifier: 
   <movementParameters>k__BackingField:
-    <maxApproachSpeed>k__BackingField: 0
-    <maxFleeSpeed>k__BackingField: 0
-    <maxDecelerationSpeed>k__BackingField: 0
-    <acceleration>k__BackingField: 0
-    <deceleration>k__BackingField: 0
+    <maxApproachSpeed>k__BackingField: 3
+    <maxFleeSpeed>k__BackingField: 4
   <attackParameters>k__BackingField:
     <fleeDistance>k__BackingField: 0
-    <attackDistance>k__BackingField: 0
-    <attackPower>k__BackingField: 0
-    <firstAttackCooldown>k__BackingField: 0
-    <attackCooldown>k__BackingField: 0
+    <attackDistance>k__BackingField: 2
+    <attackPower>k__BackingField: 1
+    <firstAttackCooldown>k__BackingField: 0.3
+    <attackCooldown>k__BackingField: 0.5
   <miscParameters>k__BackingField:
     <maxFleeTime>k__BackingField: 0
     <health>k__BackingField: 10
     <defense>k__BackingField: 0
     <cost>k__BackingField: 1
-  <goldDrop>k__BackingField: 0
+  <uiParameters>k__BackingField:
+    <heroDescription>k__BackingField: 
+    <characterSprite>k__BackingField: {fileID: 0}
+  <goldDrop>k__BackingField: 5

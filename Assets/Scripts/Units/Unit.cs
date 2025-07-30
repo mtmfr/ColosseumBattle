@@ -28,7 +28,7 @@ public abstract class Unit : MonoBehaviour
     private float timeWithoutAttack = 0;
 
     protected Unit target;
-    protected List<Unit> availableTarget = new();
+    protected List<Unit> availableTargets = new();
 
     protected bool wasDead = true;
 
@@ -38,14 +38,14 @@ public abstract class Unit : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        spriteRenderer.color = Color.white;
     }
 
     private void OnEnable()
     {
         if (wasDead)
             health = miscParameters.health;
-
-        spriteRenderer.color = Color.white;
 
         UnitEvent.OnDamageReceived += GetDamage;
         UnitEvent.OnHeal += GetHeal;
@@ -80,13 +80,10 @@ public abstract class Unit : MonoBehaviour
         switch (currentState)
         {
             case UnitState.Idle:
-
-                if (availableTarget == null || availableTarget.Count == 0)
+                if (availableTargets == null || availableTargets.Count == 0)
                     GetAvailableTarget();
-                if (target != null)
-                    break;
-
-                SetTarget();
+                if (target == null)
+                    SetTarget();
                 break;
             case UnitState.Moving:
                 Move(target.transform.position);
@@ -115,16 +112,16 @@ public abstract class Unit : MonoBehaviour
     #region Target
     protected abstract void GetAvailableTarget();
 
-    protected T[] GetAllUnits<T>() where T : Unit
+    protected Unit[] GetAllUnits<T>() where T : Unit
     {
-        return FindObjectsByType<T>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+        return FindObjectsByType<T>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).ToArray();
     }
 
     protected void TargetDied(Unit deadUnit)
     {
         if (deadUnit == target)
         {
-            availableTarget.Remove(target);
+            availableTargets.Remove(target);
             target = null;
         }
 
@@ -140,13 +137,14 @@ public abstract class Unit : MonoBehaviour
     {
         List <Unit> targets = sortType switch
         {
-            SortType.Distance => availableTarget.Where(target => target.isActiveAndEnabled && target is T)
+            SortType.Distance => availableTargets.Where(target => target.isActiveAndEnabled && target is T && target != this)
                     .OrderBy(target => Vector2.Distance(target.transform.position, transform.position))
                     .ToList(),
-            SortType.Health => availableTarget.Where(target => target.isActiveAndEnabled && target is T).OrderBy(target => target.health)
+            SortType.Health => availableTargets.Where(target => target.isActiveAndEnabled && target is T && target != this)
+                    .OrderBy(target => target.health)
                     .ThenBy(target => Vector2.Distance(target.transform.position, transform.position))
                     .ToList(),
-            _ => availableTarget.Where(target => target.isActiveAndEnabled && target is T)
+            _ => availableTargets.Where(target => target.isActiveAndEnabled && target is T && target != this)
                     .OrderBy(target => Vector2.Distance(target.transform.position, transform.position))
                     .ToList(),
         };
@@ -190,6 +188,8 @@ public abstract class Unit : MonoBehaviour
         if (fleeTimer > miscParameters.maxFleeTime)
         {
             hasStoppedFleeing = true;
+            if (attackParameters.fleeDistance > 0)
+                GetAvailableTarget();
             return;
         }
 
@@ -198,17 +198,6 @@ public abstract class Unit : MonoBehaviour
         Vector3 direction = transform.position - attackerPos;
 
         rb.linearVelocity = direction.normalized * movementParameters.maxFleeSpeed;
-    }
-
-    protected void Decelerate()
-    {
-        Vector3 currentSpeed = rb.linearVelocity;
-
-        Vector3 targetSpeed = Vector3.MoveTowards(currentSpeed, Vector2.zero, movementParameters.maxDecelerationSpeed * Time.fixedDeltaTime);
-
-        Vector3 newSpeed = targetSpeed - currentSpeed;
-
-        rb.AddForce(newSpeed * movementParameters.deceleration, ForceMode2D.Force);
     }
     #endregion
 
@@ -271,7 +260,10 @@ public abstract class Unit : MonoBehaviour
         spriteRenderer.color = Color.white;
     }
 
-    protected abstract void Death();
+    protected virtual void Death()
+    {
+        wasDead = true;
+    }
     #endregion
 
     #region State
@@ -284,7 +276,9 @@ public abstract class Unit : MonoBehaviour
         }
 
         Vector2 targetPos = target.transform.position;
-        bool enemiesInFleeZone = Vector2.Distance(targetPos, transform.position) < attackParameters.fleeDistance;
+
+        bool isSameSide = target.GetType().BaseType != GetType().BaseType;
+        bool enemiesInFleeZone = Vector2.Distance(targetPos, transform.position) < attackParameters.fleeDistance && isSameSide;
         bool enemiesInAttackZone =  Vector2.Distance(targetPos, transform.position) < attackParameters.attackDistance;
 
         if (enemiesInFleeZone)
@@ -332,7 +326,7 @@ public static class UnitEvent
     public static void DealDamage(Unit unitToDamage, int damageToDeal) => OnDamageReceived?.Invoke(unitToDamage, damageToDeal);
 
     public static event Action<Unit, int> OnHeal;
-    public static void HealedDamage(Unit unitToHeal, int damageToHeal) => OnHeal?.Invoke(unitToHeal, damageToHeal);
+    public static void HealDamage(Unit unitToHeal, int damageToHeal) => OnHeal?.Invoke(unitToHeal, damageToHeal);
 
     public static event Action<Unit, Unit> OnRetarget;
     public static void ForceRetarget(Unit thisUnit, Unit retargeted) => OnRetarget?.Invoke(thisUnit, retargeted);

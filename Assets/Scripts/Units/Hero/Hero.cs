@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public abstract class Hero : Unit
@@ -16,12 +17,7 @@ public abstract class Hero : Unit
 
     protected override void GetAvailableTarget()
     {
-        Enemy[] targetArray = GetAllUnits<Enemy>();
-
-        for (int id = 0; id < targetArray.Length; id++)
-        {
-            availableTarget.Add(targetArray[id]);
-        }
+        availableTargets = GetAllUnits<Enemy>().ToList();
     }
 
     protected override void Attack(Unit target)
@@ -61,8 +57,11 @@ public abstract class Hero : Unit
 
     protected override void Death()
     {
+        base.Death();
         UnitEvent.Dying(this);
         ObjectPool.SetObjectInactive(this);
+
+        WaveManager.instance.HeroDied();
     }
 
     protected override void OnDrawGizmosSelected()

@@ -13,22 +13,20 @@ MonoBehaviour:
   m_Name: SO_Priest
   m_EditorClassIdentifier: 
   <movementParameters>k__BackingField:
-    <maxApproachSpeed>k__BackingField: 0
-    <maxFleeSpeed>k__BackingField: 0
-    <maxDecelerationSpeed>k__BackingField: 0
-    <acceleration>k__BackingField: 0
-    <deceleration>k__BackingField: 0
+    <maxApproachSpeed>k__BackingField: 2
+    <maxFleeSpeed>k__BackingField: 3
   <attackParameters>k__BackingField:
-    <fleeDistance>k__BackingField: 0
-    <attackDistance>k__BackingField: 0
-    <attackPower>k__BackingField: 0
-    <firstAttackCooldown>k__BackingField: 0
-    <attackCooldown>k__BackingField: 0
+    <fleeDistance>k__BackingField: 2
+    <attackDistance>k__BackingField: 5
+    <attackPower>k__BackingField: 50
+    <firstAttackCooldown>k__BackingField: 0.3
+    <attackCooldown>k__BackingField: 0.7
   <miscParameters>k__BackingField:
-    <maxFleeTime>k__BackingField: 0
-    <health>k__BackingField: 0
+    <maxFleeTime>k__BackingField: 2
+    <health>k__BackingField: 10
     <defense>k__BackingField: 0
-    <cost>k__BackingField: 0
+    <cost>k__BackingField: 10
   <uiParameters>k__BackingField:
-    <heroDescription>k__BackingField: 
+    <heroDescription>k__BackingField: He's a healer so make sure to stay on his good
+      side otherwise it'll be hell for you.
     <characterSprite>k__BackingField: {fileID: -960515015, guid: 30ddebd1c853dd54ea1e5a9ba372a85e, type: 3}

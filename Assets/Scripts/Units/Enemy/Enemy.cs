@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public abstract class Enemy : Unit
@@ -16,12 +17,7 @@ public abstract class Enemy : Unit
 
     protected override void GetAvailableTarget()
     {
-        Hero[] targetArray = GetAllUnits<Hero>();
-
-        for (int id = 0; id < targetArray.Length; id++)
-        {
-            availableTarget.Add(targetArray[id]);
-        }
+        availableTargets = GetAllUnits<Hero>().ToList();
     }
 
     protected override void Attack(Unit target)
@@ -63,6 +59,7 @@ public abstract class Enemy : Unit
 
     protected override void Death()
     {
+        base.Death();
         UnitEvent.Dying(this);
         GameManager.AddGold(enemySO.goldDrop);
         ObjectPool.SetObjectInactive(this);
