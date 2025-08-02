@@ -24,11 +24,10 @@ public class WaveManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else Destroy(gameObject);
+        if (instance != null)
+            Destroy(instance);
+        
+        instance = this;
     }
 
     private void OnDestroy()
@@ -60,7 +59,7 @@ public class WaveManager : MonoBehaviour
                 nextWaveEnemies = null;
 
                 heroSpawner.SpawnHeroes(ref PartyManager.heroesInBattle);
-                aliveHeroes = PartyManager.heroesInBattle.Length;
+                SetAliveHeroes(ref aliveHeroes);
 
                 currentWave++;
                 break;
@@ -81,6 +80,20 @@ public class WaveManager : MonoBehaviour
 
         if (waveState == WaveState.Start)
             UpdateWaveState(WaveState.Middle);
+    }
+
+    private void SetAliveHeroes(ref int aliveHeroes)
+    {
+        Hero[] heroes = PartyManager.heroesInBattle;
+
+        int foundHeroes = 0;
+
+        for (int i = 0; i < heroes.Length; i++)
+        {
+            foundHeroes += heroes[i] == null ? 0 : 1;
+        }
+
+        aliveHeroes = foundHeroes;
     }
 
     public void EnemyDied()

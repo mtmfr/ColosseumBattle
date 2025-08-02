@@ -126,10 +126,10 @@ public class HeroShop
     /// <summary>
     /// Update the description to match the one pf the selected hero
     /// </summary>
-    /// <param name="slectedHero">The hero that was selected</param>
-    private void UpdateDescription(Hero slectedHero)
+    /// <param name="selectedHero">The hero that was selected</param>
+    private void UpdateDescription(Hero selectedHero)
     {
-        UIParameters uiInfo = slectedHero.heroSO.uiParameters;
+        UIParameters uiInfo = selectedHero.heroSO.uiParameters;
 
         selectedImage.sprite = uiInfo.characterSprite;
         selectedDescription.text = uiInfo.heroDescription;
@@ -186,11 +186,11 @@ public class HeroShop
         goldAmount.text = GameManager.gold.ToString();
     }
 
-    private async Task FeedBackFade(string textToshow)
+    private async void FeedBackFade(string textToshow)
     {
         float remainingTime = fadeDuration;
 
-        float fadeRatio = remainingTime / (fadeDuration);
+        float fadeRatio = remainingTime / fadeDuration;
 
         Color currentColor = startingColor;
 
@@ -201,7 +201,7 @@ public class HeroShop
         {
             remainingTime -= Time.deltaTime;
 
-            fadeRatio = remainingTime / (fadeDuration);
+            fadeRatio = remainingTime / fadeDuration;
 
             currentColor.a = fadeRatio;
             feedbackText.color = currentColor;

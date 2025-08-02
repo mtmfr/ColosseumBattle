@@ -47,7 +47,7 @@ public abstract class Unit : MonoBehaviour
         if (wasDead)
             health = miscParameters.health;
 
-        UnitEvent.OnDamageReceived += GetDamage;
+        UnitEvent.OnDamageReceived += TakeDamage;
         UnitEvent.OnHeal += GetHeal;
         UnitEvent.OnTargetDeath += TargetDied;
 
@@ -59,7 +59,7 @@ public abstract class Unit : MonoBehaviour
         target = null;
         currentState = UnitState.Idle;
 
-        UnitEvent.OnDamageReceived -= GetDamage;
+        UnitEvent.OnDamageReceived -= TakeDamage;
         UnitEvent.OnHeal -= GetHeal;
         UnitEvent.OnTargetDeath -= TargetDied;
 
@@ -234,7 +234,7 @@ public abstract class Unit : MonoBehaviour
             health = maxHealth;
     }
 
-    private void GetDamage(Unit damagedUnit, int damageReceived)
+    private void TakeDamage(Unit damagedUnit, int damageReceived)
     {
         if (damagedUnit != this)
             return;

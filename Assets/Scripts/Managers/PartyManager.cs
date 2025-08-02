@@ -65,8 +65,9 @@ public static class PartyManager
         heroesInBattle.CopyTo(inBattleCopy, 0);
 
         //Remove the hero at the it's id in the battle to simulate the exchange with a null party place
-        inBattleCopy[toMove.id] = null;
+        inBattleCopy[toMove.position] = null;
 
+        //Loop through the battle party to see if there at least one hero inside
         for (int id = 0;  id < inBattleCopy.Length; id++)
         {
             if (inBattleCopy[id] != null)
@@ -81,8 +82,8 @@ public static class PartyManager
     /// </summary>
     public static void InvertPartyPlace(HeroPartyData fromParty, HeroPartyData toParty)
     {
-        heroesInParty[toParty.id] = fromParty.hero;
-        heroesInParty[fromParty.id] = toParty.hero;
+        heroesInParty[toParty.position] = fromParty.hero;
+        heroesInParty[fromParty.position] = toParty.hero;
     }
 
     /// <summary>
@@ -90,8 +91,8 @@ public static class PartyManager
     /// </summary>
     public static void InvertBattlePosition(HeroPartyData fromBattle, HeroPartyData toBattle)
     {
-        heroesInBattle[toBattle.id] = fromBattle.hero;
-        heroesInBattle[fromBattle.id] = toBattle.hero;
+        heroesInBattle[toBattle.position] = fromBattle.hero;
+        heroesInBattle[fromBattle.position] = toBattle.hero;
     }
 
     /// <summary>
@@ -99,8 +100,8 @@ public static class PartyManager
     /// </summary>
     public static void MoveToParty(HeroPartyData fromBattle, HeroPartyData toParty)
     {
-        heroesInParty[toParty.id] = fromBattle.hero;
-        heroesInBattle[fromBattle.id] = toParty.hero;
+        heroesInParty[toParty.position] = fromBattle.hero;
+        heroesInBattle[fromBattle.position] = toParty.hero;
     }
     #endregion
 }
@@ -108,11 +109,11 @@ public static class PartyManager
 public struct HeroPartyData
 {
     public Hero hero;
-    public int id;
+    public int position;
 
-    public HeroPartyData(Hero hero, int id)
+    public HeroPartyData(Hero hero, int position)
     {
         this.hero = hero;
-        this.id = id;
+        this.position = position;
     }
 }

@@ -31,10 +31,7 @@ public abstract class Hero : Unit
         if (isFirstAttack)
         {
             if (attackTimer < attackParameters.firstAttackCooldown)
-            {
                 attackTimer += Time.fixedDeltaTime;
-                return;
-            }
             else
             {
                 AttackMotion(target, attackParameters.attackPower);
@@ -42,13 +39,15 @@ public abstract class Hero : Unit
                 isFirstAttack = false;
             }
         }
-
-        if (attackTimer < attackParameters.attackCooldown)
-            attackTimer += Time.fixedDeltaTime;
         else
         {
-            AttackMotion(target, attackParameters.attackPower);
-            attackTimer = 0;
+            if (attackTimer < attackParameters.attackCooldown)
+                attackTimer += Time.fixedDeltaTime;
+            else
+            {
+                AttackMotion(target, attackParameters.attackPower);
+                attackTimer = 0;
+            }
         }
     }
 

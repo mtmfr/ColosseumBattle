@@ -2161,7 +2161,7 @@ MonoBehaviour:
     startingColor: {r: 0.78431374, g: 0, b: 0, a: 1}
     goldLacking: There is not enought gold to buy a new hero
     partyFull: No remaining place in party
-    fadeDuration: 0.5
+    fadeDuration: 1
   partyController:
     baseHeroFrame: {fileID: 7268350455106542962, guid: 9159a4747ec018b42ac4b115448eddd5, type: 3}
     inBattleFrameParent: {fileID: 5290021061398847156}
