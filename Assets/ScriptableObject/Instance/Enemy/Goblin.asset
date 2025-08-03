@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <movementParameters>k__BackingField:
     <maxApproachSpeed>k__BackingField: 3
-    <maxFleeSpeed>k__BackingField: 4
+    <maxFleeSpeed>k__BackingField: 0
   <attackParameters>k__BackingField:
     <fleeDistance>k__BackingField: 0
     <attackDistance>k__BackingField: 2
-    <attackPower>k__BackingField: 1
+    <attackPower>k__BackingField: 2
     <firstAttackCooldown>k__BackingField: 0.3
     <attackCooldown>k__BackingField: 0.5
   <miscParameters>k__BackingField:
@@ -29,4 +29,4 @@ MonoBehaviour:
   <uiParameters>k__BackingField:
     <heroDescription>k__BackingField: 
     <characterSprite>k__BackingField: {fileID: 0}
-  <goldDrop>k__BackingField: 5
+  <goldDrop>k__BackingField: 2

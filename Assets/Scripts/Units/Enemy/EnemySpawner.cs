@@ -55,7 +55,7 @@ public class EnemySpawner
                 //If the cost of the enemy is greater than the remaining credit of the wave
             if (enemyCost > waveCredit)
             {
-                //Remove it from available enmies and start a new loop
+                //Remove it from available enemies and start a new loop
                 availableEnemies.RemoveAt(generatedId);
                 continue;
             }
@@ -106,6 +106,7 @@ public class EnemySpawner
             Vector2 spawnPoint = GetRandomSpawnPoint();
 
             Enemy spawned = ObjectPool.GetObject(enemy, spawnPoint, Quaternion.identity);
+            Debug.Log(spawned.transform.position);
 
             //Replace the referece in the array to the spawned hero
             //Without it the object pooling can't deactivate it

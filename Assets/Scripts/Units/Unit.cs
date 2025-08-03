@@ -9,8 +9,13 @@ public abstract class Unit : MonoBehaviour
 {
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
+    protected Animator animator;
 
     private UnitState currentState;
+
+    private int animMoveHash;
+    private int animDeathHash;
+    protected int animAttackHash;
 
     protected MovementParameters movementParameters;
     protected AttackParameters attackParameters;
@@ -34,12 +39,18 @@ public abstract class Unit : MonoBehaviour
 
     Color32 hitColor = new (255, 170, 150, 255);
 
+    #region UnityFunctions
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
 
         spriteRenderer.color = Color.white;
+
+        animMoveHash = Animator.StringToHash("Moving");
+        animAttackHash = Animator.StringToHash("Attack");
+        animDeathHash = Animator.StringToHash("Died");
     }
 
     private void OnEnable()
@@ -52,6 +63,7 @@ public abstract class Unit : MonoBehaviour
         UnitEvent.OnTargetDeath += TargetDied;
 
         UnitEvent.OnRetarget += Retarget;
+        SMB_DeathAnimFinished.OnDeathAnimEnd += Death;
     }
 
     private void OnDisable()
@@ -64,6 +76,7 @@ public abstract class Unit : MonoBehaviour
         UnitEvent.OnTargetDeath -= TargetDied;
 
         UnitEvent.OnRetarget -= Retarget;
+        SMB_DeathAnimFinished.OnDeathAnimEnd -= Death;
     }
 
     private void FixedUpdate()
@@ -86,6 +99,7 @@ public abstract class Unit : MonoBehaviour
                     SetTarget();
                 break;
             case UnitState.Moving:
+                animator.SetTrigger(animMoveHash);
                 Move(target.transform.position);
                 break;
             case UnitState.Fleeing:
@@ -100,6 +114,7 @@ public abstract class Unit : MonoBehaviour
                 break;
         }
     }
+    #endregion
 
     protected void SetParameters(SO_Unit unitSO)
     {
@@ -181,6 +196,8 @@ public abstract class Unit : MonoBehaviour
         Vector3 direction = targetPos - transform.position;
 
         rb.linearVelocity = direction.normalized * movementParameters.maxApproachSpeed;
+
+        SetSpriteDirection(rb.linearVelocityX);
     }
 
     private void Flee(Vector3 attackerPos)
@@ -198,6 +215,16 @@ public abstract class Unit : MonoBehaviour
         Vector3 direction = transform.position - attackerPos;
 
         rb.linearVelocity = direction.normalized * movementParameters.maxFleeSpeed;
+
+        SetSpriteDirection(rb.linearVelocityX);
+    }
+
+    private void SetSpriteDirection(float xVelocity)
+    {
+        if (xVelocity < 0)
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        else
+            transform.rotation = Quaternion.Euler(Vector3.zero);
     }
     #endregion
 
@@ -245,7 +272,11 @@ public abstract class Unit : MonoBehaviour
             damageToReceive = 1;
 
         if (health - damageToReceive <= 0)
-            Death();
+        {
+            animator.SetTrigger(animDeathHash);
+            UnitEvent.Dying(this);
+            //Death();
+        }
         else
         {
             health -= damageToReceive;
@@ -260,7 +291,7 @@ public abstract class Unit : MonoBehaviour
         spriteRenderer.color = Color.white;
     }
 
-    protected virtual void Death()
+    protected virtual void Death(int gameObjectId)
     {
         wasDead = true;
     }

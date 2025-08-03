@@ -30,35 +30,41 @@ public abstract class Hero : Unit
 
         if (isFirstAttack)
         {
-            if (attackTimer < attackParameters.firstAttackCooldown)
-                attackTimer += Time.fixedDeltaTime;
-            else
+            if (attackTimer > attackParameters.firstAttackCooldown)
             {
+                animator.SetTrigger(animAttackHash);
                 AttackMotion(target, attackParameters.attackPower);
                 attackTimer = 0;
                 isFirstAttack = false;
             }
+            else
+                attackTimer += Time.fixedDeltaTime;
         }
         else
         {
-            if (attackTimer < attackParameters.attackCooldown)
-                attackTimer += Time.fixedDeltaTime;
-            else
+            if (attackTimer > attackParameters.attackCooldown)
             {
+                animator.SetTrigger(animAttackHash);
                 AttackMotion(target, attackParameters.attackPower);
                 attackTimer = 0;
             }
+            else
+                attackTimer += Time.fixedDeltaTime;
         }
     }
 
     protected abstract void AttackMotion(Unit target, int damageToDeal);
 
 
-    protected override void Death()
+    protected override void Death(int gameObjectId)
     {
-        base.Death();
-        UnitEvent.Dying(this);
+        if (gameObjectId != gameObject.GetInstanceID())
+            return;
+
+        base.Death(gameObjectId);
+        //UnitEvent.Dying(this);
         ObjectPool.SetObjectInactive(this);
+        Debug.Log(gameObject);
 
         WaveManager.instance.HeroDied();
     }

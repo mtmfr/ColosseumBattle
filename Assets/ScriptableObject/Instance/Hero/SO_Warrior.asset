@@ -15,20 +15,17 @@ MonoBehaviour:
   <movementParameters>k__BackingField:
     <maxApproachSpeed>k__BackingField: 4
     <maxFleeSpeed>k__BackingField: 0
-    <maxDecelerationSpeed>k__BackingField: 7
-    <acceleration>k__BackingField: 7
-    <deceleration>k__BackingField: 15
   <attackParameters>k__BackingField:
-    <fleeDistance>k__BackingField: 3
-    <attackDistance>k__BackingField: 5
-    <attackPower>k__BackingField: 1
+    <fleeDistance>k__BackingField: 0
+    <attackDistance>k__BackingField: 2
+    <attackPower>k__BackingField: 3
     <firstAttackCooldown>k__BackingField: 0.7
     <attackCooldown>k__BackingField: 1.5
   <miscParameters>k__BackingField:
     <maxFleeTime>k__BackingField: 5
-    <health>k__BackingField: 0
+    <health>k__BackingField: 30
     <defense>k__BackingField: 0
-    <cost>k__BackingField: 0
+    <cost>k__BackingField: 10
   <uiParameters>k__BackingField:
     <heroDescription>k__BackingField: 
     <characterSprite>k__BackingField: {fileID: 786689805, guid: 47d7646cf627f634fb6d1c8e0be66854, type: 3}

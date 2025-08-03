@@ -6,7 +6,7 @@ public class Skeleton : Enemy
 
     protected override void AttackMotion(Unit target, int damageToDeal)
     {
-        Arrow arrowToShoot = ObjectPool.GetObject(arrow, transform.position, Quaternion.identity);
+        Arrow arrowToShoot = ObjectPool.GetObject(arrow, transform.position, arrow.transform.rotation);
         arrowToShoot.SetArrow(target, damageToDeal, attackParameters.attackCooldown);
     }
 }

@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: SO_Priest
   m_EditorClassIdentifier: 
   <movementParameters>k__BackingField:
-    <maxApproachSpeed>k__BackingField: 2
-    <maxFleeSpeed>k__BackingField: 3
+    <maxApproachSpeed>k__BackingField: 4
+    <maxFleeSpeed>k__BackingField: 5
   <attackParameters>k__BackingField:
     <fleeDistance>k__BackingField: 2
     <attackDistance>k__BackingField: 5
-    <attackPower>k__BackingField: 50
+    <attackPower>k__BackingField: 5
     <firstAttackCooldown>k__BackingField: 0.3
     <attackCooldown>k__BackingField: 0.7
   <miscParameters>k__BackingField:

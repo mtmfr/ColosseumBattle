@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class FireBall : MonoBehaviour
 {
+    [SerializeField] private float explosionRadius;
+
     private LayerMask mask;
     private int damage;
 
-    [SerializeField] private float attackRadius;
-
-    public void SetFireball(LayerMask layerToHit, int damageToDeal)
+    public void SummonFireball(LayerMask layerToHit, int damageToDeal)
     {
         mask = layerToHit;
         damage = damageToDeal;
@@ -17,7 +17,7 @@ public class FireBall : MonoBehaviour
 
     private void Attack()
     {
-        Collider2D[] attackCol = Physics2D.OverlapCircleAll(transform.position, attackRadius, mask);
+        Collider2D[] attackCol = Physics2D.OverlapCircleAll(transform.position, explosionRadius, mask);
 
         foreach (Collider2D collider in attackCol)
         {
@@ -29,6 +29,13 @@ public class FireBall : MonoBehaviour
 
             UnitEvent.DealDamage(ToDamage, damage);
         }
-        ObjectPool.SetObjectInactive(this);
+        //ObjectPool.SetObjectInactive(this);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 }

@@ -12,6 +12,6 @@ public class Mage : Hero
             return;
 
         FireBall castedFireball = ObjectPool.GetObject(fireBall, target.transform.position, Quaternion.identity);
-        castedFireball.SetFireball(1 << target.gameObject.layer, damageToDeal);
+        castedFireball.SummonFireball(1 << target.gameObject.layer, damageToDeal);
     }
 }

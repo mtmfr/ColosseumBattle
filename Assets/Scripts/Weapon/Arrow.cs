@@ -25,6 +25,9 @@ public class Arrow : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!target.isActiveAndEnabled)
+            ObjectPool.SetObjectInactive(this);
+
         if (timer/flyTime < 0.99f)
         {
             Vector3 newPos = Vector3.Lerp(transform.position, target.transform.position, timer/flyTime);

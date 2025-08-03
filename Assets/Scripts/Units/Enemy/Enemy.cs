@@ -30,25 +30,26 @@ public abstract class Enemy : Unit
 
         if (isFirstAttack)
         {
-            if (attackTimer < attackParameters.firstAttackCooldown)
+            if (attackTimer > attackParameters.firstAttackCooldown)
             {
-                attackTimer += Time.fixedDeltaTime;
-                return;
-            }
-            else
-            {
+                animator.SetTrigger(animAttackHash);
                 AttackMotion(target, attackParameters.attackPower);
                 attackTimer = 0;
                 isFirstAttack = false;
             }
+            else
+                attackTimer += Time.fixedDeltaTime;
         }
-
-        if (attackTimer < attackParameters.attackCooldown)
-            attackTimer += Time.fixedDeltaTime;
         else
         {
-            AttackMotion(target, attackParameters.attackPower);
-            attackTimer = 0;
+            if (attackTimer > attackParameters.attackCooldown)
+            {
+                animator.SetTrigger(animAttackHash);
+                AttackMotion(target, attackParameters.attackPower);
+                attackTimer = 0;
+            }
+            else
+                attackTimer += Time.fixedDeltaTime;
         }
     }
 
@@ -57,10 +58,13 @@ public abstract class Enemy : Unit
         UnitEvent.DealDamage(target, damageToDeal);
     }
 
-    protected override void Death()
+    protected override void Death(int gameObjectId)
     {
-        base.Death();
-        UnitEvent.Dying(this);
+        if (gameObjectId != gameObject.GetInstanceID())
+            return;
+
+        base.Death(gameObjectId);
+        //UnitEvent.Dying(this);
         GameManager.AddGold(enemySO.goldDrop);
         ObjectPool.SetObjectInactive(this);
 

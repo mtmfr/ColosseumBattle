@@ -10,7 +10,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private EnemySpawner enemySpawner;
 
     private Enemy[] nextWaveEnemies;
-    private int enemiesInWave;
+    private int enemiesInWaveNb;
     #endregion
 
     [SerializeField] private HeroSpawner heroSpawner;
@@ -53,13 +53,13 @@ public class WaveManager : MonoBehaviour
                 if (nextWaveEnemies.Count() == 0)
                     throw new ArgumentNullException("No enemies in wave", "there is no enemies to be spawn in the wave");
 
-                enemiesInWave = nextWaveEnemies.Length;
+                enemiesInWaveNb = nextWaveEnemies.Length;
                 enemySpawner.SpawnEnemies(ref nextWaveEnemies);
 
                 nextWaveEnemies = null;
 
                 heroSpawner.SpawnHeroes(ref PartyManager.heroesInBattle);
-                SetAliveHeroes(ref aliveHeroes);
+                SetAliveHeroes(out aliveHeroes);
 
                 currentWave++;
                 break;
@@ -82,7 +82,7 @@ public class WaveManager : MonoBehaviour
             UpdateWaveState(WaveState.Middle);
     }
 
-    private void SetAliveHeroes(ref int aliveHeroes)
+    private void SetAliveHeroes(out int aliveHeroes)
     {
         Hero[] heroes = PartyManager.heroesInBattle;
 
@@ -98,9 +98,9 @@ public class WaveManager : MonoBehaviour
 
     public void EnemyDied()
     {
-        enemiesInWave--;
+        enemiesInWaveNb--;
 
-        if (enemiesInWave <= 0)
+        if (enemiesInWaveNb <= 0)
             UpdateWaveState(WaveState.End);
     }
 

@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
+  serializedVersion: 3
   tags:
   - Mouse
   - Enemy
@@ -50,6 +50,11 @@ TagManager:
   - name: Character
     uniqueID: 3586485151
     locked: 0
+  - name: Weapons
+    uniqueID: 4047082083
+    locked: 0
   - name: FX
     uniqueID: 1609628005
     locked: 0
+  m_RenderingLayers:
+  - Default

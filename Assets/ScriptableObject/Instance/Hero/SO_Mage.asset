@@ -14,19 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <movementParameters>k__BackingField:
     <maxApproachSpeed>k__BackingField: 5
-    <maxFleeSpeed>k__BackingField: 5
-    <maxDecelerationSpeed>k__BackingField: 8
-    <acceleration>k__BackingField: 3
-    <deceleration>k__BackingField: 5
+    <maxFleeSpeed>k__BackingField: 6
   <attackParameters>k__BackingField:
     <fleeDistance>k__BackingField: 1.5
     <attackDistance>k__BackingField: 4
-    <attackPower>k__BackingField: 2
-    <firstAttackCooldown>k__BackingField: 0.7
+    <attackPower>k__BackingField: 7
+    <firstAttackCooldown>k__BackingField: 0.9
     <attackCooldown>k__BackingField: 1.2
   <miscParameters>k__BackingField:
     <maxFleeTime>k__BackingField: 2
-    <health>k__BackingField: 10
+    <health>k__BackingField: 15
     <defense>k__BackingField: 1
     <cost>k__BackingField: 10
   <uiParameters>k__BackingField:

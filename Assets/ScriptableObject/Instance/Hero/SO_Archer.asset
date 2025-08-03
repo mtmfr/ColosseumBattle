@@ -13,22 +13,19 @@ MonoBehaviour:
   m_Name: SO_Archer
   m_EditorClassIdentifier: 
   <movementParameters>k__BackingField:
-    <maxApproachSpeed>k__BackingField: 0
-    <maxFleeSpeed>k__BackingField: 0
-    <maxDecelerationSpeed>k__BackingField: 0
-    <acceleration>k__BackingField: 0
-    <deceleration>k__BackingField: 0
+    <maxApproachSpeed>k__BackingField: 5
+    <maxFleeSpeed>k__BackingField: 6
   <attackParameters>k__BackingField:
-    <fleeDistance>k__BackingField: 0
-    <attackDistance>k__BackingField: 0
-    <attackPower>k__BackingField: 0
-    <firstAttackCooldown>k__BackingField: 0
-    <attackCooldown>k__BackingField: 0
+    <fleeDistance>k__BackingField: 0.5
+    <attackDistance>k__BackingField: 2.5
+    <attackPower>k__BackingField: 3
+    <firstAttackCooldown>k__BackingField: 0.6
+    <attackCooldown>k__BackingField: 0.8
   <miscParameters>k__BackingField:
-    <maxFleeTime>k__BackingField: 0
-    <health>k__BackingField: 0
-    <defense>k__BackingField: 0
-    <cost>k__BackingField: 0
+    <maxFleeTime>k__BackingField: 3
+    <health>k__BackingField: 20
+    <defense>k__BackingField: 1
+    <cost>k__BackingField: 10
   <uiParameters>k__BackingField:
     <heroDescription>k__BackingField: With his faifull bow he will never miss his
       target and pierce them with his arrow. He used to steal from the rich to give
