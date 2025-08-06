@@ -5,8 +5,9 @@ public abstract class Hero : Unit
 {
     [field: SerializeField] public SO_Hero heroSO { get; private set; }
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         SetParameters(heroSO);
     }
 
@@ -62,9 +63,9 @@ public abstract class Hero : Unit
             return;
 
         base.Death(gameObjectId);
-        //UnitEvent.Dying(this);
+        UnitEvent.Dying(this);
         ObjectPool.SetObjectInactive(this);
-        Debug.Log(gameObject);
+        PartyManager.RemoveHeroFromParty(this);
 
         WaveManager.instance.HeroDied();
     }

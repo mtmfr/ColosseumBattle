@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4818987969338332512}
   - component: {fileID: 239232592969971987}
   m_Layer: 7
-  m_Name: orc
+  m_Name: Orc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

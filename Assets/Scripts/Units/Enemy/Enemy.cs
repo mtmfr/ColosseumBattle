@@ -5,8 +5,9 @@ public abstract class Enemy : Unit
 {
     [field: SerializeField] public SO_Enemy enemySO { get; private set; }
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         SetParameters(enemySO);
     }
 
@@ -64,9 +65,8 @@ public abstract class Enemy : Unit
             return;
 
         base.Death(gameObjectId);
-        //UnitEvent.Dying(this);
-        GameManager.AddGold(enemySO.goldDrop);
         ObjectPool.SetObjectInactive(this);
+        GameManager.AddGold(enemySO.goldDrop);
 
         WaveManager.instance.EnemyDied();
     }

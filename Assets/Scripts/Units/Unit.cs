@@ -40,14 +40,16 @@ public abstract class Unit : MonoBehaviour
     Color32 hitColor = new (255, 170, 150, 255);
 
     #region UnityFunctions
-    private void Start()
+
+    protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+    }
 
-        spriteRenderer.color = Color.white;
-
+    private void Start()
+    {
         animMoveHash = Animator.StringToHash("Moving");
         animAttackHash = Animator.StringToHash("Attack");
         animDeathHash = Animator.StringToHash("Died");
@@ -57,6 +59,9 @@ public abstract class Unit : MonoBehaviour
     {
         if (wasDead)
             health = miscParameters.health;
+
+        spriteRenderer.color = Color.white;
+        currentState = UnitState.Idle;
 
         UnitEvent.OnDamageReceived += TakeDamage;
         UnitEvent.OnHeal += GetHeal;
@@ -69,7 +74,7 @@ public abstract class Unit : MonoBehaviour
     private void OnDisable()
     {
         target = null;
-        currentState = UnitState.Idle;
+        availableTargets.Clear();
 
         UnitEvent.OnDamageReceived -= TakeDamage;
         UnitEvent.OnHeal -= GetHeal;
@@ -77,12 +82,17 @@ public abstract class Unit : MonoBehaviour
 
         UnitEvent.OnRetarget -= Retarget;
         SMB_DeathAnimFinished.OnDeathAnimEnd -= Death;
+
+        StopAllCoroutines();
     }
 
     private void FixedUpdate()
     {
         if (GameManager.currentGameState != GameState.Wave)
+        {
+            currentState = UnitState.Idle;
             return;
+        }
 
         if (WaveManager.instance.waveState != WaveManager.WaveState.Middle)
             return;
@@ -95,6 +105,7 @@ public abstract class Unit : MonoBehaviour
             case UnitState.Idle:
                 if (availableTargets == null || availableTargets.Count == 0)
                     GetAvailableTarget();
+
                 if (target == null)
                     SetTarget();
                 break;
@@ -152,16 +163,42 @@ public abstract class Unit : MonoBehaviour
     {
         List <Unit> targets = sortType switch
         {
-            SortType.Distance => availableTargets.Where(target => target.isActiveAndEnabled && target is T && target != this)
-                    .OrderBy(target => Vector2.Distance(target.transform.position, transform.position))
-                    .ToList(),
-            SortType.Health => availableTargets.Where(target => target.isActiveAndEnabled && target is T && target != this)
-                    .OrderBy(target => target.health)
-                    .ThenBy(target => Vector2.Distance(target.transform.position, transform.position))
-                    .ToList(),
-            _ => availableTargets.Where(target => target.isActiveAndEnabled && target is T && target != this)
-                    .OrderBy(target => Vector2.Distance(target.transform.position, transform.position))
-                    .ToList(),
+            SortType.Distance => availableTargets.Where(target =>
+            {
+                bool isActive = target.isActiveAndEnabled;
+                bool isCorrectType = target is T;
+                bool isNotThis = target != this;
+                bool isNotDead = target.currentState != UnitState.Dead;
+
+                return isActive && isCorrectType && isNotThis && isNotDead;
+            })
+            .OrderBy(target => Vector2.Distance(target.transform.position, transform.position))
+            .ToList(),
+
+            SortType.Health => availableTargets.Where(target =>
+            {
+                bool isActive = target.isActiveAndEnabled;
+                bool isCorrectType = target is T;
+                bool isNotThis = target != this;
+                bool isNotDead = target.currentState != UnitState.Dead;
+
+                return isActive && isCorrectType && isNotThis && isNotDead;
+            })
+            .OrderBy(target => target.health)
+            .ThenBy(target => Vector2.Distance(target.transform.position, transform.position))
+            .ToList(),
+
+            _ => availableTargets.Where(target =>
+            {
+                bool isActive = target.isActiveAndEnabled;
+                bool isCorrectType = target is T;
+                bool isNotThis = target != this;
+                bool isNotDead = target.currentState != UnitState.Dead;
+
+                return isActive && isCorrectType && isNotThis && isNotDead;
+            })
+            .OrderBy(target => Vector2.Distance(target.transform.position, transform.position))
+            .ToList(),
         };
 
         if (targets.Count > 0)
@@ -197,6 +234,11 @@ public abstract class Unit : MonoBehaviour
 
         rb.linearVelocity = direction.normalized * movementParameters.maxApproachSpeed;
 
+        if (this is Slime) 
+        {
+            Debug.Log(rb.constraints);
+        }
+
         SetSpriteDirection(rb.linearVelocityX);
     }
 
@@ -205,8 +247,8 @@ public abstract class Unit : MonoBehaviour
         if (fleeTimer > miscParameters.maxFleeTime)
         {
             hasStoppedFleeing = true;
-            if (attackParameters.fleeDistance > 0)
-                GetAvailableTarget();
+            rb.linearVelocity = Vector2.zero;
+            GetAvailableTarget();
             return;
         }
 
@@ -275,7 +317,6 @@ public abstract class Unit : MonoBehaviour
         {
             animator.SetTrigger(animDeathHash);
             UnitEvent.Dying(this);
-            //Death();
         }
         else
         {

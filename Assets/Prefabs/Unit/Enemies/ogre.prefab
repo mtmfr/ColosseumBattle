@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 7971240375982140741}
   - component: {fileID: 1443139533569918286}
   m_Layer: 7
-  m_Name: ogre
+  m_Name: Ogre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

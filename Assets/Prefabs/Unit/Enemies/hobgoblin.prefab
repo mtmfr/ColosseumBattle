@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4806529778293226493}
   - component: {fileID: 1570789306379045895}
   m_Layer: 7
-  m_Name: hobgoblin
+  m_Name: Hobgoblin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

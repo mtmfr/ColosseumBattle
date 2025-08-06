@@ -17,13 +17,13 @@ MonoBehaviour:
     <maxFleeSpeed>k__BackingField: 5
   <attackParameters>k__BackingField:
     <fleeDistance>k__BackingField: 0
-    <attackDistance>k__BackingField: 0
-    <attackPower>k__BackingField: 0
-    <firstAttackCooldown>k__BackingField: 0
-    <attackCooldown>k__BackingField: 0
+    <attackDistance>k__BackingField: 1
+    <attackPower>k__BackingField: 1
+    <firstAttackCooldown>k__BackingField: 0.7
+    <attackCooldown>k__BackingField: 0.9
   <miscParameters>k__BackingField:
     <maxFleeTime>k__BackingField: 0
-    <health>k__BackingField: 0
+    <health>k__BackingField: 10
     <defense>k__BackingField: 0
     <cost>k__BackingField: 1
   <uiParameters>k__BackingField:

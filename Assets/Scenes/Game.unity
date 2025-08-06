@@ -880,7 +880,6 @@ MonoBehaviour:
     - {fileID: 1443139533569918286, guid: 4767947ed420cf14681a37616d620646, type: 3}
     - {fileID: 239232592969971987, guid: 05f36cee9ff716e408d041ee8f8686c1, type: 3}
     - {fileID: 6188602005125079859, guid: 735cd61dd4e0fe448bd74c0ff7dd3261, type: 3}
-    - {fileID: 7788407845235612236, guid: cecf9cd6d42b72449bb294dbce0dbb07, type: 3}
   heroSpawner:
     heroSpawnZone: {fileID: 1763821078}
   currentWave: 0

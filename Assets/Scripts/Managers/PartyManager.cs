@@ -1,7 +1,12 @@
+using System;
+using System.Collections.Generic;
+
 public static class PartyManager
 {
-    public static Hero[] heroesInBattle = new Hero[5];
+    public static Hero[] heroesInBattle { get; private set; } = new Hero[5];
     public static Hero[] heroesInParty { get; private set; } = new Hero[10];
+
+    public static Hero[] summonedHeroes = new Hero[5];
 
     /// <summary>
     /// Add a new hero to the party
@@ -45,10 +50,29 @@ public static class PartyManager
         return inBattle >= 0 || inParty >= 0;
     }
 
+    public static void RemoveHeroFromParty(Hero toRemove)
+    {
+        int heroId = 0;
+
+        for (int id = 0; id < summonedHeroes.Length; id++)
+        {
+            Hero currentHero = summonedHeroes[id];
+
+            if (currentHero == toRemove)
+            {
+                heroId = id;
+                break;
+            }
+        }
+
+        summonedHeroes[heroId] = null;
+        heroesInBattle[heroId] = null;
+    }
+
     public static void ClearParty()
     {
         heroesInBattle = new Hero[5];
-        heroesInParty = new Hero[1]; 
+        heroesInParty = new Hero[10]; 
     }
 
     #region Party management

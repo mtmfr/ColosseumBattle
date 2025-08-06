@@ -12,7 +12,7 @@ public class HeroSpawner
     /// Spawn the hero in the referenced array
     /// </summary>
     /// <param name="heroesToSpawn">the heroes to spawn</param>
-    public void SpawnHeroes(ref Hero[] heroesToSpawn)
+    public void SpawnHeroes(Hero[] heroesToSpawn)
     {
         for (int heroId = 0; heroId < heroesToSpawn.Length; heroId++)
         {
@@ -21,12 +21,10 @@ public class HeroSpawner
             if (hero == null)
                 continue;
 
-            Hero spawnedHero = ObjectPool.GetObject(hero, GetRandomSpawnPoint(), Quaternion.identity);
+            Vector2 spawnPoint = GetRandomSpawnPoint();
 
-            //Replace the referece in the array to the spawned hero
-            //Without it the object pooling can't deactivate it
-            if (spawnedHero.GetInstanceID() != hero.GetInstanceID())
-                heroesToSpawn[heroId] = spawnedHero;
+            Hero summonedHero = ObjectPool.GetObject(hero, spawnPoint, Quaternion.identity);
+            PartyManager.summonedHeroes[heroId] = summonedHero;
         }
     }
 
@@ -34,11 +32,16 @@ public class HeroSpawner
     {
         for (int heroId = 0; heroId < heroesToDespawn.Length; heroId++)
         {
-            if (heroesToDespawn[heroId] == null)
+            Hero toDespawn = heroesToDespawn[heroId];
+
+            if (toDespawn == null)
                 continue;
 
-            ObjectPool.SetObjectInactive(heroesToDespawn[heroId]);
+            PartyManager.summonedHeroes[heroId] = null;
+
+            ObjectPool.SetObjectInactive(toDespawn);
         }
+
     }
 
     /// <summary>

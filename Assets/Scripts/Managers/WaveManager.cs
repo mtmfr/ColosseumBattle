@@ -54,11 +54,11 @@ public class WaveManager : MonoBehaviour
                     throw new ArgumentNullException("No enemies in wave", "there is no enemies to be spawn in the wave");
 
                 enemiesInWaveNb = nextWaveEnemies.Length;
-                enemySpawner.SpawnEnemies(ref nextWaveEnemies);
+                enemySpawner.SpawnEnemies(nextWaveEnemies);
 
                 nextWaveEnemies = null;
 
-                heroSpawner.SpawnHeroes(ref PartyManager.heroesInBattle);
+                heroSpawner.SpawnHeroes(PartyManager.heroesInBattle);
                 SetAliveHeroes(out aliveHeroes);
 
                 currentWave++;
@@ -68,7 +68,7 @@ public class WaveManager : MonoBehaviour
             case WaveState.End:
                 GenerateNextWave();
                 waveState = WaveState.NotInWave;
-                heroSpawner.DespawnHeroes(PartyManager.heroesInBattle);
+                heroSpawner.DespawnHeroes(PartyManager.summonedHeroes);
                 GameManager.UpdateGameState(GameState.Shop);
                 break;
             default:
