@@ -10,6 +10,7 @@ public class HeroShop
     [field: Header("ShopObject")]
     [SerializeField] private GameObject heroSelection;
     [SerializeField] private GameObject heroDescription;
+    [SerializeField] private TextMeshProUGUI goldAmount;
 
     [field: Header("Selection")]
     [SerializeField] private SO_UnitList heroList;
@@ -18,7 +19,7 @@ public class HeroShop
     [Header("Description")]
     [SerializeField] private Image selectedImage;
     [SerializeField] private TextMeshProUGUI selectedDescription;
-    [SerializeField] private TextMeshProUGUI goldAmount;
+    [SerializeField] private TextMeshProUGUI selectedPrice;
     [SerializeField] private Button BuyHero;
 
     [Header("Feedback")]
@@ -131,6 +132,7 @@ public class HeroShop
     {
         UIParameters uiInfo = selectedHero.heroSO.uiParameters;
 
+        selectedPrice.text = selectedHero.heroSO.miscParameters.cost.ToString();
         selectedImage.sprite = uiInfo.characterSprite;
         selectedDescription.text = uiInfo.heroDescription;
     }
